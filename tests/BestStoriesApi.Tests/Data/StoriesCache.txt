@@ -1,0 +1,1802 @@
+﻿[
+  {
+    "id": 36827438,
+    "title": "I am dying of squamous cell carcinoma, and potential treatments are out of reach",
+    "url": "https://jakeseliger.com/2023/07/22/i-am-dying-of-squamous-cell-carcinoma-and-the-treatments-that-might-save-me-are-just-out-of-reach/",
+    "by": "theoldlove",
+    "time": 1690042306,
+    "score": 887,
+    "descendants": 456
+  },
+  {
+    "id": 36837273,
+    "title": "Man found guilty of child porn because he ran a Tor exit node",
+    "url": "https://lowendbox.com/blog/man-found-guilty-of-child-porn-because-he-ran-a-tor-exit-node-the-story-of-william-weber/",
+    "by": "h0ek",
+    "time": 1690131803,
+    "score": 788,
+    "descendants": 537
+  },
+  {
+    "id": 36839983,
+    "title": "All foster kids in California can now attend any state college for free",
+    "url": "https://themessenger.com/news/all-foster-kids-in-california-can-now-attend-any-state-college-for-free",
+    "by": "pessimizer",
+    "time": 1690147443,
+    "score": 713,
+    "descendants": 540
+  },
+  {
+    "id": 36838051,
+    "title": "Llama2.c: Inference llama 2 in one file of pure C",
+    "url": "https://github.com/karpathy/llama2.c",
+    "by": "anjneymidha",
+    "time": 1690136034,
+    "score": 678,
+    "descendants": 161
+  },
+  {
+    "id": 36848680,
+    "title": "Zenbleed",
+    "url": "https://lock.cmpxchg8b.com/zenbleed.html",
+    "by": "loeg",
+    "time": 1690209271,
+    "score": 663,
+    "descendants": 206
+  },
+  {
+    "id": 36845111,
+    "title": "Twitter has officially changed its logo to \u2018X\u2019",
+    "url": "https://techcrunch.com/2023/07/24/twitter-has-officially-changed-its-logo-to-x/",
+    "by": "pallas_athena",
+    "time": 1690191263,
+    "score": 647,
+    "descendants": 1526
+  },
+  {
+    "id": 36817305,
+    "title": "Web Environment Integrity API Proposal",
+    "url": "https://github.com/RupertBenWiser/Web-Environment-Integrity",
+    "by": "reactormonk",
+    "time": 1689962983,
+    "score": 591,
+    "descendants": 427
+  },
+  {
+    "id": 36841369,
+    "title": "U.S. Senate bill crafted with DEA targets end-to-end encryption",
+    "url": "https://therecord.media/senate-dea-bill-targets-end-to-end-encryption-requires-companies-to-report-drugs",
+    "by": "walterbell",
+    "time": 1690156908,
+    "score": 473,
+    "descendants": 349
+  },
+  {
+    "id": 36828811,
+    "title": "A Caltech Nobel laureate celebrates his 100th birthday, then gets back to work",
+    "url": "https://www.latimes.com/science/story/2023-07-21/caltech-nobel-laureate-rudy-marcus-turns-100-and-gets-back-to-work",
+    "by": "pseudolus",
+    "time": 1690052416,
+    "score": 471,
+    "descendants": 235
+  },
+  {
+    "id": 36818896,
+    "title": "Journalists should be skeptical of all sources including scientists",
+    "url": "https://natesilver.substack.com/p/journalists-should-be-skeptical-of",
+    "by": "amadeuspagel",
+    "time": 1689969680,
+    "score": 468,
+    "descendants": 353
+  },
+  {
+    "id": 36828409,
+    "title": "Shopify employee breaks NDA to reveal firm replacing laid off workers with AI",
+    "url": "https://thedeepdive.ca/shopify-employee-breaks-nda-to-reveal-firm-quietly-replacing-laid-off-workers-with-ai/",
+    "by": "notRobot",
+    "time": 1690049849,
+    "score": 450,
+    "descendants": 538
+  },
+  {
+    "id": 36837442,
+    "title": "Icon Buddy \u2013 100K\u002B Open Source SVG Icons, Fully Customizable",
+    "url": "https://iconbuddy.app/",
+    "by": "mddanishyusuf",
+    "time": 1690132780,
+    "score": 432,
+    "descendants": 47
+  },
+  {
+    "id": 36824450,
+    "title": "Plane \u2013 Open-source Jira alternative",
+    "url": "https://plane.so",
+    "by": "prhrb",
+    "time": 1690014100,
+    "score": 426,
+    "descendants": 142
+  },
+  {
+    "id": 36819906,
+    "title": "Llama: Add grammar-based sampling",
+    "url": "https://github.com/ggerganov/llama.cpp/pull/1773",
+    "by": "davepeck",
+    "time": 1689974265,
+    "score": 413,
+    "descendants": 105
+  },
+  {
+    "id": 36843794,
+    "title": "Inkscape 1.3",
+    "url": "https://inkscape.org/news/2023/07/23/inkscape-launches-version-13-focus-organizing-work/",
+    "by": "Reventlov",
+    "time": 1690180349,
+    "score": 406,
+    "descendants": 71
+  },
+  {
+    "id": 36815255,
+    "title": "In the LLM space, \u0022open source\u0022 is being used to mean \u0022downloadable weights\u0022",
+    "url": "https://www.alessiofanelli.com/blog/llama2-isnt-open-source",
+    "by": "FanaHOVA",
+    "time": 1689954544,
+    "score": 398,
+    "descendants": 228
+  },
+  {
+    "id": 36815744,
+    "title": "\u2018World of Warcraft\u2019 players trick AI-scraping website into publishing nonsense",
+    "url": "https://www.forbes.com/sites/paultassi/2023/07/21/world-of-warcraft-players-trick-ai-scraping-games-website-into-publishing-nonsense/",
+    "by": "mikhael",
+    "time": 1689956540,
+    "score": 385,
+    "descendants": 210
+  },
+  {
+    "id": 36829374,
+    "title": "Egregoria: 3D City Builder without a grid",
+    "url": "https://github.com/Uriopass/Egregoria",
+    "by": "dosshell",
+    "time": 1690056455,
+    "score": 382,
+    "descendants": 106
+  },
+  {
+    "id": 36846076,
+    "title": "Unicode Character \u201C\uD835\uDD4F\u201D (U\u002B1D54F)",
+    "url": "https://www.compart.com/en/unicode/U\u002B1D54F",
+    "by": "t0m44c",
+    "time": 1690197733,
+    "score": 378,
+    "descendants": 269
+  },
+  {
+    "id": 36820469,
+    "title": "Managing Kitchen Fruit Flies with a Little Shop of Horrors",
+    "url": "https://blog.zaccohn.com/Fruitflies-and-the-Little-Shop-of-Horrors/",
+    "by": "zacharycohn",
+    "time": 1689976720,
+    "score": 363,
+    "descendants": 164
+  },
+  {
+    "id": 36823605,
+    "title": "Putting the \u201CYou\u201D in CPU",
+    "url": "https://cpu.land/",
+    "by": "uneekname",
+    "time": 1690004333,
+    "score": 356,
+    "descendants": 108
+  },
+  {
+    "id": 36851494,
+    "title": "Attention Is Off By One",
+    "url": "https://www.evanmiller.org/attention-is-off-by-one.html",
+    "by": "elbasti",
+    "time": 1690219986,
+    "score": 353,
+    "descendants": 123
+  },
+  {
+    "id": 36822654,
+    "title": "FBI improperly used 702 surveillance powers on US senator",
+    "url": "https://thehill.com/homenews/administration/4110850-fbi-improperly-used-702-surveillance-powers-on-us-senator/",
+    "by": "ramblenode",
+    "time": 1689993571,
+    "score": 340,
+    "descendants": 264
+  },
+  {
+    "id": 36821808,
+    "title": "Death Metal English (2013)",
+    "url": "https://www.invisibleoranges.com/death-metal-english/",
+    "by": "cdme",
+    "time": 1689984932,
+    "score": 330,
+    "descendants": 94
+  },
+  {
+    "id": 36842239,
+    "title": "The \u201Cthree things\u201D exercise for getting things out of talks (2011)",
+    "url": "https://math.stanford.edu/~vakil/threethings.html",
+    "by": "mutant_glofish",
+    "time": 1690164378,
+    "score": 318,
+    "descendants": 60
+  },
+  {
+    "id": 36851644,
+    "title": "Have attention spans been declining?",
+    "url": "https://slimemoldtimemold.com/2023/07/24/your-mystery-have-attention-spans-been-declining/",
+    "by": "janandonly",
+    "time": 1690220617,
+    "score": 317,
+    "descendants": 221
+  },
+  {
+    "id": 36849502,
+    "title": "Show HN: I spent 2 years building a personal finance simulator",
+    "url": "https://projectionlab.com/",
+    "by": "scubakid",
+    "time": 1690212306,
+    "score": 317,
+    "descendants": 119
+  },
+  {
+    "id": 36830813,
+    "title": "Why SQLite does not use Git (2018)",
+    "url": "https://www.sqlite.org/draft/matrix/whynotgit.html",
+    "by": "1vuio0pswjnm7",
+    "time": 1690067040,
+    "score": 311,
+    "descendants": 425
+  },
+  {
+    "id": 36823516,
+    "title": "AWS networking concepts in a diagram",
+    "url": "https://miparnisariblog.wordpress.com/2023/03/29/aws-networking-concepts/",
+    "by": "mparnisari",
+    "time": 1690003117,
+    "score": 308,
+    "descendants": 123
+  },
+  {
+    "id": 36826755,
+    "title": "Important Coding Habits",
+    "url": "https://puppycoding.com/2023/07/22/healthy-coding-habits/",
+    "by": "tagawa",
+    "time": 1690037808,
+    "score": 306,
+    "descendants": 207
+  },
+  {
+    "id": 36833836,
+    "title": "Toyota has been developing a solid-state battery for EVs with a range of 745mi",
+    "url": "https://www.topspeed.com/toyota-745-mile-solid-state-battery/",
+    "by": "achow",
+    "time": 1690105359,
+    "score": 303,
+    "descendants": 626
+  },
+  {
+    "id": 36841798,
+    "title": "Debian riscv64",
+    "url": "https://blog.aurel32.net/welcome-debian-riscv64.html",
+    "by": "pabs3",
+    "time": 1690160781,
+    "score": 301,
+    "descendants": 128
+  },
+  {
+    "id": 36833089,
+    "title": "I found an IT job thanks to this blog",
+    "url": "https://giuliomagnifico.blog/misc/2023/07/22/I-found-a-IT-job-thanks-to-this-blog.html",
+    "by": "giuliomagnifico",
+    "time": 1690094676,
+    "score": 301,
+    "descendants": 118
+  },
+  {
+    "id": 36850111,
+    "title": "40 years ago yesterday Air Canada Flight 143 ran out of fuel mid-flight",
+    "url": "https://www.damninteresting.com/the-gimli-glider/",
+    "by": "bookofjoe",
+    "time": 1690214583,
+    "score": 291,
+    "descendants": 104
+  },
+  {
+    "id": 36836596,
+    "title": "Show HN: I made a MailChimp alternative that connects to your database",
+    "url": "https://cc.dev",
+    "by": "kashnote",
+    "time": 1690128211,
+    "score": 290,
+    "descendants": 99
+  },
+  {
+    "id": 36843572,
+    "title": "Ubisoft account -including games- can be permanently deleted for inactivity",
+    "url": "https://www.pcgamer.com/your-ubisoft-account-can-be-suspended-and-subsequently-permanently-deleted-for-inactivity-taking-your-games-library-with-it/",
+    "by": "yabatopia",
+    "time": 1690177898,
+    "score": 285,
+    "descendants": 198
+  },
+  {
+    "id": 36823007,
+    "title": "Compromised Microsoft key: More impactful than we thought",
+    "url": "https://www.wiz.io/blog/storm-0558-compromised-microsoft-key-enables-authentication-of-countless-micr",
+    "by": "882542F3884314B",
+    "time": 1689997243,
+    "score": 284,
+    "descendants": 85
+  },
+  {
+    "id": 36846520,
+    "title": "Driver.js: Product tours, highlights, contextual help and more",
+    "url": "https://driverjs.com/",
+    "by": "thunderbong",
+    "time": 1690200170,
+    "score": 272,
+    "descendants": 97
+  },
+  {
+    "id": 36826111,
+    "title": "Why even let users set their own passwords?",
+    "url": "https://www.devever.net/~hl/passwords",
+    "by": "hlandau",
+    "time": 1690032982,
+    "score": 267,
+    "descendants": 373
+  },
+  {
+    "id": 36846965,
+    "title": "Ask HN: Which recent research paper blew your mind?",
+    "url": null,
+    "by": "froster",
+    "time": 1690202065,
+    "score": 263,
+    "descendants": 127
+  },
+  {
+    "id": 36823375,
+    "title": "What we talk about when we talk about system design",
+    "url": "https://maheshba.bitbucket.io/blog/2023/07/12/Design.html",
+    "by": "scv119",
+    "time": 1690001244,
+    "score": 256,
+    "descendants": 35
+  },
+  {
+    "id": 36831946,
+    "title": "Simple Sabotage Field Manual \u2013 How to Destroy Your Organizations",
+    "url": "https://butwhatfor.beehiiv.com/p/simple-sabotage-field-manual-destroy-organizations",
+    "by": "stanrivers",
+    "time": 1690078264,
+    "score": 255,
+    "descendants": 95
+  },
+  {
+    "id": 36817628,
+    "title": "MiniZinc",
+    "url": "https://www.minizinc.org/",
+    "by": "gavi",
+    "time": 1689964336,
+    "score": 249,
+    "descendants": 74
+  },
+  {
+    "id": 36815781,
+    "title": "Diablo",
+    "url": "https://www.filfre.net/2023/07/diablo/",
+    "by": "doppp",
+    "time": 1689956703,
+    "score": 241,
+    "descendants": 119
+  },
+  {
+    "id": 36817231,
+    "title": "Ask HN: What are the best papers you read in your life?",
+    "url": null,
+    "by": "toombowoombo",
+    "time": 1689962641,
+    "score": 236,
+    "descendants": 105
+  },
+  {
+    "id": 36834415,
+    "title": "A Romanian economist legally gamed the lottery",
+    "url": "https://thehustle.co/the-man-who-won-the-lottery-14-times/",
+    "by": "Anon84",
+    "time": 1690112037,
+    "score": 233,
+    "descendants": 69
+  },
+  {
+    "id": 36817900,
+    "title": "IMAX emulates PalmPilot software to power Oppenheimer\u2019s 70 mm release",
+    "url": "https://arstechnica.com/gadgets/2023/07/imax-emulates-palmpilot-software-to-power-oppenheimers-70-mm-release/",
+    "by": "riffraff",
+    "time": 1689965521,
+    "score": 229,
+    "descendants": 146
+  },
+  {
+    "id": 36842182,
+    "title": "Show HN: My Pen Plotting Journey",
+    "url": "https://adamfuhrer.com/pen-plotting-experiments",
+    "by": "adamfuhrer",
+    "time": 1690163842,
+    "score": 223,
+    "descendants": 85
+  },
+  {
+    "id": 36822880,
+    "title": "Internet search tips",
+    "url": "https://gwern.net/search",
+    "by": "herbertl",
+    "time": 1689996163,
+    "score": 219,
+    "descendants": 81
+  },
+  {
+    "id": 36841837,
+    "title": "Court strikes down limits on filming of police in Arizona",
+    "url": "https://apnews.com/article/arizona-cant-limit-filming-of-police-a7a7ad0fe5b421d416ec3477d0795707",
+    "by": "rootw0rm",
+    "time": 1690161053,
+    "score": 218,
+    "descendants": 97
+  },
+  {
+    "id": 36834732,
+    "title": "Show HN: I made a customizable iOS browser for minimalists and myself",
+    "url": "https://apps.apple.com/us/app/quiche-browser/id1668363952",
+    "by": "nckh",
+    "time": 1690115430,
+    "score": 217,
+    "descendants": 166
+  },
+  {
+    "id": 36818233,
+    "title": "Slackware Linux distribution turns 30 years old",
+    "url": "https://www.theregister.com/2023/07/20/slackware_turns_30/",
+    "by": "akoster",
+    "time": 1689967048,
+    "score": 217,
+    "descendants": 121
+  },
+  {
+    "id": 36826210,
+    "title": "A brief history of computers",
+    "url": "https://www.lesswrong.com/posts/vfRpzyGsikujm9ujj/a-brief-history-of-computers",
+    "by": "zdw",
+    "time": 1690033828,
+    "score": 215,
+    "descendants": 68
+  },
+  {
+    "id": 36839800,
+    "title": "ldd arbitrary code execution (2009)",
+    "url": "https://catonmat.net/ldd-arbitrary-code-execution",
+    "by": "xk3",
+    "time": 1690146092,
+    "score": 214,
+    "descendants": 82
+  },
+  {
+    "id": 36823565,
+    "title": "Apple\u0027s interactive television box: Hacking the set top box System 7.1 in ROM",
+    "url": "http://oldvcr.blogspot.com/2023/07/apples-interactive-television-box.html",
+    "by": "todsacerdoti",
+    "time": 1690003835,
+    "score": 211,
+    "descendants": 35
+  },
+  {
+    "id": 36825204,
+    "title": "I thought I wanted to be a professor, then I served on a hiring committee (2021)",
+    "url": "https://www.science.org/content/article/i-thought-i-wanted-be-faculty-member-then-i-served-hiring-committee",
+    "by": "ykonstant",
+    "time": 1690023642,
+    "score": 205,
+    "descendants": 183
+  },
+  {
+    "id": 36823723,
+    "title": "Bun v0.7.0",
+    "url": "https://bun.sh/blog/bun-v0.7.0",
+    "by": "sshroot",
+    "time": 1690005851,
+    "score": 203,
+    "descendants": 153
+  },
+  {
+    "id": 36843514,
+    "title": "Bruce Lee and Me",
+    "url": "https://kareem.substack.com/p/bruce-lee-and-me",
+    "by": "yla92",
+    "time": 1690177312,
+    "score": 202,
+    "descendants": 69
+  },
+  {
+    "id": 36815705,
+    "title": "RFC 9420 a.k.a. Messaging Layer Security",
+    "url": "https://blog.phnx.im/rfc-9420-mls/",
+    "by": "jakobdabo",
+    "time": 1689956394,
+    "score": 201,
+    "descendants": 32
+  },
+  {
+    "id": 36846195,
+    "title": "The IBM mainframe: How it runs and why it survives",
+    "url": "https://arstechnica.com/information-technology/2023/07/the-ibm-mainframe-how-it-runs-and-why-it-survives/",
+    "by": "rbc",
+    "time": 1690198535,
+    "score": 197,
+    "descendants": 135
+  },
+  {
+    "id": 36828861,
+    "title": "America\u2019s largest tool company couldn\u2019t make a wrench in America",
+    "url": "https://www.wsj.com/articles/craftsman-america-wrench-stanley-black-decker-reshoring-factory-1125792f",
+    "by": "ortusdux",
+    "time": 1690052792,
+    "score": 193,
+    "descendants": 342
+  },
+  {
+    "id": 36840674,
+    "title": "Young people are flocking to astrology",
+    "url": "https://www.washingtonpost.com/lifestyle/2023/06/13/astrology-millennials-gen-z-science/",
+    "by": "bookofjoe",
+    "time": 1690151840,
+    "score": 187,
+    "descendants": 823
+  },
+  {
+    "id": 36837690,
+    "title": "Why Host in Kosovo?",
+    "url": "https://basehost.eu/",
+    "by": "asadm",
+    "time": 1690134087,
+    "score": 187,
+    "descendants": 72
+  },
+  {
+    "id": 36833915,
+    "title": "Deutsche Bank\u0027s \u201Cdysfunctional\u201D IT division (2018)",
+    "url": "https://www.efinancialcareers.co.uk/news/2018/04/technology-at-deutsche-bank",
+    "by": "Cwizard",
+    "time": 1690106483,
+    "score": 187,
+    "descendants": 162
+  },
+  {
+    "id": 36833393,
+    "title": "What every IT person needs to know about OpenBSD (2021)",
+    "url": "https://nxdomain.no/~peter/what_every_it_person_needs_to_know_about_openbsd.html",
+    "by": "todsacerdoti",
+    "time": 1690098693,
+    "score": 185,
+    "descendants": 169
+  },
+  {
+    "id": 36835735,
+    "title": "The night an audience member filled in for Keith Moon (2016)",
+    "url": "https://www.loudersound.com/features/what-happened-the-night-an-audience-member-filled-in-for-keith-moon",
+    "by": "thunderbong",
+    "time": 1690123102,
+    "score": 184,
+    "descendants": 42
+  },
+  {
+    "id": 36818501,
+    "title": "Don\u2019t Make Fun of Renowned Dan Brown (2013)",
+    "url": "https://onehundredpages.wordpress.com/2013/06/12/dont-make-fun-of-renowned-dan-brown/",
+    "by": "codetrotter",
+    "time": 1689968139,
+    "score": 181,
+    "descendants": 164
+  },
+  {
+    "id": 36847960,
+    "title": "Show HN: I built a transit travel time map",
+    "url": "https://map.henryn.xyz",
+    "by": "ng-henry",
+    "time": 1690206548,
+    "score": 180,
+    "descendants": 71
+  },
+  {
+    "id": 36821861,
+    "title": "Employees bid on Anchor Brewery",
+    "url": "https://vinepair.com/booze-news/anchor-employees-brewery-takeover-bid/",
+    "by": "selimthegrim",
+    "time": 1689985420,
+    "score": 180,
+    "descendants": 120
+  },
+  {
+    "id": 36818640,
+    "title": "Big Tech as the New Big Tobacco",
+    "url": "https://www.bigtechwiki.com/index.php/Big_Tech_as_the_New_Big_Tobacco",
+    "by": "Andrex",
+    "time": 1689968671,
+    "score": 180,
+    "descendants": 116
+  },
+  {
+    "id": 36832572,
+    "title": "Ask HN: How do I train a custom LLM/ChatGPT on my own documents?",
+    "url": null,
+    "by": "johntiger1",
+    "time": 1690086925,
+    "score": 177,
+    "descendants": 43
+  },
+  {
+    "id": 36826335,
+    "title": "Time to bring back asylums?",
+    "url": "https://www.wsj.com/articles/its-time-to-bring-back-the-asylum-ec01fb2",
+    "by": "sam345",
+    "time": 1690034712,
+    "score": 177,
+    "descendants": 359
+  },
+  {
+    "id": 36823524,
+    "title": "ElKaWe \u2013 Electrocaloric heat pumps",
+    "url": "https://www.fraunhofer.de/en/research/lighthouse-projects-fraunhofer-initiatives/fraunhofer-lighthouse-projects/elkawe.html",
+    "by": "danans",
+    "time": 1690003210,
+    "score": 176,
+    "descendants": 92
+  },
+  {
+    "id": 36830860,
+    "title": "AOL pulls Nullsoft file-sharing software WASTE (2003)",
+    "url": "https://web.archive.org/web/20030810194502/http://news.com.com/2100-1032_3-1011585.html",
+    "by": "ecliptik",
+    "time": 1690067500,
+    "score": 172,
+    "descendants": 115
+  },
+  {
+    "id": 36830490,
+    "title": "TokenFlow: Consistent diffusion features for consistent video editing",
+    "url": "https://diffusion-tokenflow.github.io/",
+    "by": "puttycat",
+    "time": 1690064128,
+    "score": 172,
+    "descendants": 23
+  },
+  {
+    "id": 36821951,
+    "title": "Advice for Operating a Public-Facing API",
+    "url": "https://jcs.org/2023/07/12/api",
+    "by": "CharlesW",
+    "time": 1689986189,
+    "score": 172,
+    "descendants": 58
+  },
+  {
+    "id": 36820555,
+    "title": "NativePHP: A framework for building desktop apps using PHP",
+    "url": "https://nativephp.com/docs/1/getting-started/introduction",
+    "by": "brysonreece",
+    "time": 1689977176,
+    "score": 172,
+    "descendants": 122
+  },
+  {
+    "id": 36845714,
+    "title": "The Unreasonable Effectiveness of Sequence Diagrams in MermaidJS",
+    "url": "https://jessems.com/posts/2023-07-22-the-unreasonable-effectiveness-of-sequence-diagrams-in-mermaidjs",
+    "by": "jessems",
+    "time": 1690195526,
+    "score": 170,
+    "descendants": 95
+  },
+  {
+    "id": 36830062,
+    "title": "How does iCloud work? Plus a new version of Cirrus",
+    "url": "https://eclecticlight.co/2023/07/17/how-does-icloud-work-plus-a-new-version-of-cirrus/",
+    "by": "janandonly",
+    "time": 1690060703,
+    "score": 170,
+    "descendants": 62
+  },
+  {
+    "id": 36836729,
+    "title": "SICP in JavaScript",
+    "url": "https://sourceacademy.org/sicpjs/index",
+    "by": "behnamoh",
+    "time": 1690128926,
+    "score": 169,
+    "descendants": 119
+  },
+  {
+    "id": 36836258,
+    "title": "Elixir for Ruby developers: the three most important differences",
+    "url": "https://phoenixonrails.com/blog/elixir-for-ruby-developers-the-three-most-important-differences",
+    "by": "arrowsmith",
+    "time": 1690126175,
+    "score": 169,
+    "descendants": 73
+  },
+  {
+    "id": 36840728,
+    "title": "Teach your LLM to answer with facts, not fiction",
+    "url": "https://blog.myscale.com/2023/07/17/teach-your-llm-vector-sql/",
+    "by": "jinqueeny",
+    "time": 1690152162,
+    "score": 165,
+    "descendants": 139
+  },
+  {
+    "id": 36825913,
+    "title": "Redmine \u2013 open-source project management",
+    "url": "https://www.redmine.org/",
+    "by": "synergy20",
+    "time": 1690031199,
+    "score": 162,
+    "descendants": 80
+  },
+  {
+    "id": 36846242,
+    "title": "Researchers Find \u2018Backdoor\u2019 in Encrypted Police and Military Radios",
+    "url": "https://www.vice.com/en/article/4a3n3j/backdoor-in-police-radios-tetra-burst",
+    "by": "pseudolus",
+    "time": 1690198736,
+    "score": 161,
+    "descendants": 56
+  },
+  {
+    "id": 36817179,
+    "title": "Mali Government takes back .ml domain, brings down one of largest Lemmy servers",
+    "url": "https://very.bignutty.xyz/notes/9hfv05qcs5xf7irr",
+    "by": "rglullis",
+    "time": 1689962400,
+    "score": 158,
+    "descendants": 183
+  },
+  {
+    "id": 36820105,
+    "title": "Book Review: The Laws of Trading",
+    "url": "https://astralcodexten.substack.com/p/your-book-review-the-laws-of-trading",
+    "by": "feross",
+    "time": 1689975141,
+    "score": 156,
+    "descendants": 30
+  },
+  {
+    "id": 36824595,
+    "title": "Octos \u2013 HTML live wallpaper engine",
+    "url": "https://github.com/underpig1/octos",
+    "by": "underpig1",
+    "time": 1690016174,
+    "score": 154,
+    "descendants": 39
+  },
+  {
+    "id": 36830513,
+    "title": "Vimspector \u2013 the Vim debugger rules all",
+    "url": "https://puremourning.github.io/vimspector-web/",
+    "by": "synergy20",
+    "time": 1690064334,
+    "score": 151,
+    "descendants": 24
+  },
+  {
+    "id": 36836649,
+    "title": "Government URLs that don\u0027t end in .gov",
+    "url": "https://github.com/GSA/govt-urls",
+    "by": "notmysql_",
+    "time": 1690128502,
+    "score": 150,
+    "descendants": 174
+  },
+  {
+    "id": 36816982,
+    "title": "There\u2019s a heatwave in the sea and scientists are worried",
+    "url": "https://www.bbc.com/future/article/20230720-theres-a-heatwave-in-the-sea-and-scientists-are-worried",
+    "by": "gardenfelder",
+    "time": 1689961545,
+    "score": 150,
+    "descendants": 144
+  },
+  {
+    "id": 36833523,
+    "title": "Scientists hit with massive bills after speaking at COVID-19 \u2018webinars\u2019",
+    "url": "https://www.science.org/content/article/costly-invite-scientists-hit-with-massive-bills-after-speaking-at-covid-19-conferences",
+    "by": "Stratoscope",
+    "time": 1690100542,
+    "score": 149,
+    "descendants": 143
+  },
+  {
+    "id": 36829854,
+    "title": "Amsterdam bans cruise ships",
+    "url": "https://www.bbc.com/news/world-europe-66264226",
+    "by": "elorant",
+    "time": 1690059468,
+    "score": 149,
+    "descendants": 161
+  },
+  {
+    "id": 36821347,
+    "title": "Hollywood is on strike because CEOs fell for Silicon Valley\u2019s magical thinking",
+    "url": "https://www.latimes.com/business/technology/story/2023-07-21/column-hollywood-sag-aftra-strike-strike-silicon-valleys-magical-thinking",
+    "by": "supertimor",
+    "time": 1689981591,
+    "score": 148,
+    "descendants": 171
+  },
+  {
+    "id": 36825345,
+    "title": "Embrace Complexity; Tighten Your Feedback Loops",
+    "url": "https://ferd.ca/embrace-complexity-tighten-your-feedback-loops.html",
+    "by": "lutzh",
+    "time": 1690025446,
+    "score": 147,
+    "descendants": 45
+  },
+  {
+    "id": 36824856,
+    "title": "Simpson Fan Grows Tomacco (2003)",
+    "url": "https://www.simpsonsarchive.com/news/tomacco.html",
+    "by": "pipeline_peak",
+    "time": 1690019079,
+    "score": 142,
+    "descendants": 98
+  },
+  {
+    "id": 36851535,
+    "title": "Apple Vision Pro developer kit",
+    "url": "https://developer.apple.com/visionos/developer-kit/",
+    "by": "Pulcinella",
+    "time": 1690220171,
+    "score": 141,
+    "descendants": 161
+  },
+  {
+    "id": 36833252,
+    "title": "South Pole Signage",
+    "url": "https://brr.fyi/posts/south-pole-signage",
+    "by": "tarf",
+    "time": 1690096861,
+    "score": 141,
+    "descendants": 18
+  },
+  {
+    "id": 36820544,
+    "title": "High-Performance server for NATS.io, the cloud and edge native messaging system",
+    "url": "https://github.com/nats-io/nats-server",
+    "by": "Kinrany",
+    "time": 1689977097,
+    "score": 140,
+    "descendants": 61
+  },
+  {
+    "id": 36841272,
+    "title": "VirtualBox 7.0.10 download links have disappeared",
+    "url": "https://web.archive.org/web/20230723100307/https://www.virtualbox.org/wiki/Downloads",
+    "by": "trashburger",
+    "time": 1690156112,
+    "score": 139,
+    "descendants": 140
+  },
+  {
+    "id": 36847133,
+    "title": "Pikchr: A PIC-like markup language for diagrams in technical documentation",
+    "url": "https://pikchr.org/home/doc/trunk/doc/userman.md",
+    "by": "gjadi",
+    "time": 1690202913,
+    "score": 138,
+    "descendants": 34
+  },
+  {
+    "id": 36818923,
+    "title": "FreeWilly 1 and 2, two new open-access LLMs",
+    "url": "https://stability.ai/blog/freewilly-large-instruction-fine-tuned-models",
+    "by": "anigbrowl",
+    "time": 1689969836,
+    "score": 136,
+    "descendants": 47
+  },
+  {
+    "id": 36836538,
+    "title": "LeCun: Qualcomm working with Meta to run Llama-2 on mobile devices",
+    "url": "https://twitter.com/ylecun/status/1683138295155372032",
+    "by": "birriel",
+    "time": 1690127891,
+    "score": 131,
+    "descendants": 82
+  },
+  {
+    "id": 36833951,
+    "title": "Down and Out in the Magic Kingdom (2003)",
+    "url": "https://www.gutenberg.org/files/8086/8086-h/8086-h.htm",
+    "by": "keepamovin",
+    "time": 1690106831,
+    "score": 130,
+    "descendants": 55
+  },
+  {
+    "id": 36834701,
+    "title": "riscv64 is now an official Debian architecture (rebootstrap in progress)",
+    "url": "https://lists.debian.org/debian-riscv/2023/07/msg00053.html",
+    "by": "pabs3",
+    "time": 1690115142,
+    "score": 129,
+    "descendants": 46
+  },
+  {
+    "id": 36817482,
+    "title": "For BSD Unix, It\u0027s Sayonara (1992)",
+    "url": "https://www.tech-insider.org/unix/research/1992/0622.html",
+    "by": "operator-name",
+    "time": 1689963772,
+    "score": 127,
+    "descendants": 80
+  },
+  {
+    "id": 36840282,
+    "title": "Why Frames Tilt Forward (2015)",
+    "url": "https://chcollins.com/100Billion/2015/02/why-frames-tilt-forward/",
+    "by": "theospears",
+    "time": 1690149450,
+    "score": 124,
+    "descendants": 42
+  },
+  {
+    "id": 36836639,
+    "title": "Why don\u0027t we get our drinking water by taking salt out seawater? (2008)",
+    "url": "https://www.scientificamerican.com/article/why-dont-we-get-our-drinking-water-from-the-ocean/",
+    "by": "LinuxBender",
+    "time": 1690128460,
+    "score": 121,
+    "descendants": 338
+  },
+  {
+    "id": 36837695,
+    "title": "Queen guitarist and astrophysicist Brian May to release 3D atlas of asteroid",
+    "url": "https://www.theguardian.com/science/2023/jul/23/queen-brian-may-3d-atlas-bennu-asteroid",
+    "by": "pseudolus",
+    "time": 1690134097,
+    "score": 120,
+    "descendants": 27
+  },
+  {
+    "id": 36836358,
+    "title": "An invariant from category theory solves a problem in mathematical ecology [pdf]",
+    "url": "https://www.maths.ed.ac.uk/~tl/genova/genova_talk.pdf",
+    "by": "peanutcrisis",
+    "time": 1690126778,
+    "score": 120,
+    "descendants": 30
+  },
+  {
+    "id": 36835571,
+    "title": "A call center worker\u2019s battle with A.I.",
+    "url": "https://www.nytimes.com/2023/07/19/business/call-center-workers-battle-with-ai.html",
+    "by": "elsewhen",
+    "time": 1690122288,
+    "score": 120,
+    "descendants": 147
+  },
+  {
+    "id": 36821871,
+    "title": "Using Prolog in Windows NT Network Configuration (1996)",
+    "url": "https://web.archive.org/web/20030218034509/http://www.research.microsoft.com/research/dtg/davidhov/pap.htm",
+    "by": "zdw",
+    "time": 1689985492,
+    "score": 120,
+    "descendants": 25
+  },
+  {
+    "id": 36849988,
+    "title": "X, the moonshot factory",
+    "url": "https://x.company/",
+    "by": "rgovostes",
+    "time": 1690214151,
+    "score": 119,
+    "descendants": 175
+  },
+  {
+    "id": 36821985,
+    "title": "C89 compiler produces printable executables from C code [pdf] (2017)",
+    "url": "http://www.cs.cmu.edu/~tom7/abc/paper.pdf",
+    "by": "CharlesW",
+    "time": 1689986540,
+    "score": 119,
+    "descendants": 14
+  },
+  {
+    "id": 36830707,
+    "title": "Reinventing the E.R. for America\u2019s mental-health crisis",
+    "url": "https://www.newyorker.com/science/annals-of-medicine/reinventing-the-er-for-americas-mental-health-crisis",
+    "by": "if-curious",
+    "time": 1690066161,
+    "score": 117,
+    "descendants": 105
+  },
+  {
+    "id": 36817851,
+    "title": "Stem Formulas",
+    "url": "https://stemformulas.com/formulas/",
+    "by": "surprisetalk",
+    "time": 1689965344,
+    "score": 116,
+    "descendants": 33
+  },
+  {
+    "id": 36816387,
+    "title": "\u0027Mystery company\u0027 buys land worth $800M near Travis AFB, raising concerns",
+    "url": "https://abc7news.com/travis-afb-air-force-base-flannery-associates-llc-john-garamendi/13527836/",
+    "by": "Benlights",
+    "time": 1689958857,
+    "score": 114,
+    "descendants": 169
+  },
+  {
+    "id": 36848037,
+    "title": "Atari has launched collectible arcade circuit boards of retro classics",
+    "url": "https://retrododo.com/atari-collectible-arcade-circuit-boards/",
+    "by": "ajdude",
+    "time": 1690206908,
+    "score": 112,
+    "descendants": 58
+  },
+  {
+    "id": 36836530,
+    "title": "Drugmakers are \u2018throwing the kitchen sink\u2019 to halt Medicare price negotiations",
+    "url": "https://www.nytimes.com/2023/07/23/us/politics/medicare-drug-price-negotiations-lawsuits.html",
+    "by": "SeanBoocock",
+    "time": 1690127871,
+    "score": 111,
+    "descendants": 103
+  },
+  {
+    "id": 36835246,
+    "title": "Remote Work to Wipe Out $800B from Office Values, McKinsey Says",
+    "url": "https://www.bnnbloomberg.ca/remote-work-to-wipe-out-800-billion-from-office-values-mckinsey-says-1.1944967",
+    "by": "eatonphil",
+    "time": 1690119999,
+    "score": 109,
+    "descendants": 175
+  },
+  {
+    "id": 36838511,
+    "title": "OpenBSD: AMD processor microcode support added to -current",
+    "url": "https://undeadly.org/cgi?action=article;sid=20230723185853",
+    "by": "peter_hansteen",
+    "time": 1690138767,
+    "score": 108,
+    "descendants": 20
+  },
+  {
+    "id": 36817267,
+    "title": "TSMC warns over deepening slump in chipmaking sector",
+    "url": "https://www.ft.com/content/f433971d-fd8e-4ed3-91e9-e25a96284ea0",
+    "by": "mfiguiere",
+    "time": 1689962807,
+    "score": 108,
+    "descendants": 133
+  },
+  {
+    "id": 36817046,
+    "title": "Death Valley Just Had the Hottest Midnight on Record",
+    "url": "https://www.msn.com/en-us/weather/topstories/death-valley-just-had-the-hottest-midnight-on-record/ar-AA1e2u4W",
+    "by": "belltaco",
+    "time": 1689961804,
+    "score": 106,
+    "descendants": 121
+  },
+  {
+    "id": 36827534,
+    "title": "Resilience in Complex Systems (2021)",
+    "url": "https://irhum.github.io/blog/resilientsystems/",
+    "by": "grobby",
+    "time": 1690043153,
+    "score": 102,
+    "descendants": 5
+  },
+  {
+    "id": 36831956,
+    "title": "Retentive Network: A Successor to Transformer for Large Language Models",
+    "url": "https://arxiv.org/abs/2307.08621",
+    "by": "sangel",
+    "time": 1690078351,
+    "score": 101,
+    "descendants": 18
+  },
+  {
+    "id": 36828927,
+    "title": "Making the most of Apple Silicon power: 2 Core capabilities (2022)",
+    "url": "https://eclecticlight.co/2022/10/05/making-the-most-of-apple-silicon-power-2-core-capabilities/",
+    "by": "nateb2022",
+    "time": 1690053326,
+    "score": 101,
+    "descendants": 22
+  },
+  {
+    "id": 36815540,
+    "title": "Social media is too much for most of us to handle",
+    "url": "https://www.theregister.com/2023/07/20/social_overload/",
+    "by": "Brajeshwar",
+    "time": 1689955678,
+    "score": 101,
+    "descendants": 76
+  },
+  {
+    "id": 36816436,
+    "title": "Longitudinal study on the relationship between childhood maltreatment and ADHD",
+    "url": "https://www.psypost.org/2023/07/longitudinal-study-highlights-bidirectional-relationship-between-childhood-maltreatment-and-adhd-symptoms-166568",
+    "by": "geox",
+    "time": 1689959111,
+    "score": 100,
+    "descendants": 63
+  },
+  {
+    "id": 36852231,
+    "title": "Elixir is still safe",
+    "url": "https://paraxial.io/blog/still-safe",
+    "by": "manusachi",
+    "time": 1690222957,
+    "score": 99,
+    "descendants": 5
+  },
+  {
+    "id": 36849784,
+    "title": "How capacity planners credibly estimate application performance",
+    "url": "https://queue.acm.org/detail.cfm?id=3595862",
+    "by": "yarapavan",
+    "time": 1690213345,
+    "score": 98,
+    "descendants": 39
+  },
+  {
+    "id": 36832293,
+    "title": "Fossil shows mammal sinking teeth into dinosaur",
+    "url": "https://www.theguardian.com/science/2023/jul/18/mesozoic-fossil-dinosaur-mammal-fight",
+    "by": "Hooke",
+    "time": 1690082546,
+    "score": 98,
+    "descendants": 50
+  },
+  {
+    "id": 36832271,
+    "title": "Stable Diffusion and ControlNet: \u201CHidden\u201D Text (see thumbnail vs. full image)",
+    "url": "https://old.reddit.com/r/StableDiffusion/comments/1561k15/free_tool_to_generate_hidden_text_using_stable/",
+    "by": "b0ner_t0ner",
+    "time": 1690082092,
+    "score": 98,
+    "descendants": 36
+  },
+  {
+    "id": 36831879,
+    "title": "What my musical instruments have taught me",
+    "url": "https://www.newyorker.com/culture/the-weekend-essay/what-my-musical-instruments-have-taught-me",
+    "by": "jvandonsel",
+    "time": 1690077410,
+    "score": 98,
+    "descendants": 41
+  },
+  {
+    "id": 36828288,
+    "title": "Databag \u2013 tiny self-hosted federated messenger for the decentralized web",
+    "url": "https://github.com/balzack/databag",
+    "by": "triyambakam",
+    "time": 1690048939,
+    "score": 96,
+    "descendants": 23
+  },
+  {
+    "id": 36837391,
+    "title": "Google Nest Mini Gutted and Rebuilt to Run Custom Agents",
+    "url": "https://hackaday.com/2023/07/23/google-nest-mini-gutted-and-rebuilt-to-run-custom-agents/",
+    "by": "jklinger410",
+    "time": 1690132450,
+    "score": 95,
+    "descendants": 10
+  },
+  {
+    "id": 36825675,
+    "title": "To grasp the extent of inequality, look at the relatively well-off",
+    "url": "https://blogs.lse.ac.uk/politicsandpolicy/to-grasp-the-extent-of-inequality-look-at-the-relatively-well-off/",
+    "by": "ksey3",
+    "time": 1690029117,
+    "score": 95,
+    "descendants": 125
+  },
+  {
+    "id": 36829672,
+    "title": "Hops for beer flourish under solar panels",
+    "url": "https://apnews.com/article/climate-beer-solar-panels-hops-germany-ee3d00a1877837eb85053335e3b68a00",
+    "by": "TazeTSchnitzel",
+    "time": 1690058394,
+    "score": 93,
+    "descendants": 35
+  },
+  {
+    "id": 36823424,
+    "title": "Climate records tumble, leaving Earth in uncharted territory \u2013 scientists",
+    "url": "https://www.bbc.co.uk/news/science-environment-66229065",
+    "by": "_448",
+    "time": 1690001906,
+    "score": 92,
+    "descendants": 216
+  },
+  {
+    "id": 36842839,
+    "title": "HP 45 (and 35 and 80) Calculator Emulator",
+    "url": "https://sarahkmarr.com/retrohp1973.html",
+    "by": "linsomniac",
+    "time": 1690169723,
+    "score": 91,
+    "descendants": 15
+  },
+  {
+    "id": 36836433,
+    "title": "Interfaces all the way down",
+    "url": "https://jjain.substack.com/p/interfaces-all-the-way-down",
+    "by": "jinay",
+    "time": 1690127308,
+    "score": 91,
+    "descendants": 63
+  },
+  {
+    "id": 36825119,
+    "title": "Why did these algae grow like this in the pool?",
+    "url": "https://physics.stackexchange.com/questions/772882/why-did-these-algae-grow-like-this-in-the-pool-are-these-curves-the-gravitation",
+    "by": "pyinstallwoes",
+    "time": 1690022618,
+    "score": 91,
+    "descendants": 21
+  },
+  {
+    "id": 36821142,
+    "title": "Stack Overflowed",
+    "url": "https://stackoverflowed.com",
+    "by": "eh8",
+    "time": 1689980446,
+    "score": 91,
+    "descendants": 21
+  },
+  {
+    "id": 36834675,
+    "title": "Valgrind recieves a development microgrant from FUTO",
+    "url": "https://fosstodon.org/@sourceware/110760408112704937",
+    "by": "pabs3",
+    "time": 1690114925,
+    "score": 90,
+    "descendants": 22
+  },
+  {
+    "id": 36827566,
+    "title": "Do the cops suing Afroman after raiding his home have a case?",
+    "url": "https://www.thefire.org/news/do-cops-suing-afroman-after-raiding-his-home-have-case",
+    "by": "wlkr",
+    "time": 1690043413,
+    "score": 90,
+    "descendants": 19
+  },
+  {
+    "id": 36822530,
+    "title": "Discovery: Metals can heal themselves",
+    "url": "https://newsreleases.sandia.gov/healing_metals/",
+    "by": "bobvanluijt",
+    "time": 1689992370,
+    "score": 90,
+    "descendants": 27
+  },
+  {
+    "id": 36817738,
+    "title": "As AI porn generators get better, the stakes get higher",
+    "url": "https://techcrunch.com/2023/07/21/as-ai-porn-generators-get-better-the-stakes-raise/",
+    "by": "rntn",
+    "time": 1689964864,
+    "score": 90,
+    "descendants": 114
+  },
+  {
+    "id": 36849478,
+    "title": "Wasm_of_OCaml",
+    "url": "https://github.com/ocaml-wasm/wasm_of_ocaml",
+    "by": "eriangazag",
+    "time": 1690212210,
+    "score": 88,
+    "descendants": 35
+  },
+  {
+    "id": 36836866,
+    "title": "Hair dye and chemical straightener use and breast cancer risk (2019)",
+    "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/ijc.32738",
+    "by": "ImpressiveWebs",
+    "time": 1690129732,
+    "score": 87,
+    "descendants": 30
+  },
+  {
+    "id": 36819894,
+    "title": "Meta stops ordering new parts for Quest Pro",
+    "url": "https://www.zdnet.com/article/meta-cancels-quest-pro-stops-development-of-quest-pro-2/",
+    "by": "miiiiiike",
+    "time": 1689974168,
+    "score": 87,
+    "descendants": 61
+  },
+  {
+    "id": 36815453,
+    "title": "Exxon bets carbon will be the new oil",
+    "url": "https://www.semafor.com/article/07/21/2023/exxon-carbon-denbury",
+    "by": "mfiguiere",
+    "time": 1689955362,
+    "score": 87,
+    "descendants": 79
+  },
+  {
+    "id": 36831067,
+    "title": "CoQ4 is a functional substitute for CoQ10 and can be targeted to mitochondria",
+    "url": "https://www.biorxiv.org/content/10.1101/2023.07.20.549963v2",
+    "by": "birriel",
+    "time": 1690069055,
+    "score": 84,
+    "descendants": 46
+  },
+  {
+    "id": 36847258,
+    "title": "SVG Chromium bug is more than 10 years old",
+    "url": "https://bugs.chromium.org/p/chromium/issues/detail?id=109212",
+    "by": "tansan",
+    "time": 1690203484,
+    "score": 83,
+    "descendants": 51
+  },
+  {
+    "id": 36835412,
+    "title": "Mixing Swift and C\u002B\u002B",
+    "url": "https://www.swift.org/documentation/cxx-interop/",
+    "by": "oumua_don17",
+    "time": 1690121093,
+    "score": 83,
+    "descendants": 101
+  },
+  {
+    "id": 36830697,
+    "title": "Were small-brained early humans intelligent? Row erupts over scientists\u2019 claim",
+    "url": "https://www.theguardian.com/science/2023/jul/22/small-brained-early-humans-homo-naledi-cleverer-storm",
+    "by": "pg_1234",
+    "time": 1690066117,
+    "score": 83,
+    "descendants": 154
+  },
+  {
+    "id": 36819119,
+    "title": "ChatGPT for Android \u2013\u00A0Pre-orders",
+    "url": "https://play.google.com/store/apps/details?id=com.openai.chatgpt\u0026hl=en_US",
+    "by": "myitis_",
+    "time": 1689970778,
+    "score": 83,
+    "descendants": 75
+  },
+  {
+    "id": 36824607,
+    "title": "Over-grazing and desertification in the Syrian steppe root causes of war (2015)",
+    "url": "https://theecologist.org/2015/jun/05/over-grazing-and-desertification-syrian-steppe-are-root-causes-war",
+    "by": "joveian",
+    "time": 1690016289,
+    "score": 82,
+    "descendants": 62
+  },
+  {
+    "id": 36845492,
+    "title": "Twitter unveils X logo to replace blue bird",
+    "url": "https://www.bbc.com/news/business-66284304",
+    "by": "chha",
+    "time": 1690194065,
+    "score": 81,
+    "descendants": 157
+  },
+  {
+    "id": 36849523,
+    "title": "TikTok is adding text posts",
+    "url": "https://www.theverge.com/2023/7/24/23805530/tiktok-text-posts-micro-blogging-twitter-threads",
+    "by": "schnitzelstoat",
+    "time": 1690212358,
+    "score": 80,
+    "descendants": 67
+  },
+  {
+    "id": 36846567,
+    "title": "Changing the Android captive portal page (2020)",
+    "url": "https://www.encrypted.at/android-captive-portal/",
+    "by": "transpute",
+    "time": 1690200420,
+    "score": 80,
+    "descendants": 46
+  },
+  {
+    "id": 36820937,
+    "title": "Cooking Air Quality",
+    "url": "https://www.jefftk.com/p/cooking-air-quality",
+    "by": "miohtama",
+    "time": 1689979286,
+    "score": 80,
+    "descendants": 80
+  },
+  {
+    "id": 36851505,
+    "title": "Meta-Transformer: A unified framework for multimodal learning",
+    "url": "https://kxgong.github.io/meta_transformer/",
+    "by": "ulrikhansen54",
+    "time": 1690220032,
+    "score": 79,
+    "descendants": 26
+  },
+  {
+    "id": 36825992,
+    "title": "More than you\u0027ve ever wanted to know about errors in Rust (2022)",
+    "url": "https://www.shuttle.rs/blog/2022/06/30/error-handling",
+    "by": "asymmetric",
+    "time": 1690032002,
+    "score": 78,
+    "descendants": 37
+  },
+  {
+    "id": 36817510,
+    "title": "Systemd by Example",
+    "url": "https://systemd-by-example.com/",
+    "by": "synergy20",
+    "time": 1689963884,
+    "score": 78,
+    "descendants": 11
+  },
+  {
+    "id": 36836189,
+    "title": "Ask HN: Why do web sites not place the cursor for input?",
+    "url": null,
+    "by": "backendanon",
+    "time": 1690125791,
+    "score": 77,
+    "descendants": 86
+  },
+  {
+    "id": 36825353,
+    "title": "Computational Chemistry Using PyTorch",
+    "url": "https://github.com/Mariewelt/OpenChem",
+    "by": "gtsnexp",
+    "time": 1690025555,
+    "score": 77,
+    "descendants": 9
+  },
+  {
+    "id": 36820835,
+    "title": "Electrolytic capacitors: overview, teardown and experiments [video]",
+    "url": "https://www.youtube.com/watch?v=MAP-VA1m-A4",
+    "by": "daneel_w",
+    "time": 1689978649,
+    "score": 77,
+    "descendants": 12
+  },
+  {
+    "id": 36838994,
+    "title": "PLJS \u2013 JavaScript Language Plugin for PostreSQL",
+    "url": "https://github.com/plv8/pljs",
+    "by": "alonp99",
+    "time": 1690141425,
+    "score": 76,
+    "descendants": 22
+  },
+  {
+    "id": 36847569,
+    "title": "Launch HN: Artie (YC S23) \u2013 Real time data replication to data warehouses",
+    "url": null,
+    "by": "tang8330",
+    "time": 1690204879,
+    "score": 75,
+    "descendants": 31
+  },
+  {
+    "id": 36840127,
+    "title": "I claim Rich Hickey is wrong about non-null arguments to functions (2020)",
+    "url": "https://blog.jonstodle.com/in-which-i-claim-rich-hickey-is-wrong/",
+    "by": "Capricorn2481",
+    "time": 1690148307,
+    "score": 75,
+    "descendants": 143
+  },
+  {
+    "id": 36834858,
+    "title": "The Bear Market Has Nearly Been Erased, Fewer Than 20 Months After It Began",
+    "url": "https://finance.yahoo.com/news/bear-market-nearly-erased-fewer-201732187.html",
+    "by": "testrun",
+    "time": 1690116749,
+    "score": 74,
+    "descendants": 109
+  },
+  {
+    "id": 36817938,
+    "title": "Why did Meta open-source Llama 2?",
+    "url": "https://matt-rickard.com/why-did-meta-open-source-llama",
+    "by": "rckrd",
+    "time": 1689965719,
+    "score": 73,
+    "descendants": 63
+  },
+  {
+    "id": 36848305,
+    "title": "Cash Amnesia",
+    "url": "https://www.gsb.stanford.edu/insights/indulging-guilty-pleasure-dont-put-it-card",
+    "by": "giuliomagnifico",
+    "time": 1690207912,
+    "score": 71,
+    "descendants": 140
+  },
+  {
+    "id": 36832433,
+    "title": "EasyGraph: A Comprehensive Tool for Graph Analysis and Social Computing",
+    "url": "https://github.com/easy-graph/Easy-Graph",
+    "by": "DinoPeppa",
+    "time": 1690084723,
+    "score": 71,
+    "descendants": 15
+  },
+  {
+    "id": 36852971,
+    "title": "A simple guide to fine-tuning Llama 2",
+    "url": "https://brev.dev/blog/fine-tuning-llama-2",
+    "by": "samlhuillier",
+    "time": 1690226306,
+    "score": 70,
+    "descendants": 10
+  },
+  {
+    "id": 36841556,
+    "title": "American universities have an incentive to seem extortionate",
+    "url": "https://www.economist.com/united-states/2023/07/23/american-universities-have-an-incentive-to-seem-extortionate",
+    "by": "martincmartin",
+    "time": 1690158706,
+    "score": 70,
+    "descendants": 107
+  },
+  {
+    "id": 36825802,
+    "title": "Apple Says It Will Exit the UK Market If Government Passes Online Safety Bill",
+    "url": "https://www.techdirt.com/2023/07/21/apple-says-it-will-exit-the-uk-market-if-government-passes-update-to-investigatory-powers-act/",
+    "by": "intunderflow",
+    "time": 1690030316,
+    "score": 70,
+    "descendants": 44
+  },
+  {
+    "id": 36835293,
+    "title": "MOVEit body count closes in on 400 orgs, 20M\u002B individuals",
+    "url": "https://www.theregister.com/2023/07/20/moveit_victim_count/",
+    "by": "LinuxBender",
+    "time": 1690120341,
+    "score": 67,
+    "descendants": 44
+  },
+  {
+    "id": 36830126,
+    "title": "Rooting the Amazon Echo Dot",
+    "url": "https://dragon863.github.io/blog/echoroot.html",
+    "by": "ProZsolt",
+    "time": 1690061192,
+    "score": 67,
+    "descendants": 10
+  },
+  {
+    "id": 36829524,
+    "title": "New Body Cam Data Exposes the True Scale of NYPD Violence Against Protesters",
+    "url": "https://www.wired.com/story/nypd-george-floyd-nyc-protester-settlement/",
+    "by": "leotravis10",
+    "time": 1690057357,
+    "score": 67,
+    "descendants": 21
+  },
+  {
+    "id": 36822875,
+    "title": "Group arrested for selling former cryptomining graphics cards as brand-new",
+    "url": "https://www.techspot.com/news/99488-chinese-group-arrested-selling-former-cryptomining-graphics-cards.html",
+    "by": "thunderbong",
+    "time": 1689996104,
+    "score": 67,
+    "descendants": 15
+  },
+  {
+    "id": 36845943,
+    "title": "Rust vs. Julia in scientific computing",
+    "url": "https://mo8it.com/blog/rust-vs-julia/",
+    "by": "EvgeniyZh",
+    "time": 1690196965,
+    "score": 66,
+    "descendants": 61
+  },
+  {
+    "id": 36845821,
+    "title": "Ask HN: My country is undergoing a coup, which encryption software should I use?",
+    "url": null,
+    "by": "botencat",
+    "time": 1690196206,
+    "score": 66,
+    "descendants": 46
+  },
+  {
+    "id": 36837512,
+    "title": "Show HN: High school transcript generator for homeschoolers",
+    "url": "https://www.greatbookshomeschool.com/free-high-school-transcript-generator",
+    "by": "jkurnia",
+    "time": 1690133187,
+    "score": 66,
+    "descendants": 29
+  },
+  {
+    "id": 36833431,
+    "title": "50 Years of Text Games parses the rich history of a foundational genre",
+    "url": "https://arstechnica.com/gaming/2023/06/50-years-of-text-games-parses-the-rich-history-of-a-foundational-genre/",
+    "by": "KnuthIsGod",
+    "time": 1690099209,
+    "score": 66,
+    "descendants": 27
+  },
+  {
+    "id": 36832468,
+    "title": "Soon we shall bid adieu to the Twitter brand",
+    "url": "https://twitter.com/elonmusk/status/1682964919325724673",
+    "by": "lopkeny12ko",
+    "time": 1690085192,
+    "score": 66,
+    "descendants": 62
+  },
+  {
+    "id": 36824330,
+    "title": "Biotumen: Bitumen Reinvented",
+    "url": "https://biofabrik.com/biotumen/",
+    "by": "patall",
+    "time": 1690012664,
+    "score": 66,
+    "descendants": 18
+  },
+  {
+    "id": 36843469,
+    "title": "Sam Altman\u2019s Worldcoin Token to Launch Monday",
+    "url": "https://www.bloomberg.com/news/articles/2023-07-24/sam-altman-s-worldcoin-token-to-launch-monday-semafor-reports",
+    "by": "Brajeshwar",
+    "time": 1690176808,
+    "score": 65,
+    "descendants": 88
+  },
+  {
+    "id": 36821266,
+    "title": "Computer chip with built-in human brain tissue gets military funding",
+    "url": "https://newatlas.com/computers/human-brain-chip-ai/",
+    "by": "clumsysmurf",
+    "time": 1689981147,
+    "score": 64,
+    "descendants": 52
+  },
+  {
+    "id": 36838991,
+    "title": "Today\u0027s North Atlantic Sea Surface Temperature (4.8 Sigma)",
+    "url": "https://imgur.com/a/rUzThsZ",
+    "by": "myshpa",
+    "time": 1690141416,
+    "score": 63,
+    "descendants": 24
+  },
+  {
+    "id": 36850781,
+    "title": "Revealed: Media Blitz Against Heat Pumps Funded by Gas Lobby Group",
+    "url": "https://www.desmog.com/2023/07/20/revealed-media-blitz-against-heat-pumps-funded-by-gas-lobby-group/",
+    "by": "doener",
+    "time": 1690217009,
+    "score": 62,
+    "descendants": 9
+  },
+  {
+    "id": 36825069,
+    "title": "Dot_ix: Interactive GraphViz Dot Graphs",
+    "url": "https://azriel.im/dot_ix/",
+    "by": "azriel91",
+    "time": 1690022007,
+    "score": 61,
+    "descendants": 9
+  },
+  {
+    "id": 36820877,
+    "title": "Why is healthy food so expensive in America? Blame the Farm Bill",
+    "url": "https://fortune.com/2023/07/21/why-healthy-food-so-expensive-in-america-blame-farm-bill-congress-always-renews-make-burgers-cheaper-salad-gene-baur/",
+    "by": "pseudolus",
+    "time": 1689978839,
+    "score": 61,
+    "descendants": 68
+  },
+  {
+    "id": 36832191,
+    "title": "Gustave Moreau\u0027s mystical paintings",
+    "url": "https://www.thecollector.com/gustave-moreau-paintings/",
+    "by": "prismatic",
+    "time": 1690081176,
+    "score": 60,
+    "descendants": 6
+  },
+  {
+    "id": 36829035,
+    "title": "Israel Quietly Embeds AI Systems in Deadly Military Operations",
+    "url": "https://www.bloomberg.com/news/articles/2023-07-16/israel-using-ai-systems-to-plan-deadly-military-operations",
+    "by": "lormayna",
+    "time": 1690054081,
+    "score": 60,
+    "descendants": 14
+  },
+  {
+    "id": 36821123,
+    "title": "Stone walls and historical harbors are unexpected havens of biodiversity",
+    "url": "https://hakaimagazine.com/news/stone-walls-and-historical-harbors-are-unexpected-havens-of-biodiversity/",
+    "by": "benbreen",
+    "time": 1689980339,
+    "score": 60,
+    "descendants": 19
+  },
+  {
+    "id": 36847958,
+    "title": "The Mathematical Universe Hypothesis (2007)",
+    "url": "https://arxiv.org/abs/0704.0646",
+    "by": "aerialfrog",
+    "time": 1690206517,
+    "score": 59,
+    "descendants": 87
+  },
+  {
+    "id": 36833564,
+    "title": "Ask HN: What is the best place to hire part time devs?",
+    "url": null,
+    "by": "yosito",
+    "time": 1690101146,
+    "score": 58,
+    "descendants": 40
+  },
+  {
+    "id": 36830492,
+    "title": "STX \u2013 C\u002B\u002B17 and C\u002B\u002B 20 error-handling and utility extensions",
+    "url": "https://lamarrr.github.io/STX/",
+    "by": "whou",
+    "time": 1690064138,
+    "score": 58,
+    "descendants": 30
+  },
+  {
+    "id": 36822994,
+    "title": "GNU PSPP",
+    "url": "https://www.gnu.org/software/pspp/",
+    "by": "gjvc",
+    "time": 1689997141,
+    "score": 58,
+    "descendants": 14
+  },
+  {
+    "id": 36822484,
+    "title": "Research reveals the scale of disorder underpinning motor neuron disease",
+    "url": "https://medicalxpress.com/news/2023-07-reveals-scale-disorder-underpinning-motor.html",
+    "by": "wglb",
+    "time": 1689991840,
+    "score": 58,
+    "descendants": 3
+  },
+  {
+    "id": 36853166,
+    "title": "Intel Advanced Performance Extensions (Intel APX)",
+    "url": "https://www.intel.com/content/www/us/en/developer/articles/technical/advanced-performance-extensions-apx.html",
+    "by": "gautamcgoel",
+    "time": 1690227332,
+    "score": 57,
+    "descendants": 47
+  }
+]
