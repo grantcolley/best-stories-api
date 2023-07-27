@@ -32,10 +32,12 @@ for (int i = 0; i < totalTestRequests; i++)
 Console.WriteLine("");
 Console.WriteLine("Sending requests");
 
-HttpClient httpClient = new();
-httpClient.BaseAddress = new Uri(endpointUrl);
+HttpClient httpClient = new()
+{
+    BaseAddress = new Uri(endpointUrl)
+};
 
-int iteration = 0;
+int iteration = 1;
 
 Stopwatch testStopwatch = Stopwatch.StartNew();
 
