@@ -7,7 +7,7 @@ namespace BestStoriesApi.Services
     {
         private readonly IBestStoriesCache _bestStoriesCache;
         private readonly IBestStoriesApiService _bestStoriesApiService;
-        private readonly ILogger _logger;
+        private readonly ILogger<BestStoriesBackgroundService> _logger;
         private readonly int _cacheMaxSize;
         private readonly int _cacheRecycleDelay;
 

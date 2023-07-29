@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\BestStoriesApi.csproj" />
+    <ProjectReference Include="..\..\src\BestStoriesApi\BestStoriesApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>

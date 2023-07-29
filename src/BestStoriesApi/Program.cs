@@ -10,7 +10,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 
-builder.Services.AddHttpClient(HttpClientNames.HACKER_NEWS, client =>
+builder.Services.AddHttpClient(Constants.HACKER_NEWS, client =>
 {
     string? baseAddress = builder.Configuration.GetValue<string>("HackerNewsApi:Url");
 
@@ -22,7 +22,7 @@ builder.Services.AddHttpClient(HttpClientNames.HACKER_NEWS, client =>
     client.BaseAddress = new Uri(baseAddress);
 });
 
-builder.Services.AddSingleton<IBestStoriesCache, BestStoriesCache>();
+builder.Services.AddSingleton<IBestStoriesCache, BestStoriesInterlockedCache>();
 builder.Services.AddSingleton<IBestStoriesApiService, BestStoriesApiService>();
 builder.Services.AddScoped<IBestStoriesService, BestStoriesService>();
 builder.Services.AddHostedService<BestStoriesBackgroundService>();

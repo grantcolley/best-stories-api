@@ -37,7 +37,7 @@ namespace BestStoriesApi.Tests
         public async Task GetBestStoriesAsync_Top_5_Pass()
         {
             // Arrange
-            IBestStoriesCache bestStoriesCache = new BestStoriesCache();
+            IBestStoriesCache bestStoriesCache = new BestStoriesLockedCache();
 
             bestStoriesCache.RecycleCache(DataUtility.GetBestStories());
 
@@ -60,7 +60,7 @@ namespace BestStoriesApi.Tests
         public async Task GetBestStoriesAsync_MaxRetryAttempts_Fail_ExpectedException()
         {
             // Arrange
-            IBestStoriesCache bestStoriesCache = new BestStoriesCache();
+            IBestStoriesCache bestStoriesCache = new BestStoriesLockedCache();
 
             IBestStoriesService bestStoriesService = new BestStoriesService(
                 bestStoriesCache, _logger, _configuration);

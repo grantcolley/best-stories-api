@@ -4,7 +4,7 @@ using BestStoriesApi.Models;
 
 namespace BestStoriesApi.Tests.Helpers
 {
-    public class MockBestStoriesCacheRetryAttempts : BestStoriesCache, IBestStoriesCache
+    public class MockBestStoriesCacheRetryAttempts : BestStoriesLockedCache, IBestStoriesCache
     {
         private int _count;
 

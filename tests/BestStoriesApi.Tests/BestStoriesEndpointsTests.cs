@@ -39,7 +39,7 @@ namespace BestStoriesApi.Tests
         public async Task GetBestStories_Return_Ok()
         {
             // Arrange
-            IBestStoriesCache bestStoriesCache = new BestStoriesCache();
+            IBestStoriesCache bestStoriesCache = new BestStoriesLockedCache();
 
             bestStoriesCache.RecycleCache(DataUtility.GetBestStories());
 

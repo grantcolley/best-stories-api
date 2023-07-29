@@ -8,7 +8,7 @@ namespace BestStoriesApi.Services
     public class BestStoriesApiService : IBestStoriesApiService
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly ILogger _logger;
+        private readonly ILogger<BestStoriesApiService> _logger;
 
         public BestStoriesApiService(IHttpClientFactory httpClientFactory, ILogger<BestStoriesApiService> logger) 
         {
@@ -20,7 +20,7 @@ namespace BestStoriesApi.Services
         {
             try
             {
-                using HttpClient httpClient = _httpClientFactory.CreateClient(HttpClientNames.HACKER_NEWS);
+                using HttpClient httpClient = _httpClientFactory.CreateClient(Constants.HACKER_NEWS);
 
                 using HttpResponseMessage response = await httpClient.GetAsync("beststories.json", cancellationToken);
 
@@ -41,7 +41,7 @@ namespace BestStoriesApi.Services
         {
             try
             {
-                using HttpClient httpClient = _httpClientFactory.CreateClient(HttpClientNames.HACKER_NEWS);
+                using HttpClient httpClient = _httpClientFactory.CreateClient(Constants.HACKER_NEWS);
                 
                 using HttpResponseMessage response = await httpClient.GetAsync($"item/{id}.json", cancellationToken);
 

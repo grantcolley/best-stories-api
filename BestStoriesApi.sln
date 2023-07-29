@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BestStoriesApi", "src\BestStoriesApi.csproj", "{26BDD48D-8D56-4375-A195-1B1D83EA1D6A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BestStoriesApi.Tests", "tests\BestStoriesApi.Tests\BestStoriesApi.Tests.csproj", "{4B37CD45-8A4D-47B2-8606-FE42CC409BA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestStoriesApi.Test.Harness", "tests\BestStoriesApi.Test.Harness\BestStoriesApi.Test.Harness.csproj", "{CE9E357C-19B7-417F-84B6-235C8130D52D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BestStoriesApi.Test.Harness", "tests\BestStoriesApi.Test.Harness\BestStoriesApi.Test.Harness.csproj", "{CE9E357C-19B7-417F-84B6-235C8130D52D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BestStoriesApi", "src\BestStoriesApi\BestStoriesApi.csproj", "{41D7DB75-E893-40AB-A9D5-57CC34A7456C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BestStoriesApi.Benchmarks", "benchmarks\BestStoriesApi.Benchmarks\BestStoriesApi.Benchmarks.csproj", "{FE9A4F4C-CF11-4794-8E45-BCAD3EB3CE0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{26BDD48D-8D56-4375-A195-1B1D83EA1D6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26BDD48D-8D56-4375-A195-1B1D83EA1D6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26BDD48D-8D56-4375-A195-1B1D83EA1D6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26BDD48D-8D56-4375-A195-1B1D83EA1D6A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4B37CD45-8A4D-47B2-8606-FE42CC409BA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4B37CD45-8A4D-47B2-8606-FE42CC409BA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B37CD45-8A4D-47B2-8606-FE42CC409BA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +25,14 @@ Global
 		{CE9E357C-19B7-417F-84B6-235C8130D52D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE9E357C-19B7-417F-84B6-235C8130D52D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE9E357C-19B7-417F-84B6-235C8130D52D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41D7DB75-E893-40AB-A9D5-57CC34A7456C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41D7DB75-E893-40AB-A9D5-57CC34A7456C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41D7DB75-E893-40AB-A9D5-57CC34A7456C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41D7DB75-E893-40AB-A9D5-57CC34A7456C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE9A4F4C-CF11-4794-8E45-BCAD3EB3CE0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE9A4F4C-CF11-4794-8E45-BCAD3EB3CE0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE9A4F4C-CF11-4794-8E45-BCAD3EB3CE0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE9A4F4C-CF11-4794-8E45-BCAD3EB3CE0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

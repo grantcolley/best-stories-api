@@ -25,7 +25,7 @@ namespace BestStoriesApi.Tests
         public async Task ExecuteAsync_Initial_Cache_Recycle_Pass()
         {
             // Arrange
-            IBestStoriesCache bestStoriesCache = new BestStoriesCache();
+            IBestStoriesCache bestStoriesCache = new BestStoriesLockedCache();
 
             Dictionary<string, string?> configSettings = new()
             {
