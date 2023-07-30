@@ -29,7 +29,7 @@ namespace BestStories.Api.Services
             {
                 int retryAttempt = 0;
 
-                IEnumerable<Story>? storyCache = _bestStoriesCache.GetStoryCache();
+                IEnumerable<Story>? storyCache = await _bestStoriesCache.GetStoryCacheAsync();
 
                 while(storyCache == null)
                 {
@@ -43,7 +43,7 @@ namespace BestStories.Api.Services
                         return Enumerable.Empty<Story>();
                     }
 
-                    storyCache = _bestStoriesCache.GetStoryCache();
+                    storyCache = await _bestStoriesCache.GetStoryCacheAsync();
 
                     retryAttempt++;
 

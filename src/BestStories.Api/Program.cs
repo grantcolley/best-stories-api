@@ -22,7 +22,7 @@ builder.Services.AddHttpClient(Constants.HACKER_NEWS, client =>
     client.BaseAddress = new Uri(baseAddress);
 });
 
-builder.Services.AddSingleton<IBestStoriesCache, BestStoriesInterlockedCache>();
+builder.Services.AddSingleton<IBestStoriesCache, SemaphoreSlimCache>();
 builder.Services.AddSingleton<IBestStoriesApiService, BestStoriesApiService>();
 builder.Services.AddScoped<IBestStoriesService, BestStoriesService>();
 builder.Services.AddHostedService<BestStoriesBackgroundService>();

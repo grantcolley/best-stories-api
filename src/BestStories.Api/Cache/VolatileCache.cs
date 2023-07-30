@@ -3,17 +3,17 @@ using BestStories.Api.Core.Models;
 
 namespace BestStories.Api.Cache
 {
-    public class BestStoriesInterlockedCache : IBestStoriesCache
+    public class VolatileCache : IBestStoriesCache
     {
-        private readonly ILogger<BestStoriesInterlockedCache> _logger;
+        private readonly ILogger<VolatileCache> _logger;
         private IEnumerable<Story>? _storyCache = null;
 
-        public BestStoriesInterlockedCache(ILogger<BestStoriesInterlockedCache> logger)
+        public VolatileCache(ILogger<VolatileCache> logger)
         {
             _logger = logger;
         }
 
-        public void RecycleCache(IEnumerable<Story> stories)
+        public Task RecycleCacheAsync(IEnumerable<Story> stories)
         {
             // https://learn.microsoft.com/en-us/dotnet/api/system.threading.interlocked.compareexchange?view=net-7.0#system-threading-interlocked-compareexchange-1(-0@-0-0)
             //
@@ -30,9 +30,11 @@ namespace BestStories.Api.Cache
             {
                 _logger.LogError(ex, ex.Message);
             }
+
+            return Task.CompletedTask;
         }
 
-        public IEnumerable<Story>? GetStoryCache()
+        public async Task<IEnumerable<Story>?> GetStoryCacheAsync()
         {
             // https://learn.microsoft.com/en-us/dotnet/api/system.threading.volatile.read?view=net-7.0#system-threading-volatile-read-1(-0@)
             //
@@ -41,7 +43,7 @@ namespace BestStories.Api.Cache
             // This reference is the latest written by any processor in the computer,
             // regardless of the number of processors or the state of processor cache.
 
-            return Volatile.Read<IEnumerable<Story>?>(ref _storyCache);
+            return await Task.FromResult(Volatile.Read<IEnumerable<Story>?>(ref _storyCache));
         }
     }
 }

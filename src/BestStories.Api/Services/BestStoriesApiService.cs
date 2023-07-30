@@ -31,7 +31,7 @@ namespace BestStories.Api.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"GetBestStoriesAsync()");
+                _logger.LogError(ex, ex.Message);
 
                 return await Task.FromException<IEnumerable<int>>(ex);
             }
@@ -51,8 +51,7 @@ namespace BestStories.Api.Services
             }
             catch (Exception ex)
             {
-                string message = $"GetStoryAsync({id})";
-                _logger.LogError(ex, message);
+                _logger.LogError(ex, $"GetStoryAsync({id})");
 
                 return await Task.FromException<Story>(ex);
             }

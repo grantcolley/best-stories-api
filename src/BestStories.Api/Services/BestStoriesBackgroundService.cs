@@ -47,12 +47,13 @@ namespace BestStories.Api.Services
                         return;
                     }
 
-                    _bestStoriesCache.RecycleCache(
-                        newStoryCache.OrderByDescending(s => s.score).Take(_cacheMaxSize).ToList());
+                    await _bestStoriesCache.RecycleCacheAsync(
+                        newStoryCache.OrderByDescending(s => s.score).Take(_cacheMaxSize).ToList())
+                        .ConfigureAwait(false);
                 }
                 catch (Exception ex) 
                 {
-                    _logger.LogError(ex, $"ExecuteAsync()");
+                    _logger.LogError(ex, ex.Message);
                 }
 
                 await Task.Delay(_cacheRecycleDelay, cancellationToken);

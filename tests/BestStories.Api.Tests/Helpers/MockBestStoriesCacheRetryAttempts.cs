@@ -4,20 +4,20 @@ using BestStories.Api.Core.Models;
 
 namespace BestStories.Api.Tests.Helpers
 {
-    public class MockBestStoriesCacheRetryAttempts : BestStoriesLockedCache, IBestStoriesCache
+    public class MockBestStoriesCacheRetryAttempts : LockedCache, IBestStoriesCache
     {
         private int _count;
 
-        public new IEnumerable<Story>? GetStoryCache()
+        public new Task<IEnumerable<Story>?> GetStoryCacheAsync()
         {
             if(_count < 3)
             {
                 _count++;
 
-                return null;
+                return Task.FromResult<IEnumerable<Story>?>(null);
             }
 
-            return base.GetStoryCache();
+            return base.GetStoryCacheAsync();
         }
     }
 }

@@ -42,7 +42,7 @@ int iteration = 1;
 
 Stopwatch testStopwatch = Stopwatch.StartNew();
 
-while (iteration < totalIterations)
+while (iteration < totalIterations + 1)
 {
     Console.WriteLine("");
     Console.WriteLine($"Batch {iteration}");

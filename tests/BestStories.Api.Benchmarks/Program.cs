@@ -1,8 +1,7 @@
 ﻿using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
-using BestStories.Api.Benchmarks;
+using BestStories.Api.Benchmarks.Benchmarks;
 
-BenchmarkRunner.Run(typeof(BestStoriesLockedCacheBenchmarks));
-BenchmarkRunner.Run(typeof(BestStoriesInterlockedCacheBenchmarks));
+_ = BenchmarkRunner.Run(typeof(BestStoriesCache_Benchmarks));
 
 Console.ReadLine();

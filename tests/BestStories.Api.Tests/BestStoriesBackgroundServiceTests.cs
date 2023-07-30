@@ -25,7 +25,9 @@ namespace BestStories.Api.Tests
         public async Task ExecuteAsync_Initial_Cache_Recycle_Pass()
         {
             // Arrange
-            IBestStoriesCache bestStoriesCache = new BestStoriesLockedCache();
+            ILoggerFactory factory = new NullLoggerFactory();
+            ILogger<SemaphoreSlimCache> logger = factory.CreateLogger<SemaphoreSlimCache>();
+            SemaphoreSlimCache storiesCache = new SemaphoreSlimCache(logger);
 
             Dictionary<string, string?> configSettings = new()
             {
@@ -38,7 +40,7 @@ namespace BestStories.Api.Tests
                 .Build();
 
             BestStoriesBackgroundService bestStoriesBackgroundService
-                = new(bestStoriesCache, new MockBestStoriesApiService(), _logger, configuration);
+                = new(storiesCache, new MockBestStoriesApiService(), _logger, configuration);
 
             // Act
             await bestStoriesBackgroundService.StartAsync(CancellationToken.None);
@@ -48,7 +50,7 @@ namespace BestStories.Api.Tests
             await bestStoriesBackgroundService.StopAsync(CancellationToken.None);
 
             //Assert
-            IEnumerable<Story>? cache = bestStoriesCache.GetStoryCache();
+            IEnumerable<Story>? cache = await storiesCache.GetStoryCacheAsync();
 
             IEnumerable<Story> stories = DataUtility.GetBestStories();
 

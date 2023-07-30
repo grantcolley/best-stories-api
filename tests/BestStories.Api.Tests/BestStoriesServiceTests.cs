@@ -37,12 +37,14 @@ namespace BestStories.Api.Tests
         public async Task GetBestStoriesAsync_Top_5_Pass()
         {
             // Arrange
-            IBestStoriesCache bestStoriesCache = new BestStoriesLockedCache();
+            ILoggerFactory factory = new NullLoggerFactory();
+            ILogger<SemaphoreSlimCache> logger = factory.CreateLogger<SemaphoreSlimCache>();
+            SemaphoreSlimCache storiesCache = new SemaphoreSlimCache(logger);
 
-            bestStoriesCache.RecycleCache(DataUtility.GetBestStories());
+            await storiesCache.RecycleCacheAsync(DataUtility.GetBestStories());
 
             IBestStoriesService bestStoriesService = new BestStoriesService(
-                bestStoriesCache, _logger, _configuration);
+                storiesCache, _logger, _configuration);
 
             // Act
             IEnumerable<Story> bestStories = await bestStoriesService.GetBestStoriesAsync(5, CancellationToken.None)
@@ -60,10 +62,12 @@ namespace BestStories.Api.Tests
         public async Task GetBestStoriesAsync_MaxRetryAttempts_Fail_ExpectedException()
         {
             // Arrange
-            IBestStoriesCache bestStoriesCache = new BestStoriesLockedCache();
+            ILoggerFactory factory = new NullLoggerFactory();
+            ILogger<SemaphoreSlimCache> logger = factory.CreateLogger<SemaphoreSlimCache>();
+            SemaphoreSlimCache storiesCache = new SemaphoreSlimCache(logger);
 
             IBestStoriesService bestStoriesService = new BestStoriesService(
-                bestStoriesCache, _logger, _configuration);
+                storiesCache, _logger, _configuration);
 
             // Act
             _ = await bestStoriesService.GetBestStoriesAsync(5, CancellationToken.None).ConfigureAwait(false);
@@ -78,7 +82,7 @@ namespace BestStories.Api.Tests
             // Arrange
             IBestStoriesCache bestStoriesCache = new MockBestStoriesCacheRetryAttempts();
 
-            bestStoriesCache.RecycleCache(DataUtility.GetBestStories());
+            await bestStoriesCache.RecycleCacheAsync(DataUtility.GetBestStories());
 
             IBestStoriesService bestStoriesService = new BestStoriesService(
                 bestStoriesCache, _logger, _configuration);

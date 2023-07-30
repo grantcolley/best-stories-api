@@ -4,7 +4,7 @@ namespace BestStories.Api.Core.Interfaces
 {
     public interface IBestStoriesCache
     {
-        void RecycleCache(IEnumerable<Story> stories);
-        IEnumerable<Story>? GetStoryCache();
+        Task RecycleCacheAsync(IEnumerable<Story> stories);
+        Task<IEnumerable<Story>?> GetStoryCacheAsync();
     }
 }

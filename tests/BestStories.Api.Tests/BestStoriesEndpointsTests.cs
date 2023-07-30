@@ -39,12 +39,14 @@ namespace BestStories.Api.Tests
         public async Task GetBestStories_Return_Ok()
         {
             // Arrange
-            IBestStoriesCache bestStoriesCache = new BestStoriesLockedCache();
+            ILoggerFactory factory = new NullLoggerFactory();
+            ILogger<SemaphoreSlimCache> logger = factory.CreateLogger<SemaphoreSlimCache>();
+            SemaphoreSlimCache storiesCache = new SemaphoreSlimCache(logger);
 
-            bestStoriesCache.RecycleCache(DataUtility.GetBestStories());
+            await storiesCache.RecycleCacheAsync(DataUtility.GetBestStories());
 
             IBestStoriesService bestStoriesService = new BestStoriesService(
-                bestStoriesCache, _logger, _configuration);
+                storiesCache, _logger, _configuration);
 
             // Act
             IResult resultObject = await BestStoriesEndpoint.GetBestStories(5, bestStoriesService, CancellationToken.None)

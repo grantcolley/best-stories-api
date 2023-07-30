@@ -3,24 +3,26 @@ using BestStories.Api.Core.Models;
 
 namespace BestStories.Api.Cache
 {
-    public class BestStoriesLockedCache : IBestStoriesCache
+    public class LockedCache : IBestStoriesCache
     {
         private readonly object _lockCache = new();
         private IEnumerable<Story>? _storyCache = null;
 
-        public void RecycleCache(IEnumerable<Story> stories)
+        public Task RecycleCacheAsync(IEnumerable<Story> stories)
         {
             lock (_lockCache)
             {
                 _storyCache = stories;
             }
+
+            return Task.CompletedTask;
         }
 
-        public IEnumerable<Story>? GetStoryCache() 
+        public Task<IEnumerable<Story>?> GetStoryCacheAsync()
         {
             lock (_lockCache)
             {
-                return _storyCache;
+                return Task.FromResult(_storyCache);
             }
         }
     }
