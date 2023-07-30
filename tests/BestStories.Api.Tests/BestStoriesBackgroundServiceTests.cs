@@ -31,7 +31,7 @@ namespace BestStories.Api.Tests
         /// Tests the execution of the BestStoriesBackgroundService to ensure it populates the cache.
         /// </summary>
         [TestMethod]        
-        public async Task ExecuteAsync_Cache_Recycle_Pass()
+        public async Task ExecuteAsync_Cache_Recycle_Successful()
         {
             // Arrange
             BestStoriesBackgroundService bestStoriesBackgroundService

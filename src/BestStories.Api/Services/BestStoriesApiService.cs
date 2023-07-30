@@ -22,7 +22,8 @@ namespace BestStories.Api.Services
             {
                 using HttpClient httpClient = _httpClientFactory.CreateClient(Constants.HACKER_NEWS);
 
-                using HttpResponseMessage response = await httpClient.GetAsync("beststories.json", cancellationToken);
+                using HttpResponseMessage response = await httpClient.GetAsync("beststories.json", cancellationToken)
+                    .ConfigureAwait(false);
 
                 return await JsonSerializer.DeserializeAsync<IEnumerable<int>>(
                     await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false), 

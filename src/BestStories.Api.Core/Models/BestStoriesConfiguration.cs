@@ -8,6 +8,5 @@
         public int CacheRetryDelay { get; set; }
         public int CacheMaxRetryAttempts { get; set; }
         public bool IsDistributedCache { get; set; }
-        public bool LaunchDistributedCache { get; set; }
     }
 }

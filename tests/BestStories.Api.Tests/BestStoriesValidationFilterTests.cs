@@ -24,7 +24,7 @@ namespace BestStories.Api.Tests
         /// Tests the returns a Status200OK after the validating the parameter is within the permissible range.
         /// </summary>
         [TestMethod]
-        public async Task BestStoriesValidationFilter_Return_Ok()
+        public async Task BestStoriesValidationFilter_Return_Status200OK()
         {
             // Arrange
             MockEndpointFilterInvocationContext mockEndpointFilterInvocationContext = new();
@@ -49,7 +49,7 @@ namespace BestStories.Api.Tests
         /// Tests the returns a Status400BadRequest when no parameter is provided.
         /// </summary>
         [TestMethod]
-        public async Task BestStoriesValidationFilter_No_Parameter_Return_BadRequest()
+        public async Task BestStoriesValidationFilter_No_Parameter_Return_Status400BadRequest()
         {
             // Arrange
             MockEndpointFilterInvocationContext mockEndpointFilterInvocationContext = new();
@@ -72,7 +72,7 @@ namespace BestStories.Api.Tests
         /// Tests the returns a Status400BadRequest after the validating the parameter is outside the permissible range.
         /// </summary>
         [TestMethod]
-        public async Task BestStoriesValidationFilter_Parameter_Equals_0_Return_BadRequest()
+        public async Task BestStoriesValidationFilter_Parameter_Equals_0_Return_Status400BadRequest()
         {
             // Arrange
             MockEndpointFilterInvocationContext mockEndpointFilterInvocationContext = new();
@@ -97,7 +97,7 @@ namespace BestStories.Api.Tests
         /// Tests the returns a Status400BadRequest after the validating the parameter is outside the permissible range.
         /// </summary>
         [TestMethod]
-        public async Task BestStoriesValidationFilter_Parameter_Greater_Than_CacheMaxSize_Return_BadRequest()
+        public async Task BestStoriesValidationFilter_Parameter_Greater_Than_CacheMaxSize_Return_Status400BadRequest()
         {
             // Arrange
             MockEndpointFilterInvocationContext mockEndpointFilterInvocationContext = new();

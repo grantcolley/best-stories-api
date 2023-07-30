@@ -30,10 +30,32 @@ builder.Services.AddHttpClient(Constants.HACKER_NEWS, (serviceProvider, httpClie
 builder.Services.Configure<BestStoriesConfiguration>(
             builder.Configuration.GetSection("BestStoriesConfiguration"));
 
-builder.Services.AddSingleton<IBestStoriesCache, SemaphoreSlimCache>();
 builder.Services.AddSingleton<IBestStoriesApiService, BestStoriesApiService>();
 builder.Services.AddScoped<IBestStoriesService, BestStoriesService>();
-builder.Services.AddHostedService<BestStoriesBackgroundService>();
+
+bool isDistributedCache = builder.Configuration.GetValue<bool>("BestStoriesConfiguration:IsDistributedCache");
+
+if (isDistributedCache)
+{
+    //////////////////////////////////////////////////////////////////////////////////
+    // NOTE:
+    // 
+    // For development and testing puroses we use Distributed Memory Cache,
+    // and use the BestStoriesBackgroundService to recycle the cache.
+    // 
+    // In a production environment, the distributed cache should be hosted in a
+    // dedicated web api, configured for the appropriate caching service e.g. Redis
+    builder.Services.AddDistributedMemoryCache();
+    builder.Services.AddHostedService<BestStoriesBackgroundService>();
+    //////////////////////////////////////////////////////////////////////////////////
+
+    builder.Services.AddSingleton<IBestStoriesCache, DistributedCache>();
+}
+else
+{
+    builder.Services.AddSingleton<IBestStoriesCache, VolatileCache>();
+    builder.Services.AddHostedService<BestStoriesBackgroundService>();
+}
 
 WebApplication app = builder.Build();
 

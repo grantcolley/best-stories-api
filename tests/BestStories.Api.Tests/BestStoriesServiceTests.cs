@@ -76,7 +76,7 @@ namespace BestStories.Api.Tests
         /// the cache after four attempts, before exceeding it's max retry attempts.
         /// </summary>
         [TestMethod]
-        public async Task GetBestStoriesAsync_RetryAttempts_Pass_On_Fourth_Attempt()
+        public async Task GetBestStoriesAsync_RetryAttempts_Return_Top_5_Stories_On_Fourth_Attempt()
         {
             // Arrange
             IBestStoriesCache storiesCache = new MockBestStoriesCacheRetryAttempts();

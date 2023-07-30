@@ -3,8 +3,11 @@ using BenchmarkDotNet.Order;
 using BestStories.Api.Cache;
 using BestStories.Api.Core.Interfaces;
 using BestStories.Api.Core.Models;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Options;
 
 namespace BestStories.Api.Benchmarks.Benchmarks
 {
@@ -16,6 +19,7 @@ namespace BestStories.Api.Benchmarks.Benchmarks
         private IBestStoriesCache? _lockedCache;
         private IBestStoriesCache? _volatileCache;
         private IBestStoriesCache? _semaphoreSlimCache;
+        private IBestStoriesCache? _distributedCache;
 
         [GlobalSetup]
         public async Task GlobalSetup()
@@ -39,6 +43,11 @@ namespace BestStories.Api.Benchmarks.Benchmarks
             ILogger<SemaphoreSlimCache> SemaphoreSlimCachelLogger = factory.CreateLogger<SemaphoreSlimCache>();
             _semaphoreSlimCache = new SemaphoreSlimCache(SemaphoreSlimCachelLogger);
             await _semaphoreSlimCache.RecycleCacheAsync(stories);
+
+            IOptions<MemoryDistributedCacheOptions> optionsAccessor = Options.Create(new MemoryDistributedCacheOptions());
+            ILogger<DistributedCache> distributedCachelLogger = factory.CreateLogger<DistributedCache>();
+            _distributedCache = new DistributedCache(new MemoryDistributedCache(optionsAccessor), distributedCachelLogger);
+            await _distributedCache.RecycleCacheAsync(stories);
         }
 
         [Benchmark]
@@ -62,6 +71,14 @@ namespace BestStories.Api.Benchmarks.Benchmarks
         {
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
             _ = await _semaphoreSlimCache.GetStoryCacheAsync();
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+        }
+
+        [Benchmark]
+        public async Task DistributedCache_GetStoryCacheAsync()
+        {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+            _ = await _distributedCache.GetStoryCacheAsync();
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
         }
     }

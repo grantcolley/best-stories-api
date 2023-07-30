@@ -57,7 +57,8 @@ namespace BestStories.Api.Services
                     _logger.LogError(ex, ex.Message);
                 }
 
-                await Task.Delay(_bestStoriesConfiguration.CacheRecycleDelay, cancellationToken);
+                await Task.Delay(_bestStoriesConfiguration.CacheRecycleDelay, cancellationToken)
+                    .ConfigureAwait(false);
             }
         }
 

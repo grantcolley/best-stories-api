@@ -27,21 +27,24 @@ namespace BestStories.Api.Services
             {
                 int retryAttempt = 0;
 
-                IEnumerable<Story>? storyCache = await _bestStoriesCache.GetStoryCacheAsync();
+                IEnumerable<Story>? storyCache = await _bestStoriesCache.GetStoryCacheAsync()
+                    .ConfigureAwait(false);
 
                 while(storyCache == null)
                 {
                     // If the cache is empty, retry the specified
                     // number of times before giving up.
 
-                    await Task.Delay(_bestStoriesConfiguration.CacheRetryDelay, cancellationToken);
+                    await Task.Delay(_bestStoriesConfiguration.CacheRetryDelay, cancellationToken)
+                        .ConfigureAwait(false);
 
                     if(cancellationToken.IsCancellationRequested)
                     {
                         return Enumerable.Empty<Story>();
                     }
 
-                    storyCache = await _bestStoriesCache.GetStoryCacheAsync();
+                    storyCache = await _bestStoriesCache.GetStoryCacheAsync()
+                        .ConfigureAwait(false);
 
                     retryAttempt++;
 

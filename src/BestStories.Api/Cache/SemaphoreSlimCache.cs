@@ -18,7 +18,7 @@ namespace BestStories.Api.Cache
         {
             // If the recycle doesn't work simply try again on the next attempt.
 
-            await _semaphore.WaitAsync();
+            await _semaphore.WaitAsync().ConfigureAwait(false);
 
             try
             {
@@ -36,7 +36,7 @@ namespace BestStories.Api.Cache
 
         public async Task<IEnumerable<Story>?> GetStoryCacheAsync()
         {
-            await _semaphore.WaitAsync();
+            await _semaphore.WaitAsync().ConfigureAwait(false);
 
             try
             {
