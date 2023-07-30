@@ -1,10 +1,11 @@
-﻿using BestStories.Api.Filters;
+﻿using BestStories.Api.Core.Models;
+using BestStories.Api.Filters;
 using BestStories.Api.Tests.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
-namespace BestStories.Api.Tests.Tests
+namespace BestStories.Api.Tests
 {
     [TestClass]
     public class BestStoriesValidationFilterTests
@@ -12,20 +13,16 @@ namespace BestStories.Api.Tests.Tests
         private const string successMessage = "Success!";
         private const string errorMessage = $"Specify number of best stories to fetch between 1 and 100";
 
-        private readonly IConfiguration _configuration;
+        private readonly IOptions<BestStoriesConfiguration> _bestStoriesConfiguration;
 
         public BestStoriesValidationFilterTests()
         {
-            Dictionary<string, string?> configSettings = new()
-            {
-                {"BestStories:CacheMaxSize", "100"}
-            };
-
-            _configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection(configSettings)
-                .Build();
+            _bestStoriesConfiguration = Options.Create(new BestStoriesConfiguration { CacheMaxSize = 100 });
         }
 
+        /// <summary>
+        /// Tests the returns a Status200OK after the validating the parameter is within the permissible range.
+        /// </summary>
         [TestMethod]
         public async Task BestStoriesValidationFilter_Return_Ok()
         {
@@ -34,7 +31,7 @@ namespace BestStories.Api.Tests.Tests
 
             mockEndpointFilterInvocationContext.Arguments.Add(5);
 
-            BestStoriesValidationFilter bestStoriesValidationFilter = new(_configuration);
+            BestStoriesValidationFilter bestStoriesValidationFilter = new(_bestStoriesConfiguration);
 
             // Act
             var resultObject = await bestStoriesValidationFilter.InvokeAsync(mockEndpointFilterInvocationContext, EndpointFilterDelegate)
@@ -48,13 +45,16 @@ namespace BestStories.Api.Tests.Tests
             Assert.AreEqual(successMessage, result.Value);
         }
 
+        /// <summary>
+        /// Tests the returns a Status400BadRequest when no parameter is provided.
+        /// </summary>
         [TestMethod]
         public async Task BestStoriesValidationFilter_No_Parameter_Return_BadRequest()
         {
             // Arrange
             MockEndpointFilterInvocationContext mockEndpointFilterInvocationContext = new();
 
-            BestStoriesValidationFilter bestStoriesValidationFilter = new(_configuration);
+            BestStoriesValidationFilter bestStoriesValidationFilter = new(_bestStoriesConfiguration);
 
             // Act
             var resultObject = await bestStoriesValidationFilter.InvokeAsync(mockEndpointFilterInvocationContext, EndpointFilterDelegate)
@@ -68,6 +68,9 @@ namespace BestStories.Api.Tests.Tests
             Assert.AreEqual(errorMessage, result.Value);
         }
 
+        /// <summary>
+        /// Tests the returns a Status400BadRequest after the validating the parameter is outside the permissible range.
+        /// </summary>
         [TestMethod]
         public async Task BestStoriesValidationFilter_Parameter_Equals_0_Return_BadRequest()
         {
@@ -76,7 +79,7 @@ namespace BestStories.Api.Tests.Tests
 
             mockEndpointFilterInvocationContext.Arguments.Add(0);
 
-            BestStoriesValidationFilter bestStoriesValidationFilter = new(_configuration);
+            BestStoriesValidationFilter bestStoriesValidationFilter = new(_bestStoriesConfiguration);
 
             // Act
             var resultObject = await bestStoriesValidationFilter.InvokeAsync(mockEndpointFilterInvocationContext, EndpointFilterDelegate)
@@ -90,6 +93,9 @@ namespace BestStories.Api.Tests.Tests
             Assert.AreEqual(errorMessage, result.Value);
         }
 
+        /// <summary>
+        /// Tests the returns a Status400BadRequest after the validating the parameter is outside the permissible range.
+        /// </summary>
         [TestMethod]
         public async Task BestStoriesValidationFilter_Parameter_Greater_Than_CacheMaxSize_Return_BadRequest()
         {
@@ -98,7 +104,7 @@ namespace BestStories.Api.Tests.Tests
 
             mockEndpointFilterInvocationContext.Arguments.Add(101);
 
-            BestStoriesValidationFilter bestStoriesValidationFilter = new(_configuration);
+            BestStoriesValidationFilter bestStoriesValidationFilter = new(_bestStoriesConfiguration);
 
             // Act
             var resultObject = await bestStoriesValidationFilter.InvokeAsync(mockEndpointFilterInvocationContext, EndpointFilterDelegate)

@@ -6,47 +6,43 @@ using BestStories.Api.Services;
 using BestStories.Api.Tests.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Options;
 
 namespace BestStories.Api.Tests
 {
     [TestClass]
     public class BestStoriesEndpointsTests
     {
+        private readonly SemaphoreSlimCache _storiesCache;
+        private readonly IOptions<BestStoriesConfiguration> _bestStoriesConfiguration;
         private readonly ILogger<BestStoriesService> _logger;
-        private readonly IConfiguration _configuration;
 
         public BestStoriesEndpointsTests()
         {
+            _bestStoriesConfiguration = Options.Create(
+                new BestStoriesConfiguration { CacheMaxSize = 200, CacheRetryDelay = 100, CacheMaxRetryAttempts = 5 });
+
             ILoggerFactory factory = new NullLoggerFactory();
 
             _logger = factory.CreateLogger<BestStoriesService>();
 
-            Dictionary<string, string?> configSettings = new()
-            {
-                {"BestStories:CacheRetryDelay", "100"},
-                {"BestStories:CacheMaxRetryAttempts", "5"}
-            };
-
-            _configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection(configSettings)
-                .Build();
+            ILogger<SemaphoreSlimCache> logger = factory.CreateLogger<SemaphoreSlimCache>();
+            _storiesCache = new SemaphoreSlimCache(logger);
         }
 
+        /// <summary>
+        /// Tests the BestStoriesEndpoint for a successful Status200OK result.
+        /// </summary>
         [TestMethod]
-        public async Task GetBestStories_Return_Ok()
+        public async Task GetBestStories_Return_Status200OK()
         {
             // Arrange
-            ILoggerFactory factory = new NullLoggerFactory();
-            ILogger<SemaphoreSlimCache> logger = factory.CreateLogger<SemaphoreSlimCache>();
-            SemaphoreSlimCache storiesCache = new SemaphoreSlimCache(logger);
-
-            await storiesCache.RecycleCacheAsync(DataUtility.GetBestStories());
+            await _storiesCache.RecycleCacheAsync(DataUtility.GetBestStories());
 
             IBestStoriesService bestStoriesService = new BestStoriesService(
-                storiesCache, _logger, _configuration);
+                _storiesCache, _bestStoriesConfiguration, _logger);
 
             // Act
             IResult resultObject = await BestStoriesEndpoint.GetBestStories(5, bestStoriesService, CancellationToken.None)
@@ -64,6 +60,9 @@ namespace BestStories.Api.Tests
             Assert.IsTrue(AssertHelper.AreStoriesEqual(result.Value, stories.OrderByDescending(s => s.score).Take(5)));
         }
 
+        /// <summary>
+        /// Tests the BestStoriesEndpoint for a Status500InternalServerError result.
+        /// </summary>
         [TestMethod]
         public async Task GetBestStories_Return_Status500InternalServerError()
         {

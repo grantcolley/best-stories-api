@@ -1,5 +1,6 @@
 ﻿using BestStories.Api.Core.Interfaces;
 using BestStories.Api.Core.Models;
+using Microsoft.Extensions.Options;
 
 namespace BestStories.Api.Services
 {
@@ -8,21 +9,18 @@ namespace BestStories.Api.Services
         private readonly IBestStoriesCache _bestStoriesCache;
         private readonly IBestStoriesApiService _bestStoriesApiService;
         private readonly ILogger<BestStoriesBackgroundService> _logger;
-        private readonly int _cacheMaxSize;
-        private readonly int _cacheRecycleDelay;
+        private readonly BestStoriesConfiguration _bestStoriesConfiguration;
 
         public BestStoriesBackgroundService(
             IBestStoriesCache bestStoriesCache,
             IBestStoriesApiService bestStoriesApiService, 
-            ILogger<BestStoriesBackgroundService> logger,
-            IConfiguration configuration)
+            IOptions<BestStoriesConfiguration> bestStoriesConfiguration,
+            ILogger<BestStoriesBackgroundService> logger)
         {
-            _bestStoriesCache = bestStoriesCache;
-            _bestStoriesApiService = bestStoriesApiService;
-            _logger = logger;
-
-            _cacheMaxSize = configuration.GetValue<int>("BestStories:CacheMaxSize");
-            _cacheRecycleDelay = configuration.GetValue<int>("BestStories:CacheRecycleDelay");
+            _bestStoriesCache = bestStoriesCache ?? throw new ArgumentNullException(nameof(bestStoriesCache));
+            _bestStoriesApiService = bestStoriesApiService ?? throw new ArgumentNullException(nameof(bestStoriesApiService));
+            _bestStoriesConfiguration = bestStoriesConfiguration?.Value ?? throw new ArgumentNullException(nameof(bestStoriesConfiguration));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         protected override async Task ExecuteAsync(CancellationToken cancellationToken)
@@ -48,7 +46,10 @@ namespace BestStories.Api.Services
                     }
 
                     await _bestStoriesCache.RecycleCacheAsync(
-                        newStoryCache.OrderByDescending(s => s.score).Take(_cacheMaxSize).ToList())
+                        newStoryCache
+                        .OrderByDescending(s => s.score)
+                        .Take(_bestStoriesConfiguration.CacheMaxSize)
+                        .ToList())
                         .ConfigureAwait(false);
                 }
                 catch (Exception ex) 
@@ -56,7 +57,7 @@ namespace BestStories.Api.Services
                     _logger.LogError(ex, ex.Message);
                 }
 
-                await Task.Delay(_cacheRecycleDelay, cancellationToken);
+                await Task.Delay(_bestStoriesConfiguration.CacheRecycleDelay, cancellationToken);
             }
         }
 

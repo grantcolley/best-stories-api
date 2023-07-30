@@ -1,15 +1,20 @@
-﻿namespace BestStories.Api.Filters
+﻿using BestStories.Api.Core.Models;
+using Microsoft.Extensions.Options;
+
+namespace BestStories.Api.Filters
 {
     public class BestStoriesValidationFilter : IEndpointFilter
     {
-        private readonly int _cacheMaxSize;
+        private readonly BestStoriesConfiguration _bestStoriesConfiguration;
         private readonly string _errorMessage;
 
-        public BestStoriesValidationFilter(IConfiguration configuration) 
+        public BestStoriesValidationFilter(IOptions<BestStoriesConfiguration> bestStoriesConfiguration) 
         {
-            _cacheMaxSize = configuration.GetValue<int>("BestStories:CacheMaxSize");
+            if (bestStoriesConfiguration == null) throw new ArgumentNullException(nameof(bestStoriesConfiguration));
 
-            _errorMessage = $"Specify number of best stories to fetch between 1 and {_cacheMaxSize}";
+            _bestStoriesConfiguration = bestStoriesConfiguration.Value;
+
+            _errorMessage = $"Specify number of best stories to fetch between 1 and {_bestStoriesConfiguration.CacheMaxSize}";
         }
 
         public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
@@ -24,7 +29,7 @@
             int count = (int)arg;
 
             if (count == 0
-                || count > _cacheMaxSize)
+                || count > _bestStoriesConfiguration.CacheMaxSize)
             {
                 return Results.BadRequest(_errorMessage);
             }

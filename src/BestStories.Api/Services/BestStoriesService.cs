@@ -1,6 +1,7 @@
 ﻿using BestStories.Api.Core.Exceptions;
 using BestStories.Api.Core.Interfaces;
 using BestStories.Api.Core.Models;
+using Microsoft.Extensions.Options;
 
 namespace BestStories.Api.Services
 {
@@ -8,19 +9,16 @@ namespace BestStories.Api.Services
     {
         private readonly IBestStoriesCache _bestStoriesCache;
         private readonly ILogger<BestStoriesService> _logger;
-        private readonly int _cacheRetryDelay;
-        private readonly int _cacheMaxRetryAttempts;
+        private readonly BestStoriesConfiguration _bestStoriesConfiguration;
 
         public BestStoriesService(
             IBestStoriesCache bestStoriesCache, 
-            ILogger<BestStoriesService> logger,
-            IConfiguration configuration) 
+            IOptions<BestStoriesConfiguration> bestStoriesConfiguration,
+            ILogger<BestStoriesService> logger) 
         {
-            _bestStoriesCache = bestStoriesCache;
-            _logger = logger;
-
-            _cacheRetryDelay = configuration.GetValue<int>("BestStories:CacheRetryDelay");
-            _cacheMaxRetryAttempts = configuration.GetValue<int>("BestStories:CacheMaxRetryAttempts");
+            _bestStoriesCache = bestStoriesCache ?? throw new ArgumentNullException(nameof(bestStoriesCache));
+            _bestStoriesConfiguration = bestStoriesConfiguration?.Value ?? throw new ArgumentNullException(nameof(bestStoriesConfiguration));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task<IEnumerable<Story>> GetBestStoriesAsync(int count, CancellationToken cancellationToken)
@@ -36,7 +34,7 @@ namespace BestStories.Api.Services
                     // If the cache is empty, retry the specified
                     // number of times before giving up.
 
-                    await Task.Delay(_cacheRetryDelay, cancellationToken);
+                    await Task.Delay(_bestStoriesConfiguration.CacheRetryDelay, cancellationToken);
 
                     if(cancellationToken.IsCancellationRequested)
                     {
@@ -48,9 +46,9 @@ namespace BestStories.Api.Services
                     retryAttempt++;
 
                     if (storyCache == null 
-                        && retryAttempt > _cacheMaxRetryAttempts)
+                        && retryAttempt > _bestStoriesConfiguration.CacheMaxRetryAttempts)
                     {
-                        throw new BestStoryException($"Exceeded max retry attempts {_cacheMaxRetryAttempts}.");
+                        throw new BestStoryException($"Exceeded max retry attempts {_bestStoriesConfiguration.CacheMaxRetryAttempts}.");
                     }
                 }
 

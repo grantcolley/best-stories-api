@@ -4,47 +4,43 @@ using BestStories.Api.Core.Interfaces;
 using BestStories.Api.Core.Models;
 using BestStories.Api.Services;
 using BestStories.Api.Tests.Helpers;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Options;
 
 namespace BestStories.Api.Tests
 {
     [TestClass]
     public class BestStoriesServiceTests
     {
+        private readonly SemaphoreSlimCache _storiesCache;
+        private readonly IOptions<BestStoriesConfiguration> _bestStoriesConfiguration;
         private readonly ILogger<BestStoriesService> _logger;
-        private readonly IConfiguration _configuration;
 
         public BestStoriesServiceTests()
         {
+            _bestStoriesConfiguration = Options.Create(
+                new BestStoriesConfiguration { CacheMaxSize = 200, CacheRetryDelay = 100, CacheMaxRetryAttempts = 5 });
+
             ILoggerFactory factory = new NullLoggerFactory();
 
             _logger = factory.CreateLogger<BestStoriesService>();
 
-            Dictionary<string, string?> configSettings = new()
-            {
-                {"BestStories:CacheRetryDelay", "100"},
-                {"BestStories:CacheMaxRetryAttempts", "5"}
-            };
-
-            _configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection(configSettings)
-                .Build();
+            ILogger<SemaphoreSlimCache> logger = factory.CreateLogger<SemaphoreSlimCache>();
+            _storiesCache = new SemaphoreSlimCache(logger);
         }
 
+        /// <summary>
+        /// Tests the BestStoriesService returns the top 5 best stories from the cache.
+        /// </summary>
         [TestMethod]
-        public async Task GetBestStoriesAsync_Top_5_Pass()
+        public async Task GetBestStoriesAsync_Return_Top_5_Stories()
         {
             // Arrange
-            ILoggerFactory factory = new NullLoggerFactory();
-            ILogger<SemaphoreSlimCache> logger = factory.CreateLogger<SemaphoreSlimCache>();
-            SemaphoreSlimCache storiesCache = new SemaphoreSlimCache(logger);
-
-            await storiesCache.RecycleCacheAsync(DataUtility.GetBestStories());
+            await _storiesCache.RecycleCacheAsync(DataUtility.GetBestStories());
 
             IBestStoriesService bestStoriesService = new BestStoriesService(
-                storiesCache, _logger, _configuration);
+                _storiesCache, _bestStoriesConfiguration, _logger);
 
             // Act
             IEnumerable<Story> bestStories = await bestStoriesService.GetBestStoriesAsync(5, CancellationToken.None)
@@ -57,17 +53,16 @@ namespace BestStories.Api.Tests
             Assert.IsTrue(AssertHelper.AreStoriesEqual(bestStories, stories.OrderByDescending(s => s.score).Take(5)));
         }
 
+        /// <summary>
+        /// Tests the BestStoriesService exceed's its max retry attempts because the cache is empty.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(BestStoryException), $"Exceeded max retry attempts 5.")]
-        public async Task GetBestStoriesAsync_MaxRetryAttempts_Fail_ExpectedException()
+        public async Task GetBestStoriesAsync_MaxRetryAttempts_ExpectedException()
         {
             // Arrange
-            ILoggerFactory factory = new NullLoggerFactory();
-            ILogger<SemaphoreSlimCache> logger = factory.CreateLogger<SemaphoreSlimCache>();
-            SemaphoreSlimCache storiesCache = new SemaphoreSlimCache(logger);
-
             IBestStoriesService bestStoriesService = new BestStoriesService(
-                storiesCache, _logger, _configuration);
+                _storiesCache, _bestStoriesConfiguration, _logger);
 
             // Act
             _ = await bestStoriesService.GetBestStoriesAsync(5, CancellationToken.None).ConfigureAwait(false);
@@ -76,16 +71,20 @@ namespace BestStories.Api.Tests
             Assert.Fail();
         }
 
+        /// <summary>
+        /// Tests the BestStoriesService successfully returns the top 5 best stories from
+        /// the cache after four attempts, before exceeding it's max retry attempts.
+        /// </summary>
         [TestMethod]
         public async Task GetBestStoriesAsync_RetryAttempts_Pass_On_Fourth_Attempt()
         {
             // Arrange
-            IBestStoriesCache bestStoriesCache = new MockBestStoriesCacheRetryAttempts();
+            IBestStoriesCache storiesCache = new MockBestStoriesCacheRetryAttempts();
 
-            await bestStoriesCache.RecycleCacheAsync(DataUtility.GetBestStories());
+            await storiesCache.RecycleCacheAsync(DataUtility.GetBestStories());
 
             IBestStoriesService bestStoriesService = new BestStoriesService(
-                bestStoriesCache, _logger, _configuration);
+                storiesCache, _bestStoriesConfiguration, _logger);
 
             // Act
             IEnumerable<Story> bestStories = await bestStoriesService.GetBestStoriesAsync(5, CancellationToken.None).ConfigureAwait(false);
