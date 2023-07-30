@@ -40,8 +40,8 @@ if (isDistributedCache)
     //////////////////////////////////////////////////////////////////////////////////
     // NOTE:
     // 
-    // For development and testing puroses we use Distributed Memory Cache,
-    // and use the BestStoriesBackgroundService to recycle the cache.
+    // Distributed Memory Cache is used for development and testing puroses.
+    // The BestStoriesBackgroundService will be used to recycle the cache.
     // 
     // In a production environment, the distributed cache should be hosted in a
     // dedicated web api, configured for the appropriate caching service e.g. Redis
