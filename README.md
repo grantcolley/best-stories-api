@@ -80,9 +80,13 @@ The cache implements [IBestStoriesCache](https://github.com/grantcolley/best-sto
 ```
 
 #### Distributed Cache
-For distributed caching, Distributed Memory Cache is used for development and testing purposes. In a production environment, the distributed cache should be hosted in a dedicated web API, and configured for the appropriate caching service e.g. Redis.
+The current implementation for distributed caching is [DistributedCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api/Cache/DistributedCache.cs). 
 
-The current implementation for distributed caching is [DistributedCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api/Cache/DistributedCache.cs).
+>  **Note**
+>
+> Distributed Memory Cache is used for development and testing purposes.
+> 
+> In a production environment, the distributed cache should be hosted in a dedicated web API, and configured for the appropriate caching service e.g. Redis.
 
 #### Local Cache
 Local caching can be used if the web API is intended to run as a single application. There are a few flavours to choose from.
