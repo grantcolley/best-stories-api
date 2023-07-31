@@ -1,6 +1,6 @@
 # Best Stories Api
 
-**Best Stories Api** is a RESTful API to retrieve to retrieve the details of the best n stories from the [Hacker News API](https://github.com/HackerNews/API), as determined by their score, where n is
+**Best Stories Api** is a RESTful API to retrieve to retrieve the details of the best *n* stories from the [Hacker News API](https://github.com/HackerNews/API), as determined by their score, where n is
 specified by the caller to the API. 
 
 ### Table of Contents
@@ -25,11 +25,11 @@ specified by the caller to the API.
 ## Observations
 I conducted a simple test, first calling the endpoint to fetch the IDs for best stories, followed by calling the endpoint to fetch each story. These steps were repeated with 5 seconds interval over a period of time.
 
-I observed the `beststories` endpoint consistently returns 200 IDs, which appear to have been sorted by score in descending order. However, a story’s score is subject to change by the time the story has been fetched by calling the endpoint for individual stories, passing in the story’s id.
+I observed the `beststories` endpoint consistently returns 200 IDs, which appear to have been sorted by score in descending order. However, a story’s score is subject to change by the time the story has been fetched by calling the endpoint for individual stories, passing in the story’s ID.
 
 ### Assumptions
 - There is no way to subscribe to score changes in stories.
-- Consumers of **Best Stories Api** will not be authenticated. The **Hacker News API** and so is **Best Stories Api**.
+- Consumers of **Best Stories Api** will not be authenticated. The API will be open to the public like the **Hacker News API**.
 - There is [no rate limit](https://github.com/HackerNews/API#uri-and-versioning) on **Hacker News API** endpoints, so no need to "back off" periodically.
 
 ## How to run the application
@@ -37,12 +37,13 @@ The easiest was to run the application is clone the repository, open the solutio
 
 The default url is `https://localhost:7240`
 
-Send a request to the API using [postman](https://github.com/grantcolley/best-stories-api/blob/main/readme-images/chrome_screenshot.png) or a browser, such as chrome e.g. `https://localhost:7240/getbeststories/200`
+Send a request to the API using [postman](https://github.com/grantcolley/best-stories-api/blob/main/readme-images/postman_screenshot.png) or a browser, such as chrome e.g. `https://localhost:7240/getbeststories/200`
 
 ![Alt text](/readme-images/chrome_screenshot.png?raw=true "Sending a request in Chrome")
 
 ## If I had more time
-- I would create a seperate API dedicated to running the Distributed Cache
+- I would create a separate API dedicated to running the Distributed Cache
+- I would add authentication
 - I would add more unit tests
 
 ## Implementation Details
@@ -70,7 +71,7 @@ Recycling the cache will involve building a new cache in the background then "sw
 The maximum cache size will be configurable using `CacheMaxSize`.
 
 ### Types of Caches
-The cache implements [IBestStoriesCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api.Core/Interfaces/IBestStoriesCache.cs).
+The cache implements the [IBestStoriesCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api.Core/Interfaces/IBestStoriesCache.cs) interface. There are currently several to choose from, and more can be added.
 ```C#
     public interface IBestStoriesCache
     {
@@ -89,10 +90,10 @@ The current implementation for distributed caching is [DistributedCache](https:/
 > In a production environment, the distributed cache should be hosted in a dedicated web API, and configured for the appropriate caching service e.g. Redis.
 
 #### Local Cache
-Local caching can be used if the web API is intended to run as a single application. There are a few flavours to choose from.
-- **[LockedCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api/Cache/LockedCache.cs)** uses the lock keyword for recycling and getting a copy of the reference to the cache.
-- **[SemaphoreSlimCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api/Cache/SemaphoreSlimCache.cs)** uses `await _semaphore.WaitAsync()`
-- **[VolatileCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api/Cache/VolatileCache.cs)** uses `Interlocked.CompareExchange` for recycling the cache and `Volatile.Read` for getting a copy of the reference to the cache. See inline comments for more details.
+Local caching can be used if the web API is intended to run as a single application. There are several *flavours* to choose from.
+- **[LockedCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api/Cache/LockedCache.cs)** uses the `lock()` keyword for recycling and fetching a copy of the reference to the cache.
+- **[SemaphoreSlimCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api/Cache/SemaphoreSlimCache.cs)** asynchronously waits to enter the SemaphoreSlim `await _semaphore.WaitAsync()`
+- **[VolatileCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api/Cache/VolatileCache.cs)** uses `Interlocked.CompareExchange` for recycling the cache, and `Volatile.Read` for fetching a copy of the reference to it. See inline comments for more details.
 
 #### Benchmarking GetStoryCacheAsync 
 ```C#
@@ -119,11 +120,11 @@ The [appsettings.json](https://github.com/grantcolley/best-stories-api/blob/main
 |Key|Description|
 |---|-----------|
 |HackerNewsApi|HackerNewsApi url|
-|CacheMaxSize|Maximum stories to be cached|
-|CacheRecycleDelay|The delay between each cache recycle in milliseconds|
-|CacheRetryDelay|The delay between each attempt to read the cache if it is null|
-|CacheMaxRetryAttempts|Number of attempts to read the cache if it is null before giving up|
-|IsDistributedCache|Flag to indicate wether to set up distributed or local caching at startup|
+|CacheMaxSize|Maximum stories to be cached. Used by the [BestStoriesBackgroundService](https://github.com/grantcolley/best-stories-api/blob/af0a170d747ec64b634587e06d8025701653edb1/src/BestStories.Api/Services/BestStoriesBackgroundService.cs#L48).|
+|CacheRecycleDelay|The delay between each cache recycle in milliseconds. [BestStoriesBackgroundService](https://github.com/grantcolley/best-stories-api/blob/af0a170d747ec64b634587e06d8025701653edb1/src/BestStories.Api/Services/BestStoriesBackgroundService.cs#L60).|
+|CacheRetryDelay|The delay between each attempt to read the cache if it is null. Used by the [BestStoriesService](https://github.com/grantcolley/best-stories-api/blob/af0a170d747ec64b634587e06d8025701653edb1/src/BestStories.Api/Services/BestStoriesService.cs#L38) when handling the request.|
+|CacheMaxRetryAttempts|Number of attempts to read the cache if it is null before giving up. Used by the [BestStoriesService](https://github.com/grantcolley/best-stories-api/blob/af0a170d747ec64b634587e06d8025701653edb1/src/BestStories.Api/Services/BestStoriesService.cs#L54) when handling the request.|
+|IsDistributedCache|Flag to indicate wether to set up distributed or local caching at startup. Used by [Program.cs](https://github.com/grantcolley/best-stories-api/blob/af0a170d747ec64b634587e06d8025701653edb1/src/BestStories.Api/Program.cs#L38) at startup.|
 
 ```C#
   "BestStoriesConfiguration": {
@@ -144,7 +145,7 @@ The [appsettings.json](https://github.com/grantcolley/best-stories-api/blob/main
 [BestStories.Api.Benchmarks](https://github.com/grantcolley/best-stories-api/blob/main/tests/BestStories.Api.Benchmarks/Program.cs) contains the benchmark test.
 
 ### Test Harness
-[BestStoriesApi.Test.Harness](https://github.com/grantcolley/best-stories-api/blob/main/tests/BestStories.Api.Test.Harness/Program.cs) console application executes 1000 requests in 10 batches of 100 simultaneous requests. The number of batches, requests per batch and url can be changed. Run the *BestStoriesApi.Test.Harness.exe* from the output folder after the "Best Stories Api" is running.
+[BestStoriesApi.Test.Harness](https://github.com/grantcolley/best-stories-api/blob/main/tests/BestStories.Api.Test.Harness/Program.cs) console application executes 1000 requests in 10 batches of 100 simultaneous requests. The number of batches, requests per batch and *url* can be changed. Run the *BestStoriesApi.Test.Harness.exe* from the output folder after the "Best Stories Api" is running.
 
 >  **Warning**
 >
