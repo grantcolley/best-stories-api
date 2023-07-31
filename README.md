@@ -1,6 +1,6 @@
-# Best Stories Api
+# Best Stories API
 
-**Best Stories Api** is a RESTful API to retrieve to retrieve the details of the best *n* stories from the [Hacker News API](https://github.com/HackerNews/API), as determined by their score, where n is
+**Best Stories API** is a RESTful API to retrieve to retrieve the details of the best *n* stories from the [Hacker News API](https://github.com/HackerNews/API), as determined by their score, where *n* is
 specified by the caller to the API. 
 
 ### Table of Contents
@@ -29,13 +29,13 @@ I observed the `beststories` endpoint consistently returns 200 IDs, which appear
 
 ### Assumptions
 - There is no way to subscribe to score changes in stories.
-- Consumers of **Best Stories Api** will not be authenticated. The API will be open to the public like the **Hacker News API**.
+- Consumers of **Best Stories API** will not be authenticated. The API will be open to the public like the **Hacker News API**.
 - There is [no rate limit](https://github.com/HackerNews/API#uri-and-versioning) on **Hacker News API** endpoints, so no need to "back off" periodically.
 
 ## How to run the application
-The easiest was to run the application is clone the repository, open the solution in Visual Studio, compile it, and Start Debugging `F5`.
+The easiest was to run the application is clone the repository, open the solution in Visual Studio, compile it, and start running by pressing `F5`.
 
-The default url is `https://localhost:7240`
+The default url is `https://localhost:7240`. This can be changed in the [launchSettings.json](https://github.com/grantcolley/best-stories-api/blob/f5f76d2b2d6e7f7d2f7b62bad64fd3fb283f07b7/src/BestStories.Api/Properties/launchSettings.json#L24).
 
 Send a request to the API using [postman](https://github.com/grantcolley/best-stories-api/blob/main/readme-images/postman_screenshot.png) or a browser, such as chrome e.g. `https://localhost:7240/getbeststories/200`
 
@@ -48,7 +48,7 @@ Send a request to the API using [postman](https://github.com/grantcolley/best-st
 
 ## Implementation Details
 ### Minimal API
-To retrieve the details of the best n stories from the Hacker News API, the consumer will call the `getbeststories` minimal API endpoint, specifying the number of stories required.
+To retrieve the details of the best *n* stories from the Hacker News API, the consumer will call the `getbeststories` minimal API endpoint, specifying the number of stories required.
 
 e.g. `https://localhost:7240/getbeststories/25`
 
@@ -60,18 +60,19 @@ app.MapGet("getbeststories/{count:int}", BestStoriesEndpoints.GetBestStories)
 ### Caching the results
 To efficiently service large numbers of requests without risking overloading of the **Hacker News API**, the results will be cached. 
 
-Because of the indeterminate way each story’s score can be updated, after obtaining the IDs from the `beststories` endpoint, each story will be fetched.
+Because of the indeterminate way each story’s score can be updated, after obtaining the IDs from the `beststories` endpoint, each story will be fetched in the background by the [BestStoriesBackgroundService](https://github.com/grantcolley/best-stories-api/blob/f5f76d2b2d6e7f7d2f7b62bad64fd3fb283f07b7/src/BestStories.Api/Services/BestStoriesBackgroundService.cs#L32).
 
 When all the stories have been fetched, they will be sorted in descending order of score, before being persisted to cache.
 
-A [BackgroundService](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api/Services/BestStoriesBackgroundService.cs) will be used to recycle the cache at a pre-configured interval.
+The [BackgroundService](https://github.com/grantcolley/best-stories-api/blob/f5f76d2b2d6e7f7d2f7b62bad64fd3fb283f07b7/src/BestStories.Api/Services/BestStoriesBackgroundService.cs#L60) will be used to recycle the cache at a pre-configured interval.
 
 Recycling the cache will involve building a new cache in the background then "swapping it out" with the existing cache.
 
 The maximum cache size will be configurable using `CacheMaxSize`.
 
 ### Types of Caches
-The cache implements the [IBestStoriesCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api.Core/Interfaces/IBestStoriesCache.cs) interface. There are currently several to choose from, and more can be added.
+The cache implements the [IBestStoriesCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api.Core/Interfaces/IBestStoriesCache.cs) interface. There are currently several to choose from. A new implementation can be added by implementing [IBestStoriesCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api.Core/Interfaces/IBestStoriesCache.cs) and registering it in [Program.cs](https://github.com/grantcolley/best-stories-api/blob/f5f76d2b2d6e7f7d2f7b62bad64fd3fb283f07b7/src/BestStories.Api/Program.cs#L56). 
+
 ```C#
     public interface IBestStoriesCache
     {
