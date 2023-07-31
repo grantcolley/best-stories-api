@@ -123,7 +123,7 @@ The [appsettings.json](https://github.com/grantcolley/best-stories-api/blob/main
 
 |Key|Description|
 |---|-----------|
-|HackerNewsApi|HackerNewsApi url|
+|HackerNewsApi|Hacker News API url|
 |CacheMaxSize|Maximum stories to be cached. Used by the [BestStoriesBackgroundService](https://github.com/grantcolley/best-stories-api/blob/fd69eb2ea0585935e01462e36bb9f2b0d745224a/src/BestStories.Api/Services/BestStoriesBackgroundService.cs#L51).|
 |CacheRecycleDelay|The delay between each cache recycle in milliseconds. [BestStoriesBackgroundService](https://github.com/grantcolley/best-stories-api/blob/af0a170d747ec64b634587e06d8025701653edb1/src/BestStories.Api/Services/BestStoriesBackgroundService.cs#L60).|
 |CacheRetryDelay|The delay between each attempt to read the cache if it is null. Used by the [BestStoriesService](https://github.com/grantcolley/best-stories-api/blob/af0a170d747ec64b634587e06d8025701653edb1/src/BestStories.Api/Services/BestStoriesService.cs#L38) when handling the request, in case it comes in before the API has fully started.|
@@ -149,7 +149,7 @@ The [appsettings.json](https://github.com/grantcolley/best-stories-api/blob/main
 [BestStories.Api.Benchmarks](https://github.com/grantcolley/best-stories-api/blob/main/tests/BestStories.Api.Benchmarks/Program.cs) project contains the benchmark test.
 
 ### Test Harness
-[BestStoriesApi.Test.Harness](https://github.com/grantcolley/best-stories-api/blob/main/tests/BestStories.Api.Test.Harness/Program.cs) console application executes 1000 requests in 10 batches of 100 simultaneous requests. The number of batches, requests per batch and *url* can be changed. Run the *BestStoriesApi.Test.Harness.exe* from the output folder after the "Best Stories Api" is running.
+[BestStoriesApi.Test.Harness](https://github.com/grantcolley/best-stories-api/blob/main/tests/BestStories.Api.Test.Harness/Program.cs) console application executes 1000 requests in 10 batches of 100 simultaneous requests. The number of batches, requests per batch and *url* can be changed. Run the *BestStoriesApi.Test.Harness.exe* from the output folder after the "Best Stories API" is running.
 
 >  **Warning**
 >
