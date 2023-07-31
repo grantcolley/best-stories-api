@@ -23,7 +23,7 @@ specified by the caller to the API.
 	* [Test Harness](#test-harness)
 	
 ## Observations
-I conducted a simple test, first calling the endpoint to fetch the IDs for best stories, followed by calling the endpoint to fetch each story. These steps were repeated at 5 second interval over a period of time.
+I conducted a simple test, first calling the endpoint to fetch the IDs for best stories, followed by calling the endpoint to fetch each story. These steps were repeated at 5 second intervals over a period of time.
 
 I observed the `beststories` endpoint consistently returns 200 IDs, which appear to have been sorted by score in descending order. However, a story’s score is subject to change by the time the story has been fetched by calling the endpoint for individual stories, passing in the story’s ID.
 
