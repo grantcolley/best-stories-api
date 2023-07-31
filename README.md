@@ -23,7 +23,7 @@ specified by the caller to the API.
 	* [Test Harness](#test-harness)
 	
 ## Observations
-I conducted a simple test, first calling the endpoint to fetch the IDs for best stories, followed by calling the endpoint to fetch each story. These steps were repeated with 5 seconds interval over a period of time.
+I conducted a simple test, first calling the endpoint to fetch the IDs for best stories, followed by calling the endpoint to fetch each story. These steps were repeated at 5 second interval over a period of time.
 
 I observed the `beststories` endpoint consistently returns 200 IDs, which appear to have been sorted by score in descending order. However, a story’s score is subject to change by the time the story has been fetched by calling the endpoint for individual stories, passing in the story’s ID.
 
@@ -33,7 +33,7 @@ I observed the `beststories` endpoint consistently returns 200 IDs, which appear
 - There is [no rate limit](https://github.com/HackerNews/API#uri-and-versioning) on **Hacker News API** endpoints, so no need to "back off" periodically.
 
 ## How to run the application
-The easiest was to run the application is clone the repository, open the solution in Visual Studio, compile it, and start running by pressing `F5`.
+The easiest way to run the application is clone the repository, open the solution in Visual Studio, compile it, and start running by pressing `F5`.
 
 The default url is `https://localhost:7240`. This can be changed in the [launchSettings.json](https://github.com/grantcolley/best-stories-api/blob/f5f76d2b2d6e7f7d2f7b62bad64fd3fb283f07b7/src/BestStories.Api/Properties/launchSettings.json#L24).
 
