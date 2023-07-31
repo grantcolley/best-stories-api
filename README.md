@@ -71,7 +71,7 @@ Recycling the cache will involve building a new cache in the background then "sw
 The maximum cache size will be configurable using `CacheMaxSize`.
 
 ### Types of Caches
-The cache implements the [IBestStoriesCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api.Core/Interfaces/IBestStoriesCache.cs) interface. There are currently several to choose from. A new implementation can be added by implementing [IBestStoriesCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api.Core/Interfaces/IBestStoriesCache.cs) and registering it in [Program.cs](https://github.com/grantcolley/best-stories-api/blob/f5f76d2b2d6e7f7d2f7b62bad64fd3fb283f07b7/src/BestStories.Api/Program.cs#L56). 
+The cache implements the [IBestStoriesCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api.Core/Interfaces/IBestStoriesCache.cs) interface. There are currently several to choose from. A new one can be added by implementing [IBestStoriesCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api.Core/Interfaces/IBestStoriesCache.cs) and registering it in [Program.cs](https://github.com/grantcolley/best-stories-api/blob/f5f76d2b2d6e7f7d2f7b62bad64fd3fb283f07b7/src/BestStories.Api/Program.cs#L56). 
 
 ```C#
     public interface IBestStoriesCache
@@ -97,6 +97,9 @@ Local caching can be used if the web API is intended to run as a single applicat
 - **[VolatileCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api/Cache/VolatileCache.cs)** uses `Interlocked.CompareExchange` for recycling the cache, and `Volatile.Read` for fetching a copy of the reference to it. See inline comments for more details.
 
 #### Benchmarking GetStoryCacheAsync 
+
+Here is how the different caches compare when fetching a copy of the reference to the cache (local cache), or a copy of the stories in the cache (distributed cache).
+
 ```C#
 BenchmarkDotNet v0.13.6, Windows 11 (10.0.22621.1992/22H2/2022Update/SunValley2)
 Intel Core i7-10750H CPU 2.60GHz, 1 CPU, 12 logical and 6 physical cores
@@ -113,18 +116,18 @@ Intel Core i7-10750H CPU 2.60GHz, 1 CPU, 12 logical and 6 physical cores
 ```
 
 ### Validation
-An [endpoint filter](https://github.com/grantcolley/best-stories-api/tree/main/src/BestStories.Api/Filters) will validate consumers provide a valid number between 1 and the specified `CacheMaxSize`.
+An [endpoint filter](https://github.com/grantcolley/best-stories-api/blob/fd69eb2ea0585935e01462e36bb9f2b0d745224a/src/BestStories.Api/Filters/BestStoriesValidationFilter.cs#L31) will validate consumers provide a valid number between 1 and the specified `CacheMaxSize`.
 
 ### Configuration
-The [appsettings.json](https://github.com/grantcolley/best-stories-api/blob/main/src/appsettings.json) contains the following:
+The [appsettings.json](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api/appsettings.json) contains the following:
 
 |Key|Description|
 |---|-----------|
 |HackerNewsApi|HackerNewsApi url|
-|CacheMaxSize|Maximum stories to be cached. Used by the [BestStoriesBackgroundService](https://github.com/grantcolley/best-stories-api/blob/af0a170d747ec64b634587e06d8025701653edb1/src/BestStories.Api/Services/BestStoriesBackgroundService.cs#L48).|
+|CacheMaxSize|Maximum stories to be cached. Used by the [BestStoriesBackgroundService](https://github.com/grantcolley/best-stories-api/blob/fd69eb2ea0585935e01462e36bb9f2b0d745224a/src/BestStories.Api/Services/BestStoriesBackgroundService.cs#L51).|
 |CacheRecycleDelay|The delay between each cache recycle in milliseconds. [BestStoriesBackgroundService](https://github.com/grantcolley/best-stories-api/blob/af0a170d747ec64b634587e06d8025701653edb1/src/BestStories.Api/Services/BestStoriesBackgroundService.cs#L60).|
-|CacheRetryDelay|The delay between each attempt to read the cache if it is null. Used by the [BestStoriesService](https://github.com/grantcolley/best-stories-api/blob/af0a170d747ec64b634587e06d8025701653edb1/src/BestStories.Api/Services/BestStoriesService.cs#L38) when handling the request.|
-|CacheMaxRetryAttempts|Number of attempts to read the cache if it is null before giving up. Used by the [BestStoriesService](https://github.com/grantcolley/best-stories-api/blob/af0a170d747ec64b634587e06d8025701653edb1/src/BestStories.Api/Services/BestStoriesService.cs#L54) when handling the request.|
+|CacheRetryDelay|The delay between each attempt to read the cache if it is null. Used by the [BestStoriesService](https://github.com/grantcolley/best-stories-api/blob/af0a170d747ec64b634587e06d8025701653edb1/src/BestStories.Api/Services/BestStoriesService.cs#L38) when handling the request, in case it comes in before the API has fully started.|
+|CacheMaxRetryAttempts|Number of attempts to read the cache if it is null before giving up. Used by the [BestStoriesService](https://github.com/grantcolley/best-stories-api/blob/af0a170d747ec64b634587e06d8025701653edb1/src/BestStories.Api/Services/BestStoriesService.cs#L54) when handling the request, in case it comes in before the API has fully started|
 |IsDistributedCache|Flag to indicate wether to set up distributed or local caching at startup. Used by [Program.cs](https://github.com/grantcolley/best-stories-api/blob/af0a170d747ec64b634587e06d8025701653edb1/src/BestStories.Api/Program.cs#L38) at startup.|
 
 ```C#
@@ -140,10 +143,10 @@ The [appsettings.json](https://github.com/grantcolley/best-stories-api/blob/main
 
 ## Testing
 ### Unit Tests 
-[BestStoriesApi.Tests](https://github.com/grantcolley/best-stories-api/tree/main/tests/BestStories.Api.Tests) contains the unit tests.
+[BestStoriesApi.Tests](https://github.com/grantcolley/best-stories-api/tree/main/tests/BestStories.Api.Tests) project contains the unit tests.
 
 ### Benchmarks
-[BestStories.Api.Benchmarks](https://github.com/grantcolley/best-stories-api/blob/main/tests/BestStories.Api.Benchmarks/Program.cs) contains the benchmark test.
+[BestStories.Api.Benchmarks](https://github.com/grantcolley/best-stories-api/blob/main/tests/BestStories.Api.Benchmarks/Program.cs) project contains the benchmark test.
 
 ### Test Harness
 [BestStoriesApi.Test.Harness](https://github.com/grantcolley/best-stories-api/blob/main/tests/BestStories.Api.Test.Harness/Program.cs) console application executes 1000 requests in 10 batches of 100 simultaneous requests. The number of batches, requests per batch and *url* can be changed. Run the *BestStoriesApi.Test.Harness.exe* from the output folder after the "Best Stories Api" is running.
