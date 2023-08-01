@@ -93,9 +93,9 @@ The current implementation for distributed caching is [DistributedCache](https:/
 #### Local Cache
 Local caching can be used if the web API is intended to run as a single application. There are several *flavours* to choose from.
 - **[LockedCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api/Cache/LockedCache.cs)** uses the `lock()` keyword for recycling and fetching a copy of the reference to the cache.
+- **[ReaderWriterLockSlimCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api/Cache/ReaderWriterLockSlimCache.cs)** allows allowing multiple threads for reading but exclusive access for writing.
 - **[SemaphoreSlimCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api/Cache/SemaphoreSlimCache.cs)** asynchronously waits to enter the SemaphoreSlim `await _semaphore.WaitAsync()`
 - **[VolatileCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api/Cache/VolatileCache.cs)** uses `Interlocked.CompareExchange` for recycling the cache, and `Volatile.Read` for fetching a copy of the reference to it. See inline comments for more details.
-- - **[ReaderWriterLockSlimCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api/Cache/ReaderWriterLockSlimCache.cs)** allows allowing multiple threads for reading but exclusive access for writing.
 
 #### Benchmarking GetStoryCacheAsync 
 
