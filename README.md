@@ -95,6 +95,7 @@ Local caching can be used if the web API is intended to run as a single applicat
 - **[LockedCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api/Cache/LockedCache.cs)** uses the `lock()` keyword for recycling and fetching a copy of the reference to the cache.
 - **[SemaphoreSlimCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api/Cache/SemaphoreSlimCache.cs)** asynchronously waits to enter the SemaphoreSlim `await _semaphore.WaitAsync()`
 - **[VolatileCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api/Cache/VolatileCache.cs)** uses `Interlocked.CompareExchange` for recycling the cache, and `Volatile.Read` for fetching a copy of the reference to it. See inline comments for more details.
+- - **[ReaderWriterLockSlimCache](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStories.Api/Cache/ReaderWriterLockSlimCache.cs)** allows allowing multiple threads for reading but exclusive access for writing.
 
 #### Benchmarking GetStoryCacheAsync 
 
@@ -107,12 +108,13 @@ Intel Core i7-10750H CPU 2.60GHz, 1 CPU, 12 logical and 6 physical cores
   [Host]     : .NET 7.0.9 (7.0.923.32018), X64 RyuJIT AVX2
   DefaultJob : .NET 7.0.9 (7.0.923.32018), X64 RyuJIT AVX2
 
-|                                Method |          Mean |        Error |       StdDev | Rank |   Gen0 | Allocated |
-|-------------------------------------- |--------------:|-------------:|-------------:|-----:|-------:|----------:|
-|        LockedCache_GetStoryCacheAsync |      34.52 ns |     0.717 ns |     1.559 ns |    1 | 0.0114 |      72 B |
-|      VolatileCache_GetStoryCacheAsync |      40.77 ns |     1.151 ns |     3.265 ns |    2 | 0.0229 |     144 B |
-| SemaphoreSlimCache_GetStoryCacheAsync |      69.46 ns |     1.405 ns |     2.773 ns |    3 | 0.0114 |      72 B |
-|   DistributedCache_GetStoryCacheAsync | 136,347.64 ns | 2,717.418 ns | 6,077.896 ns |    4 | 2.6855 |   17648 B |
+|                                   Method |          Mean |        Error |       StdDev | Rank |   Gen0 | Allocated |
+|----------------------------------------- |--------------:|-------------:|-------------:|-----:|-------:|----------:|
+|         VolatileCache_GetStoryCacheAsync |      22.58 ns |     0.372 ns |     0.365 ns |    1 | 0.0115 |      72 B |
+|           LockedCache_GetStoryCacheAsync |      31.78 ns |     0.628 ns |     0.672 ns |    2 | 0.0114 |      72 B |
+| ReaderWriterLockCache_GetStoryCacheAsync |      43.05 ns |     0.742 ns |     0.729 ns |    3 | 0.0114 |      72 B |
+|    SemaphoreSlimCache_GetStoryCacheAsync |      68.72 ns |     1.370 ns |     1.466 ns |    4 | 0.0114 |      72 B |
+|      DistributedCache_GetStoryCacheAsync | 134,741.76 ns | 1,631.545 ns | 1,446.322 ns |    5 | 2.6855 |   17648 B |
 ```
 
 ### Validation
