@@ -53,7 +53,7 @@ if (isDistributedCache)
 }
 else
 {
-    builder.Services.AddSingleton<IBestStoriesCache, VolatileCache>();
+    builder.Services.AddSingleton<IBestStoriesCache, ReaderWriterLockSlimCache>();
     builder.Services.AddHostedService<BestStoriesBackgroundService>();
 }
 

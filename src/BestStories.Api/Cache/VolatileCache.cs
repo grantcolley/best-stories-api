@@ -10,7 +10,7 @@ namespace BestStories.Api.Cache
 
         public VolatileCache(ILogger<VolatileCache> logger)
         {
-            _logger = logger;
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public Task RecycleCacheAsync(IEnumerable<Story> stories)
@@ -34,7 +34,7 @@ namespace BestStories.Api.Cache
             return Task.CompletedTask;
         }
 
-        public async Task<IEnumerable<Story>?> GetStoryCacheAsync()
+        public Task<IEnumerable<Story>?> GetStoryCacheAsync()
         {
             // https://learn.microsoft.com/en-us/dotnet/api/system.threading.volatile.read?view=net-7.0#system-threading-volatile-read-1(-0@)
             //
@@ -43,7 +43,7 @@ namespace BestStories.Api.Cache
             // This reference is the latest written by any processor in the computer,
             // regardless of the number of processors or the state of processor cache.
 
-            return await Task.FromResult(Volatile.Read<IEnumerable<Story>?>(ref _storyCache));
+            return Task.FromResult(Volatile.Read<IEnumerable<Story>?>(ref _storyCache));
         }
     }
 }

@@ -18,6 +18,7 @@ namespace BestStories.Api.Benchmarks.Benchmarks
     {
         private IBestStoriesCache? _lockedCache;
         private IBestStoriesCache? _volatileCache;
+        private IBestStoriesCache? _readerWriterLockCache;
         private IBestStoriesCache? _semaphoreSlimCache;
         private IBestStoriesCache? _distributedCache;
 
@@ -39,6 +40,10 @@ namespace BestStories.Api.Benchmarks.Benchmarks
             ILogger<VolatileCache> VolatileCacheLogger = factory.CreateLogger<VolatileCache>();
             _volatileCache = new VolatileCache(VolatileCacheLogger);
             await _volatileCache.RecycleCacheAsync(stories);
+
+            ILogger<ReaderWriterLockSlimCache> readerWriterLockSlimLogger = factory.CreateLogger<ReaderWriterLockSlimCache>();
+            _readerWriterLockCache = new ReaderWriterLockSlimCache(readerWriterLockSlimLogger);
+            await _readerWriterLockCache.RecycleCacheAsync(stories);
 
             ILogger<SemaphoreSlimCache> SemaphoreSlimCachelLogger = factory.CreateLogger<SemaphoreSlimCache>();
             _semaphoreSlimCache = new SemaphoreSlimCache(SemaphoreSlimCachelLogger);
@@ -63,6 +68,14 @@ namespace BestStories.Api.Benchmarks.Benchmarks
         {
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
             _ = await _volatileCache.GetStoryCacheAsync();
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+        }
+
+        [Benchmark]
+        public async Task ReaderWriterLockCache_GetStoryCacheAsync()
+        {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+            _ = await _readerWriterLockCache.GetStoryCacheAsync();
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
         }
 

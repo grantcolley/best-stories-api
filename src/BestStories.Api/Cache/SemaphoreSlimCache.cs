@@ -11,17 +11,17 @@ namespace BestStories.Api.Cache
 
         public SemaphoreSlimCache(ILogger<SemaphoreSlimCache> logger)
         {
-            _logger = logger;
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task RecycleCacheAsync(IEnumerable<Story> stories)
         {
             // If the recycle doesn't work simply try again on the next attempt.
 
-            await _semaphore.WaitAsync().ConfigureAwait(false);
-
             try
             {
+                await _semaphore.WaitAsync().ConfigureAwait(false);
+
                 _storyCache = stories;
             }
             catch (Exception ex)
@@ -36,10 +36,10 @@ namespace BestStories.Api.Cache
 
         public async Task<IEnumerable<Story>?> GetStoryCacheAsync()
         {
-            await _semaphore.WaitAsync().ConfigureAwait(false);
-
             try
             {
+                await _semaphore.WaitAsync().ConfigureAwait(false);
+
                 return _storyCache;
             }
             catch (Exception ex)
