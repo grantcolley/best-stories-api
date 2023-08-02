@@ -12,6 +12,9 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 builder.Services.AddHttpClient(Constants.HACKER_NEWS, (serviceProvider, httpClient) =>
 {
     if (serviceProvider == null) throw new ArgumentNullException(nameof(serviceProvider));
@@ -60,7 +63,18 @@ else
 WebApplication app = builder.Build();
 
 app.MapGet("getbeststories/{count:int}", BestStoriesEndpoint.GetBestStories)
-    .AddEndpointFilter<BestStoriesValidationFilter>();
+    .AddEndpointFilter<BestStoriesValidationFilter>()
+    .WithOpenApi()
+    .WithName("GetBestStories")
+    .WithDescription("The GetBestStories Endpoint")
+    .Produces<IEnumerable<Story>>(StatusCodes.Status200OK)
+    .Produces(StatusCodes.Status500InternalServerError);
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.Run();
 
