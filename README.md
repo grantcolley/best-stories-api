@@ -7,7 +7,7 @@ specified by the caller to the API.
 * [Observations](#observations)
 * [Assumptions](#assumptions)
 * [How to run the application](#how-to-run-the-application)
-* [Document the GetBestStories API](#document-the-getbeststories-api)
+* [OpenAPI definition for GetBestStories](#openapi-definition-for-getbeststories)
 * [If I had more time](#if-i-had-more-time)
 * [Implementation Details](#implementation-details)
 	* [Minimal API](#minimal-api)
@@ -42,7 +42,7 @@ Send a request to the API using [postman](https://github.com/grantcolley/best-st
 
 ![Alt text](/readme-images/chrome_screenshot.png?raw=true "Sending a request in Chrome")
 
-## Document the GetBestStories API
+## OpenAPI definition for GetBestStories
 Exposing the generated OpenAPI definition for the `GetBestStories` endpoint.
 
 `https://localhost:7240/swagger/v1/swagger.json`
