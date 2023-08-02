@@ -59,8 +59,13 @@ To retrieve the details of the best *n* stories from the Hacker News API, the co
 e.g. `https://localhost:7240/getbeststories/25`
 
 ```C#
-app.MapGet("getbeststories/{count:int}", BestStoriesEndpoints.GetBestStories)
-    .AddEndpointFilter<BestStoriesValidationFilter>();
+app.MapGet("getbeststories/{count:int}", BestStoriesEndpoint.GetBestStories)
+    .AddEndpointFilter<BestStoriesValidationFilter>()
+    .WithOpenApi()
+    .WithName("GetBestStories")
+    .WithDescription("The GetBestStories Endpoint")
+    .Produces<IEnumerable<Story>>(StatusCodes.Status200OK)
+    .Produces(StatusCodes.Status500InternalServerError);
 ```
 
 ### Caching the results
