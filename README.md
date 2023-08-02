@@ -48,9 +48,9 @@ Exposing the generated OpenAPI definition for the `GetBestStories` endpoint.
 `https://localhost:7240/swagger/v1/swagger.json`
 
 ## If I had more time
-- I would create a separate API dedicated to running the Distributed Cache
-- I would add authentication
-- I would add more unit tests
+- Create a separate API dedicated to running the Distributed Cache
+- Add authentication
+- More unit tests
 
 ## Implementation Details
 ### Minimal API
