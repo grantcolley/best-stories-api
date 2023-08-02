@@ -7,6 +7,7 @@ specified by the caller to the API.
 * [Observations](#observations)
 * [Assumptions](#assumptions)
 * [How to run the application](#how-to-run-the-application)
+* [OpenAPI definition for GetBestStories](#openapi-definition-for-getbeststories)
 * [If I had more time](#if-i-had-more-time)
 * [Implementation Details](#implementation-details)
 	* [Minimal API](#minimal-api)
@@ -40,6 +41,11 @@ The default url is `https://localhost:7240`. This can be changed in the [launchS
 Send a request to the API using [postman](https://github.com/grantcolley/best-stories-api/blob/main/readme-images/postman_screenshot.png) or a browser, such as chrome e.g. `https://localhost:7240/getbeststories/200`
 
 ![Alt text](/readme-images/chrome_screenshot.png?raw=true "Sending a request in Chrome")
+
+## OpenAPI definition for GetBestStories
+Exposing the generated OpenAPI definition for the `GetBestStories` endpoint.
+
+`https://localhost:7240/swagger/v1/swagger.json`
 
 ## If I had more time
 - I would create a separate API dedicated to running the Distributed Cache
