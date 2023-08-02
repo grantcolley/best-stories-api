@@ -45,6 +45,8 @@ Send a request to the API using [postman](https://github.com/grantcolley/best-st
 ## OpenAPI definition for GetBestStories
 Exposing the generated OpenAPI definition for the `GetBestStories` endpoint.
 
+`https://localhost:7240/swagger/index.html`
+
 `https://localhost:7240/swagger/v1/swagger.json`
 
 ## If I had more time
@@ -55,8 +57,6 @@ Exposing the generated OpenAPI definition for the `GetBestStories` endpoint.
 ## Implementation Details
 ### Minimal API
 To retrieve the details of the best *n* stories from the Hacker News API, the consumer will call the `getbeststories` minimal API endpoint, specifying the number of stories required.
-
-e.g. `https://localhost:7240/getbeststories/25`
 
 ```C#
 app.MapGet("getbeststories/{count:int}", BestStoriesEndpoint.GetBestStories)
