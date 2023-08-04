@@ -1,10 +1,12 @@
 ﻿using BestStories.Api.Cache;
+using BestStories.Api.Core.Interfaces;
 using BestStories.Api.Core.Models;
 using BestStories.Api.Services;
 using BestStories.Api.Tests.Helpers;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
+using Moq;
 
 namespace BestStories.Api.Tests
 {
@@ -34,24 +36,33 @@ namespace BestStories.Api.Tests
         public async Task ExecuteAsync_Cache_Recycle_Successful()
         {
             // Arrange
+            Mock<IBestStoriesApiService> mockBestStoriesApiService = new();
+
+            mockBestStoriesApiService.Setup(
+                s => s.GetBestStoriesAsync(It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(DataUtility.GetBestStoryIds()));
+
+            mockBestStoriesApiService.Setup(
+                s => s.GetStoryAsync(It.IsAny<int>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new Story()));
+
             BestStoriesBackgroundService bestStoriesBackgroundService
-                = new(_storiesCache, new MockBestStoriesApiService(), _bestStoriesConfiguration, _logger);
+                = new(_storiesCache, mockBestStoriesApiService.Object, _bestStoriesConfiguration, _logger);
 
             // Act
             await bestStoriesBackgroundService.StartAsync(CancellationToken.None);
 
-            await Task.Delay(1000);
-
             await bestStoriesBackgroundService.StopAsync(CancellationToken.None);
 
             //Assert
-            IEnumerable<Story>? cache = await _storiesCache.GetStoryCacheAsync();
+            mockBestStoriesApiService.Verify(s => s.GetBestStoriesAsync(It.IsAny<CancellationToken>()));
+            mockBestStoriesApiService.Verify(s => s.GetStoryAsync(It.IsAny<int>(), It.IsAny<CancellationToken>()));
 
-            IEnumerable<Story> stories = DataUtility.GetBestStories();
+            IEnumerable<Story>? cache = await _storiesCache.GetStoryCacheAsync();
 
             Assert.IsNotNull(cache);
             Assert.AreEqual(200, cache.Count());
-            Assert.IsTrue(AssertHelper.AreStoriesEqual(cache, stories.OrderByDescending(s => s.score)));
+            Assert.AreEqual(201, mockBestStoriesApiService.Invocations.Count);
         }
     }
 }
