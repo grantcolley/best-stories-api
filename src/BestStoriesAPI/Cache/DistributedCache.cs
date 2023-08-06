@@ -128,14 +128,14 @@ namespace BestStoriesApi.Cache
         /// <returns>Returns the stories that has been cached.</returns>
         private async Task<IEnumerable<Story>> PersistStoriesToCacheAsync(IEnumerable<Story> stories)
         {
-            IEnumerable<Story> orderedStories = 
+            IEnumerable<Story> rankedStoriesToCache = 
                 stories.OrderByDescending(s => s.score)
                 .Take(_bestStoriesConfiguration.CacheMaxSize)
                 .ToList();
 
             DateTimeOffset expires = DateTimeOffset.Now.Add(TimeSpan.FromSeconds(_bestStoriesConfiguration.CacheExpiryInSeconds));
 
-            byte[] storiesToCache = UTF8Encoding.UTF8.GetBytes(JsonSerializer.Serialize(orderedStories));
+            byte[] storiesToCache = UTF8Encoding.UTF8.GetBytes(JsonSerializer.Serialize(rankedStoriesToCache));
 
             await _distributedCache.SetAsync(
                 Constants.DISTRIBUTED_CACHE,
@@ -145,7 +145,7 @@ namespace BestStoriesApi.Cache
 
             await _distributedCache.RefreshAsync(Constants.DISTRIBUTED_CACHE);
 
-            return orderedStories;
+            return rankedStoriesToCache;
         }
     }
 }
