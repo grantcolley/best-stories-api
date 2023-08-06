@@ -69,9 +69,13 @@ The expiry of the cached stories will be determined by the `CacheExpiryInSeconds
 ```
 
 ## How to run the application
-The easiest way to run the application is clone the repository, open the solution [BestStories.sln](https://github.com/grantcolley/best-stories-api/blob/main/BestStories.sln) in Visual Studio, compile it, and start running by pressing `F5`.
+The easiest way to run the application is clone the repository, open the solution [BestStories.sln](https://github.com/grantcolley/best-stories-api/blob/main/BestStories.sln) in Visual Studio.
 
-Both **Best Stories API** and **Best Stories Cache API** will launch. Both are required to run the application.
+Both **Best Stories API** and **Best Stories Cache API** are required to run the application. Open the solution properties window, select `Multiple startup projects` and set the action to both projects to `Start`.
+
+![Alt text](/readme-images/solution-startup-properties.png?raw=true "The Solution Properties Window")
+
+Compile the solution, and start running by pressing `F5`.
 
 The default url for **Best Stories API** is `https://localhost:7240`. This can be changed in the [launchSettings.json](https://github.com/grantcolley/best-stories-api/blob/df133a13a7e22719eaf384e8dfde5ac5d561bc39/src/BestStoriesAPI/Properties/launchSettings.json#L24).
 
