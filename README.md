@@ -12,7 +12,7 @@ specified by the caller to the API.
 * [How to run the application](#how-to-run-the-application)
 * [OpenAPI definition for Best Stories API](#openapi-definition-for-best-stories-api)
 * [Implementation Details](#implementation-details)
-	* [Best Stories API](#best-stories-api)
+	* [Best Stories API](#best-stories-api-1)
 	* [Best Stories Cache API](#best-stories-cache-api)
 	* [Distributed Cache](#distributed-cache)
 	* [Filter Validation](#filter-validation)
@@ -117,7 +117,7 @@ When **Best Stories Cache API** receives a request to recycle the cache, it will
 
 The flow for **Best Stories Cache API** is follows:
 - First check if the cache has been populated, if yes return the required stories from the cache.
-- Second, if the cache is empty (previously cached values have expired), enter the semaphore `await SemaphoreSlim.WaitAsync()`.
+- Second, if the cache is empty (previously cached values have expired), enter the semaphore.
 - Third, double check if the cache has been poulated, if yes return the required stories from the cache.
 - Fourth, fetch the latest best stories from **Hacker News API**.
 - Fith, persist the stories to the cache, setting the expiry to `CacheExpiryInSeconds`.
