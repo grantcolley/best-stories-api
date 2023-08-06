@@ -1,4 +1,4 @@
-﻿using BestStoriesAPI.Models;
+﻿using BestStories.Core.Models;
 using System.Text;
 using System.Text.Json;
 

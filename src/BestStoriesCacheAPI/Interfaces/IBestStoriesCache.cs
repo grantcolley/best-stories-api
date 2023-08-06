@@ -1,6 +1,6 @@
-﻿using BestStoriesAPI.Models;
+﻿using BestStories.Core.Models;
 
-namespace BestStoriesAPI.Interfaces
+namespace BestStoriesCacheAPI.Interfaces
 {
     public interface IBestStoriesCache
     {

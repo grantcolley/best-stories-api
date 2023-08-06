@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\BestStories.Core\BestStories.Core.csproj" />
-    <ProjectReference Include="..\..\src\BestStoriesAPI\BestStoriesAPI.csproj" />
+    <ProjectReference Include="..\..\src\BestStoriesCacheAPI\BestStoriesCacheAPI.csproj" />
     <ProjectReference Include="..\BestStories.Tests.Helpers\BestStories.Tests.Helpers.csproj" />
   </ItemGroup>
 

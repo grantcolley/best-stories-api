@@ -1,21 +1,20 @@
-﻿using BestStoriesAPI.Models;
-using Microsoft.Extensions.Caching.Distributed;
+﻿using BestStoriesCacheAPI.Models;
 using Microsoft.Extensions.Options;
 
 namespace BestStoriesAPI.Filters
 {
-    internal class BestStoriesValidationFilter : IEndpointFilter
+    internal class BestStoriesCacheValidationFilter : IEndpointFilter
     {
-        private readonly BestStoriesConfiguration _bestStoriesConfiguration;
+        private readonly BestStoriesCacheConfiguration _bestStoriesCacheConfiguration;
         private readonly string _errorMessage;
 
-        public BestStoriesValidationFilter(IOptions<BestStoriesConfiguration> bestStoriesConfiguration) 
+        public BestStoriesCacheValidationFilter(IOptions<BestStoriesCacheConfiguration> bestStoriesCacheConfiguration) 
         {
-            if (bestStoriesConfiguration == null) throw new ArgumentNullException(nameof(bestStoriesConfiguration));
+            if (bestStoriesCacheConfiguration == null) throw new ArgumentNullException(nameof(bestStoriesCacheConfiguration));
 
-            _bestStoriesConfiguration = bestStoriesConfiguration.Value;
+            _bestStoriesCacheConfiguration = bestStoriesCacheConfiguration.Value;
 
-            _errorMessage = $"Specify number of best stories to fetch between 1 and {_bestStoriesConfiguration.CacheMaxSize}";
+            _errorMessage = $"Specify number of best stories to fetch between 1 and {_bestStoriesCacheConfiguration.CacheMaxSize}";
         }
 
         /// <summary>
@@ -37,7 +36,7 @@ namespace BestStoriesAPI.Filters
             int count = (int)arg;
 
             if (count == 0
-                || count > _bestStoriesConfiguration.CacheMaxSize)
+                || count > _bestStoriesCacheConfiguration.CacheMaxSize)
             {
                 return Results.BadRequest(_errorMessage);
             }

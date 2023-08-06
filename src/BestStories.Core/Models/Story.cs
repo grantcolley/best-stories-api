@@ -1,4 +1,4 @@
-﻿namespace BestStoriesAPI.Models
+﻿namespace BestStories.Core.Models
 {
     public class Story
     {

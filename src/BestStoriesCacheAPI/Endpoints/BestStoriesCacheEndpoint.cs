@@ -1,15 +1,15 @@
 ﻿using BestStories.Core.Models;
-using BestStoriesAPI.Interfaces;
+using BestStoriesCacheAPI.Interfaces;
 
-namespace BestStoriesAPI.Endpoints
+namespace BestStoriesCacheAPI.Endpoints
 {
-    internal static class BestStoriesEndpoint
+    internal static class BestStoriesCacheEndpoint
     {
-        internal static async Task<IResult> GetBestStories(int count, IBestStoriesService bestStoriesService, CancellationToken cancellationToken)
+        internal static async Task<IResult> GetBestStories(int count, IBestStoriesCacheService bestStoriesCacheService, CancellationToken cancellationToken)
         {
             try
             {
-                IEnumerable<Story>? bestStories = await bestStoriesService.GetBestStoriesAsync(count, cancellationToken)
+                IEnumerable<Story>? bestStories = await bestStoriesCacheService.GetBestStoriesAsync(count, cancellationToken)
                     .ConfigureAwait(false);
 
                 return Results.Ok(bestStories);

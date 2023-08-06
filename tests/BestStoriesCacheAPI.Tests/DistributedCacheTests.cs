@@ -1,8 +1,9 @@
-﻿using BestStoriesApi.Cache;
-using BestStoriesAPI.Interfaces;
-using BestStoriesAPI.Models;
-using BestStoriesAPI.Static;
+﻿using BestStories.Core.Models;
+using BestStories.Core.Static;
 using BestStoriesAPI.Tests.Helpers;
+using BestStoriesCacheAPI.Cache;
+using BestStoriesCacheAPI.Interfaces;
+using BestStoriesCacheAPI.Models;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -17,13 +18,13 @@ namespace BestStoriesAPI.Tests
     [TestClass]
     public class DistributedCacheTests
     {
-        private readonly IOptions<BestStoriesConfiguration> _bestStoriesConfiguration;
+        private readonly IOptions<BestStoriesCacheConfiguration> _bestStoriesCacheConfiguration;
         private readonly ILogger<DistributedCache> _logger;
 
         public DistributedCacheTests() 
         {
-            _bestStoriesConfiguration = Options.Create(
-                new BestStoriesConfiguration { CacheMaxSize = 200, CacheExpiryInSeconds = 5 });
+            _bestStoriesCacheConfiguration = Options.Create(
+                new BestStoriesCacheConfiguration { CacheMaxSize = 200, CacheExpiryInSeconds = 5 });
 
             ILoggerFactory factory = new NullLoggerFactory();
 
@@ -40,18 +41,18 @@ namespace BestStoriesAPI.Tests
             Mock<IDistributedCache> mockDistributedCache = new();
 
             mockDistributedCache.Setup(
-                s => s.GetAsync(Constants.DISTRIBUTED_CACHE, It.IsAny<CancellationToken>()))
+                s => s.GetAsync(Constants.DISTRIBUTED_CACHE_BEST_STORIES, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(DataUtility.GetBestStoriesAsByteArray()));
 
             Mock<IHackerNewsAPIService> mockHackerNewsAPIService = new();
 
-            DistributedCache distributedCache = new(mockDistributedCache.Object, mockHackerNewsAPIService.Object, _bestStoriesConfiguration, _logger);
+            DistributedCache distributedCache = new(mockDistributedCache.Object, mockHackerNewsAPIService.Object, _bestStoriesCacheConfiguration, _logger);
 
             // Act
             IEnumerable<Story>? stories = await distributedCache.GetStoryCacheAsync(CancellationToken.None);
 
             // Assert
-            mockDistributedCache.Verify(s => s.GetAsync(Constants.DISTRIBUTED_CACHE, It.IsAny<CancellationToken>()), Times.Once);
+            mockDistributedCache.Verify(s => s.GetAsync(Constants.DISTRIBUTED_CACHE_BEST_STORIES, It.IsAny<CancellationToken>()), Times.Once);
 
             Assert.IsNotNull(stories);
             Assert.AreEqual(200, stories.Count());
@@ -67,19 +68,19 @@ namespace BestStoriesAPI.Tests
             Mock<IDistributedCache> mockDistributedCache = new();
 
             mockDistributedCache.SetupSequence(
-                s => s.GetAsync(Constants.DISTRIBUTED_CACHE, It.IsAny<CancellationToken>()))
+                s => s.GetAsync(Constants.DISTRIBUTED_CACHE_BEST_STORIES, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult<byte[]?>(null))
                 .Returns(Task.FromResult(DataUtility.GetBestStoriesAsByteArray()));
 
             Mock<IHackerNewsAPIService> mockHackerNewsAPIService = new();
 
-            DistributedCache distributedCache = new(mockDistributedCache.Object, mockHackerNewsAPIService.Object, _bestStoriesConfiguration, _logger);
+            DistributedCache distributedCache = new(mockDistributedCache.Object, mockHackerNewsAPIService.Object, _bestStoriesCacheConfiguration, _logger);
 
             // Act
             IEnumerable<Story>? stories = await distributedCache.GetStoryCacheAsync(CancellationToken.None);
 
             // Assert
-            mockDistributedCache.Verify(s => s.GetAsync(Constants.DISTRIBUTED_CACHE, It.IsAny<CancellationToken>()), Times.Exactly(2));
+            mockDistributedCache.Verify(s => s.GetAsync(Constants.DISTRIBUTED_CACHE_BEST_STORIES, It.IsAny<CancellationToken>()), Times.Exactly(2));
 
             Assert.IsNotNull(stories);
             Assert.AreEqual(200, stories.Count());
@@ -95,7 +96,7 @@ namespace BestStoriesAPI.Tests
             Mock<IDistributedCache> mockDistributedCache = new();
 
             mockDistributedCache.Setup(
-                s => s.GetAsync(Constants.DISTRIBUTED_CACHE, It.IsAny<CancellationToken>()))
+                s => s.GetAsync(Constants.DISTRIBUTED_CACHE_BEST_STORIES, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult<byte[]?>(null));
 
             Mock<IHackerNewsAPIService> mockHackerNewsAPIService = new();
@@ -104,13 +105,13 @@ namespace BestStoriesAPI.Tests
                 s => s.GetBestStoryiesAsync(It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(DataUtility.GetBestStories()));
 
-            DistributedCache distributedCache = new(mockDistributedCache.Object, mockHackerNewsAPIService.Object, _bestStoriesConfiguration, _logger);
+            DistributedCache distributedCache = new(mockDistributedCache.Object, mockHackerNewsAPIService.Object, _bestStoriesCacheConfiguration, _logger);
 
             // Act
             IEnumerable<Story>? stories = await distributedCache.GetStoryCacheAsync(CancellationToken.None);
 
             // Assert
-            mockDistributedCache.Verify(s => s.GetAsync(Constants.DISTRIBUTED_CACHE, It.IsAny<CancellationToken>()), Times.Exactly(2));
+            mockDistributedCache.Verify(s => s.GetAsync(Constants.DISTRIBUTED_CACHE_BEST_STORIES, It.IsAny<CancellationToken>()), Times.Exactly(2));
             mockHackerNewsAPIService.Verify(s => s.GetBestStoryiesAsync(It.IsAny<CancellationToken>()), Times.Exactly(1));
 
             Assert.IsNotNull(stories);

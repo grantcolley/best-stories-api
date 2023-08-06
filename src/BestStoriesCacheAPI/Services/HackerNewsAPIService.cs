@@ -1,9 +1,9 @@
-﻿using BestStoriesAPI.Interfaces;
-using BestStoriesAPI.Models;
-using BestStoriesAPI.Static;
+﻿using BestStories.Core.Models;
+using BestStories.Core.Static;
+using BestStoriesCacheAPI.Interfaces;
 using System.Text.Json;
 
-namespace BestStoriesAPI.Services
+namespace BestStoriesCacheAPI.Services
 {
     /// <summary>
     /// The <see cref="HackerNewsAPIService"/> is responsible
@@ -17,8 +17,8 @@ namespace BestStoriesAPI.Services
 
         public HackerNewsAPIService(IHttpClientFactory httpClientFactory, ILogger<HackerNewsAPIService> logger) 
         {
-            _httpClientFactory = httpClientFactory;
-            _logger = logger;
+            _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         /// <summary>
@@ -95,14 +95,11 @@ namespace BestStoriesAPI.Services
                 {
                     foreach (AggregateException? aggregateException in aggregateExceptions)
                     {
-                        if (aggregateException != null)
-                        {
-                            aggregateException.Handle((x) =>
+                        aggregateException?.Handle((x) =>
                             {
                                 _logger.LogError(x, x.Message);
                                 return true;
                             });
-                        }
                     }
                 }
 

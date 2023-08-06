@@ -1,8 +1,8 @@
 ﻿using BestStories.Core.Models;
 
-namespace BestStoriesAPI.Interfaces
+namespace BestStoriesCacheAPI.Interfaces
 {
-    public interface IBestStoriesService
+    public interface IBestStoriesCacheService
     {
         Task<IEnumerable<Story>?> GetBestStoriesAsync(int count, CancellationToken token);
     }

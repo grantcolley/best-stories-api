@@ -1,37 +1,38 @@
-﻿using BestStoriesAPI.Interfaces;
-using BestStoriesAPI.Models;
-using BestStoriesAPI.Static;
+﻿using BestStories.Core.Models;
+using BestStories.Core.Static;
+using BestStoriesCacheAPI.Interfaces;
+using BestStoriesCacheAPI.Models;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
 using System.Text;
 using System.Text.Json;
 
-namespace BestStoriesApi.Cache
+namespace BestStoriesCacheAPI.Cache
 {
     /// <summary>
     /// The <see cref="DistributedCache"/> class responsible for maintaining 
     /// the <see cref="IDistributedCache"/>, including fetching the latest 
     /// best stories from HackerNewsAPI and setting them in the cache
     /// with an AbsoluteExpiration specified as the CacheExpiryInSeconds
-    /// in <see cref="BestStoriesConfiguration"/>.
+    /// in <see cref="BestStoriesCacheConfiguration"/>.
     /// </summary>
     internal class DistributedCache : IBestStoriesCache
     {
         private readonly SemaphoreSlim _semaphore = new(1, 1);
         private readonly IDistributedCache _distributedCache;
         private readonly IHackerNewsAPIService _hackerNewsAPIService;
-        private readonly BestStoriesConfiguration _bestStoriesConfiguration;
+        private readonly BestStoriesCacheConfiguration _bestStoriesCacheConfiguration;
         private readonly ILogger<DistributedCache> _logger;
 
         public DistributedCache(
             IDistributedCache distributedCache,
             IHackerNewsAPIService hackerNewsAPIService,
-            IOptions<BestStoriesConfiguration> bestStoriesConfiguration,
+            IOptions<BestStoriesCacheConfiguration> bestStoriesCacheConfiguration,
             ILogger<DistributedCache> logger)
         {
             _distributedCache = distributedCache ?? throw new ArgumentNullException(nameof(distributedCache));
             _hackerNewsAPIService = hackerNewsAPIService ?? throw new ArgumentNullException(nameof(hackerNewsAPIService));
-            _bestStoriesConfiguration = bestStoriesConfiguration?.Value ?? throw new ArgumentNullException(nameof(bestStoriesConfiguration));
+            _bestStoriesCacheConfiguration = bestStoriesCacheConfiguration?.Value ?? throw new ArgumentNullException(nameof(bestStoriesCacheConfiguration));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
@@ -43,7 +44,7 @@ namespace BestStoriesApi.Cache
         /// 
         /// The latest best stories are cached with an 
         /// AbsoluteExpiration specified as the 
-        /// CacheExpiryInSeconds in <see cref="BestStoriesConfiguration"/>.
+        /// CacheExpiryInSeconds in <see cref="BestStoriesCacheConfiguration"/>.
         /// 
         /// </summary>
         /// <param name="cancellationToken"></param>
@@ -52,10 +53,11 @@ namespace BestStoriesApi.Cache
         {
             try
             {
-                byte[]? stories = await _distributedCache.GetAsync(Constants.DISTRIBUTED_CACHE)
+                byte[]? stories = await _distributedCache.GetAsync(Constants.DISTRIBUTED_CACHE_BEST_STORIES, cancellationToken)
                     .ConfigureAwait(false);
 
-                if (stories != null)
+                if (stories != null
+                    && stories.Length > 0)
                 {
                     return JsonSerializer.Deserialize<IEnumerable<Story>>(stories);
                 }
@@ -74,7 +76,7 @@ namespace BestStoriesApi.Cache
         /// <summary>
         /// Recycle the cache by fetching the latest best stories from HackerNewsApi
         /// and replacing the current set, specifying a new AbsoluteExpiration that is
-        /// set to CacheExpiryInSeconds from <see cref="BestStoriesConfiguration"/>.
+        /// set to CacheExpiryInSeconds from <see cref="BestStoriesCacheConfiguration"/>.
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns>Returns the cached stories.</returns>
@@ -88,10 +90,11 @@ namespace BestStoriesApi.Cache
 
                 // on entering the semaphore double check the cache still needs to be built.
 
-                byte[]? newStoriesAvailable = await _distributedCache.GetAsync(Constants.DISTRIBUTED_CACHE)
+                byte[]? newStoriesAvailable = await _distributedCache.GetAsync(Constants.DISTRIBUTED_CACHE_BEST_STORIES, cancellationToken)
                     .ConfigureAwait(false);
 
-                if (newStoriesAvailable != null)
+                if (newStoriesAvailable != null
+                    && newStoriesAvailable.Length > 0)
                 {
                     return JsonSerializer.Deserialize<IEnumerable<Story>>(newStoriesAvailable);
                 }
@@ -119,7 +122,7 @@ namespace BestStoriesApi.Cache
 
         /// <summary>
         /// Save the stories to the distributed cache, with a new AbsoluteExpiration 
-        /// set to CacheExpiryInSeconds from <see cref="BestStoriesConfiguration"/>.
+        /// set to CacheExpiryInSeconds from <see cref="BestStoriesCacheConfiguration"/>.
         /// 
         /// Stories are ordered descending of their score and then the top `n` stories 
         /// up to the CacheMaxSize are persisted to the cache. 
@@ -130,15 +133,15 @@ namespace BestStoriesApi.Cache
         {
             IEnumerable<Story> rankedStoriesToCache = 
                 stories.OrderByDescending(s => s.score)
-                .Take(_bestStoriesConfiguration.CacheMaxSize)
+                .Take(_bestStoriesCacheConfiguration.CacheMaxSize)
                 .ToList();
 
-            DateTimeOffset expires = DateTimeOffset.Now.Add(TimeSpan.FromSeconds(_bestStoriesConfiguration.CacheExpiryInSeconds));
+            DateTimeOffset expires = DateTimeOffset.Now.Add(TimeSpan.FromSeconds(_bestStoriesCacheConfiguration.CacheExpiryInSeconds));
 
             byte[] storiesToCache = UTF8Encoding.UTF8.GetBytes(JsonSerializer.Serialize(rankedStoriesToCache));
 
             await _distributedCache.SetAsync(
-                Constants.DISTRIBUTED_CACHE,
+                Constants.DISTRIBUTED_CACHE_BEST_STORIES,
                 storiesToCache,
                 new DistributedCacheEntryOptions { AbsoluteExpiration = expires })
                 .ConfigureAwait(false);

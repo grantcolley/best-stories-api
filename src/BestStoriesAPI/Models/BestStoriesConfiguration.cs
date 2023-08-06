@@ -2,8 +2,7 @@
 {
     public class BestStoriesConfiguration
     {
-        public string? HackerNewsApi { get; set; }
+        public string? BestStoriesCacheAPI { get; set; }
         public int CacheMaxSize { get; set; }
-        public int CacheExpiryInSeconds { get; set; }
     }
 }

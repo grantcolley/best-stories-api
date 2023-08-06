@@ -8,15 +8,15 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.9" />
-	<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-  </ItemGroup>
-	
-  <ItemGroup>
-	<InternalsVisibleTo Include="BestStoriesAPI.Tests" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BestStories.Core\BestStories.Core.csproj" />
+    <InternalsVisibleTo Include="BestStoriesCacheAPI.Tests" />
   </ItemGroup>
 	
+  <ItemGroup>
+    <ProjectReference Include="..\BestStories.Core\BestStories.Core.csproj" />
+  </ItemGroup>
+
 </Project>

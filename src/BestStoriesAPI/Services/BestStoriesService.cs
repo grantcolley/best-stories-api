@@ -1,6 +1,8 @@
-﻿using BestStoriesAPI.Interfaces;
-using BestStoriesAPI.Models;
-using Microsoft.Extensions.Options;
+﻿using BestStories.Core.Models;
+using BestStories.Core.Static;
+using BestStoriesAPI.Interfaces;
+using Microsoft.Extensions.Caching.Distributed;
+using System.Text.Json;
 
 namespace BestStoriesAPI.Services
 {
@@ -10,17 +12,17 @@ namespace BestStoriesAPI.Services
     /// </summary>
     internal class BestStoriesService : IBestStoriesService
     {
-        private readonly IBestStoriesCache _bestStoriesCache;
+        private readonly IDistributedCache _distributedCache;
+        private readonly IBestStoriesCacheAPIService _bestStoriesCacheAPIService;
         private readonly ILogger<BestStoriesService> _logger;
-        private readonly BestStoriesConfiguration _bestStoriesConfiguration;
 
         public BestStoriesService(
-            IBestStoriesCache bestStoriesCache, 
-            IOptions<BestStoriesConfiguration> bestStoriesConfiguration,
+            IDistributedCache distributedCache,
+            IBestStoriesCacheAPIService bestStoriesCacheAPIService,
             ILogger<BestStoriesService> logger) 
         {
-            _bestStoriesCache = bestStoriesCache ?? throw new ArgumentNullException(nameof(bestStoriesCache));
-            _bestStoriesConfiguration = bestStoriesConfiguration?.Value ?? throw new ArgumentNullException(nameof(bestStoriesConfiguration));
+            _distributedCache = distributedCache ?? throw new ArgumentNullException(nameof(distributedCache));
+            _bestStoriesCacheAPIService = bestStoriesCacheAPIService ?? throw new ArgumentNullException(nameof(distributedCache));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
@@ -35,13 +37,24 @@ namespace BestStoriesAPI.Services
         {
             try
             {
-                IEnumerable<Story>? storyCache = await _bestStoriesCache.GetStoryCacheAsync(cancellationToken)
+                byte[]? stories = await _distributedCache.GetAsync(Constants.DISTRIBUTED_CACHE_BEST_STORIES, cancellationToken)
                     .ConfigureAwait(false);
 
-                // stories are cached in descending order of their score.
-                // just take the first `n` stories from the list.
+                if (stories != null
+                    && stories.Length > 0)
+                {
+                    // stories are cached in descending order of their score.
+                    // just take the first `n` stories from the list.
 
-                return storyCache?.Take(count).ToList();
+                    return JsonSerializer.Deserialize<IEnumerable<Story>>(stories)?
+                        .Take(count)
+                        .ToList();
+                }
+
+                // call BestStoriesCacheAPI to recycle the cache
+
+                return await _bestStoriesCacheAPIService.GetBestStoriesAsync(count, cancellationToken)
+                    .ConfigureAwait(false);
             }
             catch (Exception ex)
             {

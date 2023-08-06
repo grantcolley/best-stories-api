@@ -1,10 +1,10 @@
-using BestStoriesApi.Cache;
+using BestStories.Core.Models;
+using BestStories.Core.Static;
 using BestStoriesAPI.Endpoints;
 using BestStoriesAPI.Filters;
 using BestStoriesAPI.Interfaces;
 using BestStoriesAPI.Models;
 using BestStoriesAPI.Services;
-using BestStoriesAPI.Static;
 using Microsoft.Extensions.Options;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -15,7 +15,7 @@ builder.Logging.AddConsole();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddHttpClient(Constants.HACKER_NEWS, (serviceProvider, httpClient) =>
+builder.Services.AddHttpClient(Constants.BEST_STORIES_CACHE_API, (serviceProvider, httpClient) =>
 {
     if (serviceProvider == null) throw new ArgumentNullException(nameof(serviceProvider));
     if (httpClient == null) throw new ArgumentNullException(nameof(httpClient));
@@ -27,12 +27,10 @@ builder.Services.AddHttpClient(Constants.HACKER_NEWS, (serviceProvider, httpClie
         throw new NullReferenceException(nameof(bestStoriesConfiguration));
     }
 
-    httpClient.BaseAddress = new Uri(bestStoriesConfiguration.Value.HackerNewsApi ?? throw new ArgumentNullException(bestStoriesConfiguration.Value.HackerNewsApi));
+    httpClient.BaseAddress = new Uri(bestStoriesConfiguration.Value.BestStoriesCacheAPI ?? throw new ArgumentNullException(bestStoriesConfiguration.Value.BestStoriesCacheAPI));
 });
 
 builder.Services.Configure<BestStoriesConfiguration>(builder.Configuration.GetSection("BestStoriesConfiguration"));
-
-int cacheExpiryInSeconds = builder.Configuration.GetValue<int>("BestStoriesConfiguration:CacheExpiryInSeconds");
 
 // NOTE:
 // Distributed Memory Cache can be used for development 
@@ -41,13 +39,9 @@ int cacheExpiryInSeconds = builder.Configuration.GetValue<int>("BestStoriesConfi
 // cache should be configured to use a more appropriate
 // caching service instead e.g. Redis
 
-builder.Services.AddDistributedMemoryCache(options =>
-{
-    options.ExpirationScanFrequency = TimeSpan.FromSeconds(cacheExpiryInSeconds);
-});
+builder.Services.AddDistributedMemoryCache();
 
-builder.Services.AddSingleton<IBestStoriesCache, DistributedCache>();
-builder.Services.AddSingleton<IHackerNewsAPIService, HackerNewsAPIService>();
+builder.Services.AddScoped<IBestStoriesCacheAPIService, BestStoriesCacheAPIService>();
 builder.Services.AddScoped<IBestStoriesService, BestStoriesService>();
 
 WebApplication app = builder.Build();

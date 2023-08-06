@@ -1,4 +1,4 @@
-﻿using BestStoriesAPI.Models;
+﻿using BestStories.Core.Models;
 
 namespace BestStoriesAPI.Tests.Helpers
 {
