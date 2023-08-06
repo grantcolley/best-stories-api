@@ -143,8 +143,6 @@ namespace BestStoriesApi.Cache
                 new DistributedCacheEntryOptions { AbsoluteExpiration = expires })
                 .ConfigureAwait(false);
 
-            await _distributedCache.RefreshAsync(Constants.DISTRIBUTED_CACHE);
-
             return rankedStoriesToCache;
         }
     }
