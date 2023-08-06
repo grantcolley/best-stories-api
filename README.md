@@ -80,7 +80,7 @@ Send a request to the **Best Stories API** using [postman](https://github.com/gr
 ![Alt text](/readme-images/chrome_screenshot.png?raw=true "Sending a request in Chrome")
 
 ## OpenAPI definition for Best Stories API
-Exposing the generated OpenAPI definition for the `GetBestStories` endpoint.
+Exposing the generated OpenAPI definition for the `getbeststories` endpoint.
 
 `https://localhost:7240/swagger/index.html`
 
@@ -88,7 +88,7 @@ Exposing the generated OpenAPI definition for the `GetBestStories` endpoint.
 
 ## Implementation Details
 ### Best Stories API
-To retrieve the details of the best *n* stories from the distributed cache, the consumer will call the `getbeststories` minimal API endpoint, specifying the number of stories required.
+To retrieve the details of the best *n* stories from the distributed cache, the consumer will call the `getbeststories/{count:int}` minimal API endpoint, specifying the number of stories required.
 
 The flow for **Best Stories API** is follows:
 - First check if the cache has been populated, if yes return the required stories from the cache.
