@@ -159,5 +159,5 @@ Both **Best Stories API** and **Best Stories Cache API** use endpoint filters to
 - [BestStoriesCacheApi.Tests](https://github.com/grantcolley/best-stories-api/tree/main/tests/BestStoriesCacheAPI.Tests).
 
 ## If I had more time
-- I would implement authentication between **Best Stories API** and **Best Stories Cache API**, so **Best Stories Cache API** is not public facing. 
-- I would do load/stress testing.
+- Implement authentication between **Best Stories API** and **Best Stories Cache API** to restrict access to **Best Stories Cache API**. 
+- Load/stress testing.
