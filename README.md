@@ -75,7 +75,7 @@ The *life* of the cached stories will be determined by the `CacheExpiryInSeconds
 ```
 
 ## How to run the application
-The easiest way to run the application is clone the repository, open the solution [BestStories.sln](https://github.com/grantcolley/best-stories-api/blob/main/BestStories.sln) in Visual Studio.
+The easiest way to run the application is clone the repository and open the solution [BestStories.sln](https://github.com/grantcolley/best-stories-api/blob/main/BestStories.sln) in Visual Studio.
 
 Both **Best Stories API** and **Best Stories Cache API** are required to run the application. Open the solution properties window, select `Multiple startup projects` and set the action to both projects to `Start`.
 
