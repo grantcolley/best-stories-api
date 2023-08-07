@@ -163,7 +163,7 @@ The current implementation for distributed caching is [DistributedCache](https:/
 > In a production environment, the distributed cache should be configured for an appropriate caching service e.g. Redis.
 
 ### Filter Validation
-Both **Best Stories API** and **Best Stories Cache API** use endpoint filters to validate that consumers provide a valid number between 1 and the specified `CacheMaxSize`.
+Both **Best Stories API** and **Best Stories Cache API** use endpoint filters to validate their consumers provide a valid number between 1 and the specified `CacheMaxSize`.
 
 ## Testing
 ### Unit Tests 
