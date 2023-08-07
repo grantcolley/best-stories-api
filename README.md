@@ -121,7 +121,7 @@ app.MapGet("getbeststories/{count:int}", BestStoriesEndpoint.GetBestStories)
 ```
 
 ### Best Stories Cache API
-To retrieve the details of the best *n* stories from the Hacker News API, **Best Story API** will call the `getbestcachedstories` minimal API endpoint, specifying the number of stories required.
+If a request to **Best Story API** determines the cached stories have expired, a request to recycle the cache will be sent on to the `getbestcachedstories` minimal API endpoint exposed by **Best Stories Cache API**.
 
 When **Best Stories Cache API** receives a request to recycle the cache, it will ensure only one request is sent to **Hacker News API**.
 
