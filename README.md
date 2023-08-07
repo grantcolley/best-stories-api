@@ -121,7 +121,7 @@ app.MapGet("getbeststories/{count:int}", BestStoriesEndpoint.GetBestStories)
 ```
 
 ### Best Stories Cache API
-If a request to **Best Story API** determines the cached stories have expired, a request to recycle the cache will be sent on to the `getbestcachedstories` minimal API endpoint exposed by **Best Stories Cache API**.
+If a request to **Best Story API** determines the cached stories have expired, it will send on a request to recycle the cache to **Best Stories Cache API**, which exposes the `getbestcachedstories` minimal API endpoint.
 
 When **Best Stories Cache API** receives a request to recycle the cache, it will ensure only one request is sent to **Hacker News API**.
 
