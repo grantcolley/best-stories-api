@@ -132,7 +132,9 @@ The flow for **Best Stories Cache API** is follows:
 - Fourth, fetch the latest best stories from **Hacker News API**.
 - Fifth, persist the stories to the cache, setting the expiry to `CacheExpiryInSeconds`.
 - Finally, return the required stories from the freshly recycled cache.
-  
+
+> **Note** any requests awaiting the semaphore will now enter it to find the cache has already been recycled, and will simply return the required stories from the freshly recycled cache.
+
 ```C#
 app.MapGet("getbestcachedstories/{count:int}", BestStoriesCacheEndpoint.GetBestStories)
     .AddEndpointFilter<BestStoriesCacheValidationFilter>()
