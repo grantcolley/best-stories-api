@@ -34,17 +34,23 @@ I observed the `beststories` endpoint consistently returns 200 IDs, which appear
 
 ![Alt text](/readme-images/solution.png?raw=true "The Solution")
 
-Because of the indeterminate way each story’s score can be updated, after obtaining the IDs from the `beststories` endpoint, each story will be fetched, to obtain it's latest score. This currently results in a total of 201 requests, one request for the collection containing 200 best story IDs, followed by request for each of the 200 stories.
+Because of the indeterminate way each story’s score can be updated, after obtaining the IDs from the `beststories` endpoint, each story will be fetched, to obtain it's latest score. This currently results in a total of 201 requests to **Hacker News API**, one request for the collection containing 200 best story IDs, followed by request for each of the 200 stories.
 
-To efficiently service large numbers of requests without risking overloading of the **Hacker News API**, the results will be cached with an expiry time.
+To efficiently service large numbers of requests without risking overloading of the **Hacker News API**, the results will be cached in a distributed cache, with an expiry time.
 
-Subsequent requests will simply retrieve the cached stories and return the top *n* specified by the caller.
+> **Note**
+>
+> I have taken the approach of having a second API, whose sole responsibility is to co-ordinate recycling the cached stories. Concurrent requests to recycle the cache will await a semaphore, where only the first one will be allowed to call **Hacker News API** to re-build the cache.
+> 
+> An alternative approach would be to employ a distributed locking mechanism, should the distributed cache support it. This demonstration uses [Distributed Memory Cache](https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-7.0#distributed-memory-cache), which does not support distributed locking.
 
-The first request after the cached stories have exired will fetch an updated collection of best stories from the Hacker News API and cache them.
+Subsequent requests will simply retrieve the cached stories and return the top *n* specified by the caller, until the cached stories expire and are flushed from the cache.
+
+The first request after the cached stories have expired will fetch an updated collection of best stories from the Hacker News API and cache them.
 
 Prior to persisting the stories in the cache, they will be sorted in descending order of score. The total number of stories persisted will be determined by the `CacheMaxSize`.
 
-The expiry of the cached stories will be determined by the `CacheExpiryInSeconds`.
+The *life* of the cached stories will be determined by the `CacheExpiryInSeconds`.
 
 ```C#
         private async Task<IEnumerable<Story>> PersistStoriesToCacheAsync(IEnumerable<Story> stories)
