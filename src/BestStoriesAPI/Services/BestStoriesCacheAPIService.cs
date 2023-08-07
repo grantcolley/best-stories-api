@@ -22,7 +22,7 @@ namespace BestStoriesAPI.Services
             {
                 using HttpClient httpClient = _httpClientFactory.CreateClient(Constants.BEST_STORIES_CACHE_API);
 
-                using HttpResponseMessage response = await httpClient.GetAsync($"getbestcachedstories/{count}", cancellationToken)
+                using HttpResponseMessage response = await httpClient.GetAsync($"recyclecachedstories/{count}", cancellationToken)
                     .ConfigureAwait(false);
 
                 return await JsonSerializer.DeserializeAsync<IEnumerable<Story>>(

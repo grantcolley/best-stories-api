@@ -54,7 +54,7 @@ builder.Services.AddScoped<IBestStoriesCacheService, BestStoriesCacheService>();
 
 WebApplication app = builder.Build();
 
-app.MapGet("getbestcachedstories/{count:int}", BestStoriesCacheEndpoint.GetBestStories)
+app.MapGet("recyclecachedstories/{count:int}", BestStoriesCacheEndpoint.GetBestStories)
     .AddEndpointFilter<BestStoriesCacheValidationFilter>()
     .WithOpenApi()
     .WithName("GetBestCachedStories")
