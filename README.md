@@ -130,7 +130,7 @@ The flow for **Best Stories Cache API** is follows:
 - Second, if the cache is empty (previously cached values have expired), enter the semaphore.
 - Third, double check if the cache has been poulated, if yes return the required stories from the cache.
 - Fourth, fetch the latest best stories from **Hacker News API**.
-- Fith, persist the stories to the cache, setting the expiry to `CacheExpiryInSeconds`.
+- Fifth, persist the stories to the cache, setting the expiry to `CacheExpiryInSeconds`.
 - Finally, return the required stories from the freshly recycled cache.
   
 ```C#
