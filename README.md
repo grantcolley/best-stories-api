@@ -44,7 +44,7 @@ To efficiently service large numbers of requests without risking overloading of 
 > 
 > An alternative approach would be to employ a distributed locking mechanism, should the distributed cache support it. This demonstration uses [Distributed Memory Cache](https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-7.0#distributed-memory-cache), which does not support distributed locking.
 
-Subsequent requests will simply retrieve the cached stories and return the top *n* specified by the caller, until the cached stories expire and are flushed from the cache.
+After the stories have been cached, subsequent requests will simply retrieve the cached stories and return the top *n* specified by the caller, until the cached stories expire and are flushed from the cache.
 
 The first request after the cached stories have expired will fetch an updated collection of best stories from the Hacker News API and cache them.
 
