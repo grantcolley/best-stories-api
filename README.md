@@ -11,6 +11,7 @@ specified by the caller to the API.
 * [The Solution](#the-solution)
 * [How to run the application](#how-to-run-the-application)
 	* [Visual Studio - multiple startup projects](#visual-studio---multiple-startup-projects)
+	* [Visual Studio - docker compose](#visual-studio---docker-compose)
 * [OpenAPI definition for Best Stories API](#openapi-definition-for-best-stories-api)
 * [Implementation Details](#implementation-details)
 	* [Best Stories API](#best-stories-api-1)
@@ -86,6 +87,9 @@ Both **Best Stories API** and **Best Stories Cache API** are required to run the
 Compile the solution, and start running by pressing `F5`.
 
 The default url for **Best Stories API** is `https://localhost:7240`. This can be changed in the [launchSettings.json](https://github.com/grantcolley/best-stories-api/blob/df133a13a7e22719eaf384e8dfde5ac5d561bc39/src/BestStoriesAPI/Properties/launchSettings.json#L24).
+
+### Visual Studio - docker compose
+> **Note** this requires [Docker Desktop](https://docs.docker.com/desktop/install/windows-install/) to be installed.
 
 Send a request to the **Best Stories API** using [postman](https://github.com/grantcolley/best-stories-api/blob/main/readme-images/postman_screenshot.png) or a browser, such as chrome e.g. `https://localhost:7240/getbeststories/200`
 
