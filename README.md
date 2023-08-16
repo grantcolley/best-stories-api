@@ -110,7 +110,7 @@ Send a request to the **Best Stories API** using [postman](https://github.com/gr
 ![Alt text](/readme-images/chrome_screenshot.png?raw=true "Sending a request in Chrome")
 
 ### Visual Studio - multiple startup projects
-If you do not have Docker Desktop installed you can run both **Best Stories API** and **Best Stories Cache API** as multiple startup projects.
+If you do not have **Docker Desktop** installed you can run both **Best Stories API** and **Best Stories Cache API** as multiple startup projects.
 
 In Solution explorer, right-click on docker project ("docker compose") and select "Unload project". Delete the `Dockerfile` from both **Best Stories API** and **Best Stories Cache API** projects.
 
