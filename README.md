@@ -10,7 +10,7 @@ specified by the caller to the API.
 * [Assumptions](#assumptions)
 * [The Solution](#the-solution)
 * [How to run the application](#how-to-run-the-application)
-	* [Visual Studio - multiple startup projects](#visual-studio-multiple-startup-projects)
+	* [Visual Studio - multiple startup projects](#visual-studio---multiple-startup-projects)
 * [OpenAPI definition for Best Stories API](#openapi-definition-for-best-stories-api)
 * [Implementation Details](#implementation-details)
 	* [Best Stories API](#best-stories-api-1)
