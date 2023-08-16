@@ -101,6 +101,10 @@ Update the **BestStoriesCacheAPI** url in [appsettings.Development.json](https:/
 }
 ```
 
+Open the solution properties window, select `Single startup project` and select `docker-compose` in the dropdown.
+
+![Alt text](/readme-images/solution-docker-compose-startup.png?raw=true "The Solution Properties Window")
+
 Compile the solution, and start running by pressing `F5`.
 
 The default [url](https://github.com/grantcolley/best-stories-api/blob/df133a13a7e22719eaf384e8dfde5ac5d561bc39/src/BestStoriesAPI/Properties/launchSettings.json#L24) for **Best Stories API** is `https://localhost:7240`.
@@ -116,7 +120,7 @@ In Solution explorer, right-click on docker project ("docker compose") and selec
 
 Open the solution properties window, select `Multiple startup projects` and set the action to both **Best Stories API** and **Best Stories Cache API** projects to `Start`.
 
-![Alt text](/readme-images/solution-startup-properties.png?raw=true "The Solution Properties Window")
+![Alt text](/readme-images/solution-multiple-startup.png?raw=true "The Solution Properties Window")
 
 Compile the solution, and start running by pressing `F5`.
 
