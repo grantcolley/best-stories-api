@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BestStories.Tests.Helpers",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BestStoriesCacheAPI.Tests", "tests\BestStoriesCacheAPI.Tests\BestStoriesCacheAPI.Tests.csproj", "{A6F7224C-BFCE-4991-BA6C-48C65B8D1017}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{003C5EC9-A028-4521-85D0-0A5DD6DC4074}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{A6F7224C-BFCE-4991-BA6C-48C65B8D1017}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6F7224C-BFCE-4991-BA6C-48C65B8D1017}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6F7224C-BFCE-4991-BA6C-48C65B8D1017}.Release|Any CPU.Build.0 = Release|Any CPU
+		{003C5EC9-A028-4521-85D0-0A5DD6DC4074}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{003C5EC9-A028-4521-85D0-0A5DD6DC4074}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{003C5EC9-A028-4521-85D0-0A5DD6DC4074}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{003C5EC9-A028-4521-85D0-0A5DD6DC4074}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

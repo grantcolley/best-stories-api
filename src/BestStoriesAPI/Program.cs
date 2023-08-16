@@ -28,6 +28,18 @@ builder.Services.AddHttpClient(Constants.BEST_STORIES_CACHE_API, (serviceProvide
     }
 
     httpClient.BaseAddress = new Uri(bestStoriesConfiguration.Value.BestStoriesCacheAPI ?? throw new ArgumentNullException(bestStoriesConfiguration.Value.BestStoriesCacheAPI));
+}).ConfigurePrimaryHttpMessageHandler(() =>
+{
+    var handler = new HttpClientHandler
+    {
+        // NOTE:
+        // Only do this in development when running BestStoriesAPI
+        // and BestStoriesCacheAPI in separate docker containers.
+
+        ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+    };
+
+    return handler;
 });
 
 builder.Services.Configure<BestStoriesConfiguration>(builder.Configuration.GetSection("BestStoriesConfiguration"));

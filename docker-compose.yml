@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  beststoriescacheapi:
+    image: ${DOCKER_REGISTRY-}beststoriescacheapi
+    build:
+      context: .
+      dockerfile: src/BestStoriesCacheAPI/Dockerfile
+
+  beststoriesapi:
+    image: ${DOCKER_REGISTRY-}beststoriesapi
+    build:
+      context: .
+      dockerfile: src/BestStoriesAPI/Dockerfile
