@@ -10,7 +10,7 @@ specified by the caller to the API.
 * [Assumptions](#assumptions)
 * [The Solution](#the-solution)
 * [How to run the application](#how-to-run-the-application)
- 	* [Visual Studio - docker compose](#visual-studio---docker-compose)
+ 	* [Docker containers](#docker-containers)
 	* [Visual Studio - multiple startup projects](#visual-studio---multiple-startup-projects)
 * [OpenAPI definition for Best Stories API](#openapi-definition-for-best-stories-api)
 * [Implementation Details](#implementation-details)
@@ -79,7 +79,7 @@ The *life* of the cached stories will be determined by the `CacheExpiryInSeconds
 ## How to run the application
 Clone the repository and open the solution [BestStories.sln](https://github.com/grantcolley/best-stories-api/blob/main/BestStories.sln) in Visual Studio. 
 
-### Visual Studio - docker compose
+### Docker Containers
 > **Note** this requires [Docker Desktop](https://docs.docker.com/desktop/install/windows-install/) to be installed.
 
 Run the following command `docker network inspect bridge` to obtain the Gateway IP address of the Docker host.
