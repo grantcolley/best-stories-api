@@ -10,6 +10,7 @@ specified by the caller to the API.
 * [Assumptions](#assumptions)
 * [The Solution](#the-solution)
 * [How to run the application](#how-to-run-the-application)
+	* [Visual Studio - multiple startup projects](#visual-studio-multiple-startup-projects)
 * [OpenAPI definition for Best Stories API](#openapi-definition-for-best-stories-api)
 * [Implementation Details](#implementation-details)
 	* [Best Stories API](#best-stories-api-1)
@@ -75,6 +76,7 @@ The *life* of the cached stories will be determined by the `CacheExpiryInSeconds
 ```
 
 ## How to run the application
+### Visual Studio - multiple startup projects
 The easiest way to run the application is clone the repository and open the solution [BestStories.sln](https://github.com/grantcolley/best-stories-api/blob/main/BestStories.sln) in Visual Studio.
 
 Both **Best Stories API** and **Best Stories Cache API** are required to run the application. Open the solution properties window, select `Multiple startup projects` and set the action to both projects to `Start`.
