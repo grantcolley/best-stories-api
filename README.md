@@ -10,8 +10,8 @@ specified by the caller to the API.
 * [Assumptions](#assumptions)
 * [The Solution](#the-solution)
 * [How to run the application](#how-to-run-the-application)
+ 	* [Visual Studio - docker compose](#visual-studio---docker-compose)
 	* [Visual Studio - multiple startup projects](#visual-studio---multiple-startup-projects)
-	* [Visual Studio - docker compose](#visual-studio---docker-compose)
 * [OpenAPI definition for Best Stories API](#openapi-definition-for-best-stories-api)
 * [Implementation Details](#implementation-details)
 	* [Best Stories API](#best-stories-api-1)
@@ -77,23 +77,48 @@ The *life* of the cached stories will be determined by the `CacheExpiryInSeconds
 ```
 
 ## How to run the application
-### Visual Studio - multiple startup projects
-The easiest way to run the application is clone the repository and open the solution [BestStories.sln](https://github.com/grantcolley/best-stories-api/blob/main/BestStories.sln) in Visual Studio.
-
-Both **Best Stories API** and **Best Stories Cache API** are required to run the application. Open the solution properties window, select `Multiple startup projects` and set the action to both projects to `Start`.
-
-![Alt text](/readme-images/solution-startup-properties.png?raw=true "The Solution Properties Window")
-
-Compile the solution, and start running by pressing `F5`.
-
-The default url for **Best Stories API** is `https://localhost:7240`. This can be changed in the [launchSettings.json](https://github.com/grantcolley/best-stories-api/blob/df133a13a7e22719eaf384e8dfde5ac5d561bc39/src/BestStoriesAPI/Properties/launchSettings.json#L24).
+Clone the repository and open the solution [BestStories.sln](https://github.com/grantcolley/best-stories-api/blob/main/BestStories.sln) in Visual Studio. 
 
 ### Visual Studio - docker compose
 > **Note** this requires [Docker Desktop](https://docs.docker.com/desktop/install/windows-install/) to be installed.
 
+Run the following command `docker network inspect bridge` to obtain the Gateway IP address of the Docker host.
+
+Update the **BestStoriesCacheAPI** url in [appsettings.Development.json](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStoriesAPI/appsettings.Development.json) with the Gateway IP address of the Docker host.
+
+```JSON
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "BestStoriesConfiguration": {
+    "BestStoriesCacheAPI": "https://[Gateway IP address]:7157",
+    "CacheMaxSize": 200
+  }
+}
+```
+
+Compile the solution, and start running by pressing `F5`.
+
+The default [url](https://github.com/grantcolley/best-stories-api/blob/df133a13a7e22719eaf384e8dfde5ac5d561bc39/src/BestStoriesAPI/Properties/launchSettings.json#L24) for **Best Stories API** is `https://localhost:7240`.
+
 Send a request to the **Best Stories API** using [postman](https://github.com/grantcolley/best-stories-api/blob/main/readme-images/postman_screenshot.png) or a browser, such as chrome e.g. `https://localhost:7240/getbeststories/200`
 
 ![Alt text](/readme-images/chrome_screenshot.png?raw=true "Sending a request in Chrome")
+
+### Visual Studio - multiple startup projects
+If you do not have Docker Desktop installed you can run both **Best Stories API** and **Best Stories Cache API** as multiple startup projects.
+
+In Solution explorer, right-click on docker project ("docker compose") and select "Unload project". Delete the `Dockerfile` from both **Best Stories API** and **Best Stories Cache API** projects.
+
+Open the solution properties window, select `Multiple startup projects` and set the action to both **Best Stories API** and **Best Stories Cache API** projects to `Start`.
+
+![Alt text](/readme-images/solution-startup-properties.png?raw=true "The Solution Properties Window")
+
+Compile the solution, and start running by pressing `F5`.
 
 ## OpenAPI definition for Best Stories API
 Exposing the generated OpenAPI definition for the `getbeststories` endpoint.
