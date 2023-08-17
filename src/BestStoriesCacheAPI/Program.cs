@@ -15,6 +15,7 @@ builder.Logging.AddConsole();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHealthChecks();
 
 builder.Services.AddHttpClient(Constants.HACKER_NEWS, (serviceProvider, httpClient) =>
 {
@@ -53,6 +54,8 @@ builder.Services.AddSingleton<IHackerNewsAPIService, HackerNewsAPIService>();
 builder.Services.AddScoped<IBestStoriesCacheService, BestStoriesCacheService>();
 
 WebApplication app = builder.Build();
+
+app.MapHealthChecks("health");
 
 app.MapGet("recyclecachedstories/{count:int}", BestStoriesCacheEndpoint.GetBestStories)
     .AddEndpointFilter<BestStoriesCacheValidationFilter>()

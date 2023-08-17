@@ -14,6 +14,7 @@ builder.Logging.AddConsole();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHealthChecks();
 
 builder.Services.AddHttpClient(Constants.BEST_STORIES_CACHE_API, (serviceProvider, httpClient) =>
 {
@@ -57,6 +58,8 @@ builder.Services.AddScoped<IBestStoriesCacheAPIService, BestStoriesCacheAPIServi
 builder.Services.AddScoped<IBestStoriesService, BestStoriesService>();
 
 WebApplication app = builder.Build();
+
+app.MapHealthChecks("health");
 
 app.MapGet("getbeststories/{count:int}", BestStoriesEndpoint.GetBestStories)
     .AddEndpointFilter<BestStoriesValidationFilter>()
