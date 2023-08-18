@@ -84,7 +84,7 @@ Clone the repository and open the solution [BestStories.sln](https://github.com/
 
 Run the following command `docker network inspect bridge` to obtain the Gateway IP address of the Docker host.
 
-Update the **BestStoriesCacheAPI** url in [appsettings.Development.json](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStoriesAPI/appsettings.Development.json) with the Gateway IP address of the Docker host.
+Update the **BestStoriesCacheAPI** url in the **BestStoriesAPI**'s [appsettings.Development.json](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStoriesAPI/appsettings.Development.json) with the Gateway IP address of the Docker host.
 
 ```JSON
 {
@@ -96,7 +96,7 @@ Update the **BestStoriesCacheAPI** url in [appsettings.Development.json](https:/
   },
   "BestStoriesConfiguration": {
     "BestStoriesCacheAPI": "https://[Gateway IP address]:7157",
-    "CacheMaxSize": 200
+    "DefaultCacheMaxSize": 200
   }
 }
 ```
@@ -152,7 +152,7 @@ app.MapGet("getbeststories/{count:int}", BestStoriesEndpoint.GetBestStories)
 // Configuration
   "BestStoriesConfiguration": {
     "BestStoriesCacheAPI": "https://localhost:7157",
-    "CacheMaxSize": 200
+    "DefaultCacheMaxSize": 200
 ```
 
 ### Best Stories Cache API
@@ -198,7 +198,11 @@ The current implementation for distributed caching is [DistributedCache](https:/
 > In a production environment, the distributed cache should be configured for an appropriate caching service e.g. Redis.
 
 ### Filter Validation
-Both **Best Stories API** and **Best Stories Cache API** use endpoint filters to validate their consumers provide a valid number between 1 and the specified `CacheMaxSize`.
+Both **Best Stories API** and **Best Stories Cache API** use endpoint filters to validate their consumers provide a valid number between 1 and the specified `CacheMaxSize`. 
+
+The `CacheMaxSize` is set in the `IDistributedCache` by **Best Stories Cache API** at startup. After setting the `CacheMaxSize` in the `IDistributedCache` at startup, the **Best Stories Cache API**'s own validation filter will continue to use it's local copy of `CacheMaxSize` rather than make a call to `IDistributedCache`.
+
+The **Best Stories API**'s validation filter will get the `CacheMaxSize` from `IDistributedCache`. If it is unavailable, it wall fall back to it's own `DefaultCacheMaxSize` set in it's [appsettings.json](https://github.com/grantcolley/best-stories-api/blob/0b2e65187959aa44385f63488b9f18652845be8b/src/BestStoriesAPI/appsettings.json#L10). 
 
 ## Testing
 ### Unit Tests 
