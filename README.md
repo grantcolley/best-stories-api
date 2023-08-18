@@ -84,6 +84,8 @@ Clone the repository and open the solution [BestStories.sln](https://github.com/
 
 Run the following command `docker network inspect bridge` to obtain the Gateway IP address of the Docker host.
 
+![Alt text](/readme-images/docker-network-inspect-bridge.png?raw=true "docker network inspect bridge")
+
 Update the **BestStoriesCacheAPI** url in the **BestStoriesAPI**'s [appsettings.Development.json](https://github.com/grantcolley/best-stories-api/blob/main/src/BestStoriesAPI/appsettings.Development.json) with the Gateway IP address of the Docker host.
 
 ```JSON
