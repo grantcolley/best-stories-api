@@ -9,7 +9,7 @@ namespace BestStoriesAPI.Tests.Helpers
             Arguments = new List<object?>();
         }
 
-        public override HttpContext HttpContext => throw new NotImplementedException();
+        public override HttpContext HttpContext => new MockHttpContext();
 
         public override IList<object?> Arguments { get; }
 

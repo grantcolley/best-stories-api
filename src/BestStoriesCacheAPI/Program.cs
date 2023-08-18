@@ -6,6 +6,7 @@ using BestStoriesCacheAPI.Endpoints;
 using BestStoriesCacheAPI.Interfaces;
 using BestStoriesCacheAPI.Models;
 using BestStoriesCacheAPI.Services;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -54,6 +55,12 @@ builder.Services.AddSingleton<IHackerNewsAPIService, HackerNewsAPIService>();
 builder.Services.AddScoped<IBestStoriesCacheService, BestStoriesCacheService>();
 
 WebApplication app = builder.Build();
+
+IDistributedCache distributedCache = app.Services.GetRequiredService<IDistributedCache>();
+
+distributedCache.Set(
+    Constants.DISTRIBUTED_CACHE_MAX_SIZE,
+    BitConverter.GetBytes(maxCacheSize));
 
 app.MapHealthChecks("health");
 

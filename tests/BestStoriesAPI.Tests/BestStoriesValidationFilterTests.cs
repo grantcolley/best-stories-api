@@ -1,9 +1,12 @@
+using BestStories.Core.Static;
 using BestStoriesAPI.Filters;
 using BestStoriesAPI.Models;
 using BestStoriesAPI.Tests.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
+using Moq;
 
 namespace BestStoriesAPI.Tests
 {
@@ -17,10 +20,16 @@ namespace BestStoriesAPI.Tests
         private const string errorMessage = $"Specify number of best stories to fetch between 1 and 200";
 
         private readonly IOptions<BestStoriesConfiguration> _bestStoriesConfiguration;
+        private readonly Mock<IDistributedCache> _mockDistributedCache;
 
         public BestStoriesValidationFilterTests()
         {
-            _bestStoriesConfiguration = Options.Create(new BestStoriesConfiguration { CacheMaxSize = 200 });
+            _bestStoriesConfiguration = Options.Create(new BestStoriesConfiguration { DefaultCacheMaxSize = 200 });
+
+            _mockDistributedCache = new();
+            _mockDistributedCache.Setup(
+                s => s.GetAsync(Constants.DISTRIBUTED_CACHE_MAX_SIZE, CancellationToken.None))
+                .Returns(Task.FromResult<byte[]?>(BitConverter.GetBytes(200)));
         }
 
         /// <summary>
@@ -34,7 +43,7 @@ namespace BestStoriesAPI.Tests
 
             mockEndpointFilterInvocationContext.Arguments.Add(5);
 
-            BestStoriesValidationFilter bestStoriesValidationFilter = new(_bestStoriesConfiguration);
+            BestStoriesValidationFilter bestStoriesValidationFilter = new(_bestStoriesConfiguration, _mockDistributedCache.Object);
 
             // Act
             var resultObject = await bestStoriesValidationFilter.InvokeAsync(mockEndpointFilterInvocationContext, EndpointFilterDelegate)
@@ -43,6 +52,41 @@ namespace BestStoriesAPI.Tests
             var result = resultObject as Ok<string>;
 
             // Assert
+            _mockDistributedCache.Verify(s => s.GetAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(200, result.StatusCode);
+            Assert.AreEqual(successMessage, result.Value);
+        }
+
+        /// <summary>
+        /// Returns a Status200OK after the validating the parameter is within the permissible 
+        /// range as defined in the BestStoriesConfiguration.DefaultCacheMaxSize.
+        /// </summary>
+        [TestMethod]
+        public async Task BestStoriesValidationFilter_Use_DefaultMaxCacheSize_Return_Status200OK()
+        {
+            // Arrange
+            Mock<IDistributedCache> mockLocalDistributedCache = new();
+            mockLocalDistributedCache.Setup(
+                s => s.GetAsync(Constants.DISTRIBUTED_CACHE_MAX_SIZE, CancellationToken.None))
+                .Returns(Task.FromResult<byte[]?>(null));
+
+            MockEndpointFilterInvocationContext mockEndpointFilterInvocationContext = new();
+
+            mockEndpointFilterInvocationContext.Arguments.Add(5);
+
+            BestStoriesValidationFilter bestStoriesValidationFilter = new(_bestStoriesConfiguration, mockLocalDistributedCache.Object);
+
+            // Act
+            var resultObject = await bestStoriesValidationFilter.InvokeAsync(mockEndpointFilterInvocationContext, EndpointFilterDelegate)
+                .ConfigureAwait(false);
+
+            var result = resultObject as Ok<string>;
+
+            // Assert
+            mockLocalDistributedCache.Verify(s => s.GetAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
+
             Assert.IsNotNull(result);
             Assert.AreEqual(200, result.StatusCode);
             Assert.AreEqual(successMessage, result.Value);
@@ -57,7 +101,7 @@ namespace BestStoriesAPI.Tests
             // Arrange
             MockEndpointFilterInvocationContext mockEndpointFilterInvocationContext = new();
 
-            BestStoriesValidationFilter bestStoriesValidationFilter = new(_bestStoriesConfiguration);
+            BestStoriesValidationFilter bestStoriesValidationFilter = new(_bestStoriesConfiguration, _mockDistributedCache.Object);
 
             // Act
             var resultObject = await bestStoriesValidationFilter.InvokeAsync(mockEndpointFilterInvocationContext, EndpointFilterDelegate)
@@ -66,6 +110,8 @@ namespace BestStoriesAPI.Tests
             var result = resultObject as BadRequest<string>;
 
             // Assert
+            _mockDistributedCache.Verify(s => s.GetAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
+
             Assert.IsNotNull(result);
             Assert.AreEqual(400, result.StatusCode);
             Assert.AreEqual(errorMessage, result.Value);
@@ -82,7 +128,7 @@ namespace BestStoriesAPI.Tests
 
             mockEndpointFilterInvocationContext.Arguments.Add(0);
 
-            BestStoriesValidationFilter bestStoriesValidationFilter = new(_bestStoriesConfiguration);
+            BestStoriesValidationFilter bestStoriesValidationFilter = new(_bestStoriesConfiguration, _mockDistributedCache.Object);
 
             // Act
             var resultObject = await bestStoriesValidationFilter.InvokeAsync(mockEndpointFilterInvocationContext, EndpointFilterDelegate)
@@ -91,6 +137,8 @@ namespace BestStoriesAPI.Tests
             var result = resultObject as BadRequest<string>;
 
             // Assert
+            _mockDistributedCache.Verify(s => s.GetAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
+
             Assert.IsNotNull(result);
             Assert.AreEqual(400, result.StatusCode);
             Assert.AreEqual(errorMessage, result.Value);
@@ -107,7 +155,7 @@ namespace BestStoriesAPI.Tests
 
             mockEndpointFilterInvocationContext.Arguments.Add(201);
 
-            BestStoriesValidationFilter bestStoriesValidationFilter = new(_bestStoriesConfiguration);
+            BestStoriesValidationFilter bestStoriesValidationFilter = new(_bestStoriesConfiguration, _mockDistributedCache.Object);
 
             // Act
             var resultObject = await bestStoriesValidationFilter.InvokeAsync(mockEndpointFilterInvocationContext, EndpointFilterDelegate)
@@ -116,6 +164,8 @@ namespace BestStoriesAPI.Tests
             var result = resultObject as BadRequest<string>;
 
             // Assert
+            _mockDistributedCache.Verify(s => s.GetAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
+
             Assert.IsNotNull(result);
             Assert.AreEqual(400, result.StatusCode);
             Assert.AreEqual(errorMessage, result.Value);

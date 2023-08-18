@@ -1,4 +1,5 @@
-﻿using BestStoriesAPI.Models;
+﻿using BestStories.Core.Static;
+using BestStoriesAPI.Models;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
 
@@ -6,16 +7,19 @@ namespace BestStoriesAPI.Filters
 {
     internal class BestStoriesValidationFilter : IEndpointFilter
     {
+        private readonly IDistributedCache _distributedCache;
         private readonly BestStoriesConfiguration _bestStoriesConfiguration;
-        private readonly string _errorMessage;
+        private readonly string _errorMessage = "Specify number of best stories to fetch between 1 and ";
 
-        public BestStoriesValidationFilter(IOptions<BestStoriesConfiguration> bestStoriesConfiguration) 
+        public BestStoriesValidationFilter(
+            IOptions<BestStoriesConfiguration> bestStoriesConfiguration,
+            IDistributedCache distributedCache) 
         {
             if (bestStoriesConfiguration == null) throw new ArgumentNullException(nameof(bestStoriesConfiguration));
 
-            _bestStoriesConfiguration = bestStoriesConfiguration.Value;
+            _distributedCache = distributedCache ?? throw new ArgumentNullException(nameof(distributedCache));
 
-            _errorMessage = $"Specify number of best stories to fetch between 1 and {_bestStoriesConfiguration.CacheMaxSize}";
+            _bestStoriesConfiguration = bestStoriesConfiguration.Value;
         }
 
         /// <summary>
@@ -27,19 +31,33 @@ namespace BestStoriesAPI.Filters
         /// <returns></returns>
         public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
         {
+            int maxCacheSize;
+
+            byte[]? cacheSize = await _distributedCache.GetAsync(Constants.DISTRIBUTED_CACHE_MAX_SIZE, context.HttpContext.RequestAborted)
+                .ConfigureAwait(false);
+
+            if (cacheSize != null)
+            {
+                maxCacheSize = BitConverter.ToInt32(cacheSize, 0);
+            }
+            else
+            {
+                maxCacheSize = _bestStoriesConfiguration.DefaultCacheMaxSize;
+            }
+
             object? arg = context.Arguments.SingleOrDefault(a => a?.GetType() == typeof(int));
             
             if(arg == null) 
             {
-                return Results.BadRequest(_errorMessage);
+                return Results.BadRequest(_errorMessage + maxCacheSize.ToString());
             }
 
             int count = (int)arg;
 
             if (count == 0
-                || count > _bestStoriesConfiguration.CacheMaxSize)
+                || count > maxCacheSize)
             {
-                return Results.BadRequest(_errorMessage);
+                return Results.BadRequest(_errorMessage + maxCacheSize.ToString());
             }
 
             return await next(context);

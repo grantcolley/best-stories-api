@@ -3,6 +3,6 @@
     public class BestStoriesConfiguration
     {
         public string? BestStoriesCacheAPI { get; set; }
-        public int CacheMaxSize { get; set; }
+        public int DefaultCacheMaxSize { get; set; }
     }
 }
