@@ -62,20 +62,30 @@ distributedCache.Set(
     Constants.DISTRIBUTED_CACHE_MAX_SIZE,
     BitConverter.GetBytes(maxCacheSize));
 
-app.MapHealthChecks("health");
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseExceptionHandler("/error");
+    app.UseHsts();
+}
 
-app.MapGet("recyclecachedstories/{count:int}", BestStoriesCacheEndpoint.GetBestStories)
+app.UseHttpsRedirection();
+
+app.MapHealthChecks("/health");
+
+app.MapGet("/error", () => Results.Problem());
+
+app.MapGet("/recyclecachedstories/{count:int}", BestStoriesCacheEndpoint.GetBestStories)
     .AddEndpointFilter<BestStoriesCacheValidationFilter>()
     .WithOpenApi()
     .WithName("GetBestCachedStories")
     .WithDescription("The Get Best Cached Stories Endpoint")
     .Produces<IEnumerable<Story>>(StatusCodes.Status200OK)
     .Produces(StatusCodes.Status500InternalServerError);
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 app.Run();

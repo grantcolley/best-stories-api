@@ -59,20 +59,30 @@ builder.Services.AddScoped<IBestStoriesService, BestStoriesService>();
 
 WebApplication app = builder.Build();
 
-app.MapHealthChecks("health");
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseExceptionHandler("/error");
+    app.UseHsts();
+}
 
-app.MapGet("getbeststories/{count:int}", BestStoriesEndpoint.GetBestStories)
+app.UseHttpsRedirection();
+
+app.MapHealthChecks("/health");
+
+app.MapGet("/error", () => Results.Problem());
+
+app.MapGet("/getbeststories/{count:int}", BestStoriesEndpoint.GetBestStories)
     .AddEndpointFilter<BestStoriesValidationFilter>()
     .WithOpenApi()
     .WithName("GetBestStories")
     .WithDescription("The GetBestStories Endpoint")
     .Produces<IEnumerable<Story>>(StatusCodes.Status200OK)
     .Produces(StatusCodes.Status500InternalServerError);
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 app.Run();
