@@ -22,6 +22,8 @@ specified by the caller to the API.
 	* [Unit Tests](#unit-tests)
 * [If I had more time](#if-i-had-more-time)
 
+![Alt text](/readme-images/Backend_Developer_Coding_Test.pdf?raw=true "Coding Test") 
+
 ## Observations
 I conducted a simple test, first calling the Hacker News API endpoint to fetch the IDs for best stories, followed by calling the endpoint to fetch each story. These steps were repeated at 5 second intervals over a period of time.
 
