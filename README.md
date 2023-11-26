@@ -2,6 +2,8 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/biv16q70s4vck6u1?svg=true)](https://ci.appveyor.com/project/grantcolley/best-stories-api)
 
+[Backend Developer Coding Test](https://github.com/grantcolley/best-stories-api/blob/main/readme-images/Backend_Developer_Coding_Test.pdf)
+
 **Best Stories API** is a RESTful API to retrieve to retrieve the details of the best *n* stories from the [Hacker News API](https://github.com/HackerNews/API), as determined by their score, where *n* is
 specified by the caller to the API. 
 
@@ -21,8 +23,6 @@ specified by the caller to the API.
 * [Testing](#testing)
 	* [Unit Tests](#unit-tests)
 * [If I had more time](#if-i-had-more-time)
-
-![Alt text](/readme-images/Backend_Developer_Coding_Test.pdf?raw=true "Coding Test") 
 
 ## Observations
 I conducted a simple test, first calling the Hacker News API endpoint to fetch the IDs for best stories, followed by calling the endpoint to fetch each story. These steps were repeated at 5 second intervals over a period of time.
