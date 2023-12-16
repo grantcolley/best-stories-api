@@ -1,6 +1,6 @@
 # Best Stories API
 
-###### .NET 7.0, ASP.NET Core Web API, Minimal Api, Docker, MSTest, Moq, RESTful API, HackerNews
+###### .NET 7.0, ASP.NET Core Web API, Minimal Api, Distributed Cache, Docker, MSTest, Moq, RESTful API, HackerNews
 ###### 
 
 [![Build status](https://ci.appveyor.com/api/projects/status/biv16q70s4vck6u1?svg=true)](https://ci.appveyor.com/project/grantcolley/best-stories-api)
