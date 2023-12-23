@@ -249,5 +249,5 @@ The **Best Stories API**'s validation filter will get the `CacheMaxSize` from `I
 - [BestStoriesCacheApi.Tests](https://github.com/grantcolley/best-stories-api/tree/main/tests/BestStoriesCacheAPI.Tests).
 
 ## If I had more time
-- Implement authentication between **Best Stories API** and **Best Stories Cache API** to restrict access to **Best Stories Cache API**. 
+- Implement authentication between **Best Stories API** and **Best Stories Cache API** to restrict access to **Best Stories Cache API** i.e. **Best Stories API** remains open to the public, however, **Best Stories Cache API** will only accept requests from **Best Stories API**.
 - Load/stress testing.
