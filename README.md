@@ -5,11 +5,8 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/biv16q70s4vck6u1?svg=true)](https://ci.appveyor.com/project/grantcolley/best-stories-api)
 
-This solution is the response to a [Backend Developer Coding Test](https://github.com/grantcolley/best-stories-api/blob/main/readme-images/Backend_Developer_Coding_Test.pdf).
-
-**Best Stories API** is a RESTful API to retrieve to retrieve the details of the best *n* stories from the [Hacker News API](https://github.com/HackerNews/API), as determined by their score, where *n* is specified by the caller to the API. 
-
 ### Table of Contents
+* [Developer Coding Test](#developer-coding-test)
 * [Observations](#observations)
 * [Assumptions](#assumptions)
 * [The Solution](#the-solution)
@@ -25,6 +22,42 @@ This solution is the response to a [Backend Developer Coding Test](https://githu
 * [Testing](#testing)
 	* [Unit Tests](#unit-tests)
 * [If I had more time](#if-i-had-more-time)
+
+## Developer Coding Test
+[The Coding Test](https://github.com/grantcolley/best-stories-api/blob/main/readme-images/Backend_Developer_Coding_Test.pdf)
+
+Using ASP.NET Core, implement a RESTful API to retrieve the details of the best n stories from the Hacker News API, as determined by their score, where n is
+specified by the caller to the API.
+
+The Hacker News API is documented here: [https://github.com/HackerNews/API](https://github.com/HackerNews/API).
+
+The IDs for the stories can be retrieved from this URI: [https://hacker-news.firebaseio.com/v0/beststories.json](https://hacker-news.firebaseio.com/v0/beststories.json).
+
+The details for an individual story ID can be retrieved from this URI: [https://hacker-news.firebaseio.com/v0/item/21233041.json](https://hacker-news.firebaseio.com/v0/item/21233041.json) (in this case for the story with ID 21233041 )
+
+The API should return an array of the best n stories as returned by the Hacker News API in descending order of score, in the form:
+
+```json
+[
+	{
+		"title": "A uBlock Origin update was rejected from the Chrome Web Store",
+		"uri": "https://github.com/uBlockOrigin/uBlock-issues/issues/745",
+		"postedBy": "ismaildonmez",
+		"time": "2019-10-12T13:43:01+00:00",
+		"score": 1716,
+		"commentCount": 572
+	},
+	{ ... },
+	{ ... },
+	{ ... },
+	...
+]
+```
+
+In addition to the above, your API should be able to efficiently service large numbers of requests without risking overloading of the Hacker News API.
+
+You should share a public repository with us, that should include a README.md file which describes how to run the application, any assumptions you have made, and
+any enhancements or changes you would make, given the time.
 
 ## Observations
 I conducted a simple test, first calling the Hacker News API endpoint to fetch the IDs for best stories, followed by calling the endpoint to fetch each story. These steps were repeated at 5 second intervals over a period of time.
