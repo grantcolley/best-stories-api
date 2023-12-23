@@ -37,7 +37,7 @@ The details for an individual story ID can be retrieved from this URI: [https://
 
 The API should return an array of the best n stories as returned by the Hacker News API in descending order of score, in the form:
 
-```json
+```c#
 [
 	{
 		"title": "A uBlock Origin update was rejected from the Chrome Web Store",
